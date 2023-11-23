@@ -18,3 +18,6 @@ ADD AdminStatus BOOLEAN NOT NULL;
 
 ALTER TABLE clientdetails
 DROP PRIMARY KEY;
+
+ALTER TABLE clientdetails
+ADD PRIMARY KEY (Customer_ID);
