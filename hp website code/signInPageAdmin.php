@@ -8,14 +8,14 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Sign In Page</title>
+    <title>Admin Log In Page</title>
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
-    <script defer src=""></script>
+    <script defer src="loginAdmin.js"></script>
     <style> </style>
 </head>
 
 <body>
-<nav class="header">
+    <nav class="header">
         <a href="homePage.php"><img src="hplogo3.png" alt="Company Logo"></a>
         <form action="/search" method="get">
             <input type="text" name="q" placeholder="Search...">
@@ -24,7 +24,7 @@ session_start();
         <button><a href="accountPage.php">Account</a></button>
         <button><a href="basketPage.php">Basket</a></button>
         <button><a href="contactUsPage.php">Contact Us</a></button>
-</nav>
+    </nav>
 
     <nav class="header-nav">
         <ul class="navigation-bar">
@@ -45,18 +45,22 @@ session_start();
     <div class="login">
         <h1 id="login-header">Login</h1>
         <?php if ($error_message): ?>
-            <p class="error"><?php echo $error_message; ?></p>
+            <p class="error">
+                <?php echo $error_message; ?>
+            </p>
         <?php endif; ?>
-        <form id="login-form" action="loginAdmin.php" method="post">
-            <input type="email" id="email" name="email" placeholder="Email" />
-            <input type="password" id="password" name="password" placeholder="Password">
-            <input type="adminID" id="adminID" name="adminID" placeholder="Admin ID">
+        <form id="login-form" action="" method="post">
+            <input type="email" id="email" name="email" placeholder="Email" /><br><br>
+            <input type="password" id="password" name="password" placeholder="Password"><br><br>
+            <input type="adminID" id="adminID" name="adminID" placeholder="Admin ID"><br><br>
             <input type="submit" id="login" name="login" value="Login">
             <input type="button" value="Register" id="register" class="button"
                 onclick="location.href='signupadmin.php';">
             <br>
         </form>
     </div>
+
+   
 </body>
 
 </html>
