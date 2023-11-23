@@ -8,3 +8,6 @@ CREATE TABLE stock(
     Product_Category ENUM('General', 'SkinCare', 'Vitamins_Supplements', 'DentalCare', 'Haircare'),
     PRIMARY KEY(SKU_number)
     );
+
+   ALTER TABLE stock
+   ALTER COLUMN SKU_number varchar();
