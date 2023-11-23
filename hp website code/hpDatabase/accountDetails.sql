@@ -11,3 +11,7 @@ CREATE TABLE clientDetails (
     PRIMARY KEY (Customer_ID, Admin_ID)
     
     );
+
+
+ALTER TABLE clientdetails
+ADD AdminStatus BOOLEAN NOT NULL;
