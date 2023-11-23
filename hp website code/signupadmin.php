@@ -4,20 +4,91 @@
 <head>
 <title>Sign Up Admin</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="">
+<form class="login" name="loginform" onsubmit="returnvalidateLoginForm()" method="post">
+<link rel="stylesheet" href="webstyle.css">
 </head>
 <style>
 </style>
 <script src=""></script>
 <body>
 
-<img src="img_la.jpg" alt="LA" style="width:100%">
 
-<div class="">
- <h1>This is a Heading</h1>
- <p>This is a paragraph.</p>
- <p>This is another paragraph.</p>
+
+<div class="banner">
+    <a href='#' class="logo"><img src="images/hplogo3.png" class="logo"></a>
+    <nav class="header">
+<a href='#'>Account</a>
+<a href='#'>Basket</a>
+<a href='#'>Contact</a>
+    </nav>
 </div>
+<div class="content">
+<table>
+<tr>
+    <th>
+        <h3>Create an Admin account</h3>
+    </th>
+</tr>
+<tr>
+<th>
+<label for="fname">First name:</label></tr>    
+</th>
+</tr>
+<tr>
+<th>
+<input type="text" id="fname" name="fname"><br><br>
+</th>
+</tr>
+<tr>
+<th>
+<label for="lname">Last name:</label>
+</th>
+</tr>
+<tr>
+<th>
+<input type="text" id="lname" name="lname"><br><br>
+</th>
+</tr>
+<tr>
+<th>
+<label for="email">Email:</label>   
+</th>
+</tr>
+<tr>
+<th>
+<input type="text" id="email" name="email"><br><br>
+</th>
+</tr>
+<tr>
+    <th>
+        <label for="pass">Password:</label>
+    </th>
+</tr>
+<tr>
+    <th>
+    <input type="password" id="password" name="password"><br><br>
+    </th>
+</tr>
+<tr>
+    <th>
+    <label for="adminkey">Admin Reference Key:</label>
+    </th>
+</tr>
+<tr>
+    <th>
+        <input type="text" id="adminkey" name="adminkey"><br></br>
+    </th>
+</tr>
+<tr>
+<th>
+    <button type="crtbtn">Create new account</button>
+</th>
+</tr>
 
+ 
+
+</table>
+</div>
+</form>
 </body>
 </html>
