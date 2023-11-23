@@ -15,3 +15,6 @@ CREATE TABLE clientDetails (
 
 ALTER TABLE clientdetails
 ADD AdminStatus BOOLEAN NOT NULL;
+
+ALTER TABLE clientdetails
+DROP PRIMARY KEY;
