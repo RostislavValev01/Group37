@@ -11,3 +11,6 @@ CREATE TABLE stock(
 
    ALTER TABLE stock
    ALTER COLUMN SKU_number varchar();
+
+ALTER TABLE stock
+ALTER COLUMN Barcode int();
