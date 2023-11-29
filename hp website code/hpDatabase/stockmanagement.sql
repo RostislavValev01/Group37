@@ -21,12 +21,12 @@ VALUES (LOAD_FILE("C:\Users\carla\OneDrive - Aston University\2nd Year\CS2TP\ski
 ALTER TABLE stock2
 MODIFY COLUMN Product LONGBLOB();
 
-SQL query: Copy
-
-
 ALTER TABLE `stock2` 
 MODIFY COLUMN SKU_number AUTO_INCREMENT;
 MySQL said: Documentation
 
 ALTER TABLE `stock2` 
 MODIFY COLUMN SKU_number INT AUTO_INCREMENT;
+
+ALTER TABLE stock2
+ADD COLUMN Price INT;
