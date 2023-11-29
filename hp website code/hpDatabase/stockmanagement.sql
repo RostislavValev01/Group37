@@ -9,8 +9,11 @@ CREATE TABLE stock2(
     PRIMARY KEY(SKU_number)
     );
 
-   ALTER TABLE stock
-   ALTER COLUMN SKU_number varchar();
+ALTER TABLE stock
+ALTER COLUMN SKU_number varchar();
 
 ALTER TABLE stock
 ALTER COLUMN Barcode int();
+
+INSERT INTO stock2 (Product)
+VALUES (LOAD_FILE("C:\Users\carla\OneDrive - Aston University\2nd Year\CS2TP\skincare product.png"));
