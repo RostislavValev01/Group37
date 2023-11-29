@@ -13,11 +13,14 @@ CREATE TABLE clientDetails2 (
     );
 
 
-ALTER TABLE clientdetails
+ALTER TABLE clientdetails2
 ADD AdminStatus BOOLEAN NOT NULL;
 
-ALTER TABLE clientdetails
+ALTER TABLE clientdetails2
 DROP PRIMARY KEY;
 
-ALTER TABLE clientdetails
+ALTER TABLE clientdetails2
 ADD PRIMARY KEY (Customer_ID);
+
+ALTER TABLE clientdetails2
+ADD INDEX idx_Customer_ID (Customer_ID);
