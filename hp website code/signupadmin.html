@@ -1,18 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <meta charset="UTF-8">
 <head>
 <title>Sign Up Admin</title>
+<script defer src="signup.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<form class="login" name="loginform" onsubmit="returnvalidateLoginForm()" method="post">
-<link rel="stylesheet" href="webstyle.css">
+<!-- <link rel="stylesheet" href="HealthPoint.css"> -->
 </head>
 <style>
 </style>
-<script src=""></script>
+
 <body>
-
-
 
 <div class="banner">
     <a href='#' class="logo"><img src="images/hplogo3.png" class="logo"></a>
@@ -22,7 +21,10 @@
 <a href='#'>Contact</a>
     </nav>
 </div>
+
+<form class="register" id="registerForm"  method="post">
 <div class="content">
+
 <table>
 <tr>
     <th>
@@ -36,7 +38,7 @@
 </tr>
 <tr>
 <th>
-<input type="text" id="fname" name="fname"><br><br>
+<input type="text" id="fname" name="fname" placeholder="First Name" required><br><br>
 </th>
 </tr>
 <tr>
@@ -46,7 +48,7 @@
 </tr>
 <tr>
 <th>
-<input type="text" id="lname" name="lname"><br><br>
+<input type="text" id="lname" name="lname" placeholder="Last Name" required><br><br>
 </th>
 </tr>
 <tr>
@@ -56,7 +58,7 @@
 </tr>
 <tr>
 <th>
-<input type="text" id="email" name="email"><br><br>
+<input type="text" id="email" name="email" placeholder="Email" required><br><br>
 </th>
 </tr>
 <tr>
@@ -66,29 +68,30 @@
 </tr>
 <tr>
     <th>
-    <input type="password" id="password" name="password"><br><br>
+    <input type="password" id="password" name="password" placeholder="Password" required><br><br>
     </th>
 </tr>
 <tr>
     <th>
-    <label for="adminkey">Admin Reference Key:</label>
+        <label for="refkey">Reference Key:</label>
     </th>
 </tr>
 <tr>
     <th>
-        <input type="text" id="adminkey" name="adminkey"><br></br>
+        <input type="password" id="refkey" name="referenceKey" placeholder="Reference Key" required><br><br>
     </th>
 </tr>
 <tr>
 <th>
-    <button type="crtbtn">Create new account</button>
+    <input type="submit" id="submit" name="createaccount" value="Create new Account">
+
 </th>
 </tr>
 
- 
 
 </table>
 </div>
 </form>
+
 </body>
 </html>
