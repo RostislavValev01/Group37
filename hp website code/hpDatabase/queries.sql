@@ -1,8 +1,8 @@
-CREATE TABLE queries(
-    Customer_ID VARCHAR(20),
-    Query_ref VARCHAR (20),
-    First_Name VARCHAR(25),
-    Surname VARCHAR(40),
-    Email VARCHAR(100),
-    Query_description VARCHAR(2000)
+CREATE TABLE queries2(
+    Customer_ID VARCHAR(20) NOT NULL,
+    Query_ref VARCHAR (20) NOT NULL,
+    First_Name VARCHAR(25) NOT NULL,
+    Surname VARCHAR(40) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Query_description VARCHAR(2000) NOT NULL
     );
