@@ -17,3 +17,6 @@ ALTER COLUMN Barcode int();
 
 INSERT INTO stock2 (Product)
 VALUES (LOAD_FILE("C:\Users\carla\OneDrive - Aston University\2nd Year\CS2TP\skincare product.png"));
+
+ALTER TABLE stock2
+MODIFY COLUMN Product LONGBLOB();
