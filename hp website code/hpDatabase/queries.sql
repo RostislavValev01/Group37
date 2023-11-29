@@ -6,3 +6,9 @@ CREATE TABLE queries2(
     Email VARCHAR(100) NOT NULL,
     Query_description VARCHAR(2000) NOT NULL
     );
+
+
+ALTER TABLE queries2
+ADD PRIMARY KEY (Query_ref);
+
+
