@@ -1,58 +1,55 @@
 document.getElementById("registerForm").addEventListener("submit", function (event) {
-    var firstname = document.getElementById("fname").value;
-    var lastname = document.getElementById("lname").value;
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-    console.log(firstname, lastname, email, password)
-    // checkValues(firstname, lastname, password);
-    checkEmail();
-    checkPassword();
-    if (firstname == "" || lastname == "" || password == "" || email == ""){
-        alert('All fields must be filled out')
+    var firstnameValid = checkFirstname();
+    var lastnameValid = checkLastname();
+    var emailValid = checkEmail();
+    var passwordValid = checkPassword();
+
+    if (!firstnameValid || !lastnameValid || !emailValid || !passwordValid) {
+        // If validations fail the form won't submit
         event.preventDefault();
+        return false;
+    }
+    // If validations pass then the form will submit
+});
+
+let first_firstname = document.getElementById("fname");
+let first_lastname = document.getElementById("lname");
+let first_email = document.getElementById("email");
+let first_pass = document.getElementById("password");
+
+first_firstname.addEventListener("input", function() {
+    let valid = /^[^\d\s!@#$%^&*()_+=[\]{};':"\\|,.<>/?]*$/;
+    if (!first_firstname.value.match(valid)) {
+        first_firstname.setCustomValidity("Invalid First Name");
+        first_firstname.reportValidity();
+    } else {
+        first_firstname.setCustomValidity('');
     }
 });
 
-let form = document.getElementById("registerForm");
-let first_pass = form.password;
-let first_email = form.email;
-let first_firstname = form.firstname;
-first_email.onchange = checkEmail; 
-first_pass.onchange = checkPassword;
+first_lastname.addEventListener("input", function() {
+    let valid = /^[^\d\s!@#$%^&*()_+=[\]{};':"\\|,.<>/?]*$/;
+    if (!first_lastname.value.match(valid)) {
+        first_lastname.setCustomValidity("Invalid Last Name");
+        first_lastname.reportValidity();
+    } else {
+        first_lastname.setCustomValidity('');
+    }
+});
 
-function checkEmail() {
-    let form = document.getElementById("registerForm");
-    let first_email = form.email;
-    let errors = [];
-    var valid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
+first_email.addEventListener("input", function() {
+    let valid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (!first_email.value.match(valid)) {
-        errors.push("Invalid Email Address");
-        
+        first_email.setCustomValidity("Invalid Email Address");
+        first_email.reportValidity();
+    } else {
+        first_email.setCustomValidity('');
     }
-    
+});
 
-    first_email.setCustomValidity(errors.join(', '));
-    first_email.reportValidity();
-}
-
-function checkPassword() {
-    let form = document.getElementById("registerForm");
-
-    let first_pass = form.password;
-    let errors = [];
+first_pass.addEventListener("input", function() {
     if (first_pass.value.length < 8)
-        errors.push("Too short");
-    if (!first_pass.value.match(/^[a-zA-Z0-9]+$/))
-        errors.push("Only alphanumeric chars allowed");
-    if (!first_pass.value.match(/[a-z]/))
-        errors.push("Lower case letter required");
-    if (!first_pass.value.match(/[A-Z]/))
-        errors.push("Upper case letter required");
-    if (!first_pass.value.match(/[0-9]/)) {
-        errors.push("Number required");
-    }
-    first_pass.setCustomValidity(errors.join(', '));
-    first_pass.reportValidity();
-}   
-
+        first_pass.setCustomValidity("Password too short");
+    else
+        first_pass.setCustomValidity('');
+});
