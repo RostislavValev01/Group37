@@ -11,7 +11,59 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
     <script defer src="loginAdmin.js"></script>
-    <style> </style>
+    <style>
+        .login {
+            justify-content: center;
+            align-items: center;
+            padding-left: 82vh;
+            margin-top: -40vh;
+        }
+
+        .login h1 {
+
+            margin-bottom: 0vh;
+            font-size: 2.5rem;
+        }
+
+        .login-form {
+            margin-top: 15%;
+            width: 100%;
+            height: 20vh;
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+            gap: 10px;
+
+        }
+
+        #login-form #email {
+            width: 100%;
+            border-radius: 5px;
+            text-align: center;
+
+        }
+
+        #login-form #password {
+            width: 100%;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #login-form #login {
+            width: 80%;
+            height: 15%;
+            border-radius: 5px;
+            margin-left: 4vh;
+        }
+
+        #login-form #register {
+            width: 80%;
+            height: 15%;
+            border-radius: 5px;
+            margin-left: 4vh;
+            margin-top: 1vh;
+        }
+    </style>
 </head>
 
 <body>
@@ -46,7 +98,7 @@ session_start();
 
     <div class="content">
         <div class="login">
-            <h1 id="login-header">Login</h1>
+            <h1 id="login-header">Customer Login</h1>
             <?php if ($error_message): ?>
                 <p class="error">
                     <?php echo $error_message; ?>
