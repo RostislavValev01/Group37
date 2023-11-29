@@ -3,28 +3,30 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
 
 <head>
-  <meta charset="UTF-8">
+  <title>Products</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products Page</title>
   <link rel="stylesheet" type="text/css" href="HealthPoint.css">
-  <script defer src=""></script>
-  <style></style>
+  <script defer src="loginAdmin.js"></script>
+  <style> </style>
 </head>
 
 <body>
-<nav class="header">
-        <a href="homePage.php"><img src="hplogo3.png" alt="Company Logo"></a>
-        <form action="/search" method="get">
-            <input type="text" name="q" placeholder="Search...">
-            <button type="submit">Go</button>
-        </form>
-        <button><a href="accountPage.php">Account</a></button>
-        <button><a href="basketPage.php">Basket</a></button>
-        <button><a href="contactUsPage.php">Contact Us</a></button>
-</nav>
+  <nav class="banner">
+    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    <form action="/search" method="get">
+      <input type="text" name="q" placeholder="Search...">
+      <button type="submit">Go</button>
+    </form>
+    <nav class="header">
+      <button><a href="accountPage.php">Account</a></button>
+      <button><a href="basketPage.php">Basket</a></button>
+      <button><a href="contactUsPage.php">Contact Us</a></button>
+    </nav>
+  </nav>
 
   <nav class="header-nav">
     <ul class="navigation-bar">
@@ -42,13 +44,36 @@ session_start();
     </ul>
   </nav>
 
-  <h1 id="products-header">Products</h1>
-  <form class="search-bar" action="" method="get">
-    <input type="text" name="q" placeholder="Search by title...">
-    <input type="text" name="p" placeholder="Search by date...">
-    <button type="submit">Search</button>
-</form>
+  <?php
+  require 'connectdb.php';
 
+  $sql = "SELECT Product, Price, Price, Product_Status, Product_Category, Product_Description FROM stock";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute();
+
+  $stock = $stmt->fetchAll();
+  ?>
+
+  <form action="" method="post">
+    <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" placeholder="Search...">
+    <select name="sort">
+      <option value="productImage">Product Image</option>
+      <option value="Product">Product Name</option>
+      <option value="Price">Price</option>
+      <option value="Product_Status">Availability</option>
+      <option value="Product_Category">Description</option>
+      <option value="Product_Description">Description</option>
+
+    </select>
+
+    <select name="order">
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+    <input type="submit" value="Search">
+  </form>
+
+  <h1 id="products-header">Products</h1>
   <table class="products-table">
     <thead>
       <tr>
@@ -60,7 +85,28 @@ session_start();
       </tr>
     </thead>
     <tbody>
+      <?php foreach ($stock as $product): ?>
+        <tr>
+          <td>
+            <?php echo $product['Product']; ?>
+          </td>
+          <td>
+            <?php echo $product['Price']; ?>
+          </td>
+          <td>
+            <?php echo $product['Product_Status']; ?>
+          </td>
+          <td>
+            <?php echo $product['Product_Category']; ?>
+          </td>
+          <td>
+            <?php echo $product['Product_Description']; ?>
+          </td>
+        </tr>
+      <?php endforeach; ?>
     </tbody>
   </table>
+
 </body>
+
 </html>
