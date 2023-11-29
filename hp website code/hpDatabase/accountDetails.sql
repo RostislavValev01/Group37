@@ -1,13 +1,13 @@
-CREATE TABLE clientDetails (
-    Customer_ID  VARCHAR(11),
-    FirstName VARCHAR(40),
-    Surname VARCHAR(40),
-    MobileNumber INT,
-    Email VARCHAR(40),
-    CustomerAddress VARCHAR(40),
-    DateOfBirth DATE,
-    Admin_ID VARCHAR(11),
-    AdminStatus BOOLEAN,
+CREATE TABLE clientDetails2 (
+    Customer_ID  VARCHAR(11) NOT NULL,
+    FirstName VARCHAR(40) NOT NULL,
+    Surname VARCHAR(40) NOT NULL,
+    MobileNumber INT NOT NULL,
+    Email VARCHAR(40) NOT NULL,
+    CustomerAddress VARCHAR(40) NOT NULL,
+    DateOfBirth DATE NOT NULL,
+    Admin_ID VARCHAR(11) NOT NULL,
+    AdminStatus BOOLEAN NOT NULL,
     PRIMARY KEY (Customer_ID, Admin_ID)
     
     );
