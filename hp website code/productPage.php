@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
@@ -47,17 +48,30 @@ session_start();
   <?php
   require 'connectdb.php';
 
-  $sql = "SELECT Product, Price, Price, Product_Status, Product_Category, Product_Description FROM stock";
+  $sql = "SELECT SKU_number, Product, Price, Price, Product_Status, Product_Category, Product_Description FROM stock3";
   $stmt = $pdo->prepare($sql);
   $stmt->execute();
 
   $stock = $stmt->fetchAll();
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $search = $_POST['search'];
+    $sort = $_POST['sort'];
+    $order = $_POST['order'];
+
+    $stmt1 = $pdo->prepare("SELECT * FROM stock3 WHERE Product LIKE :search ORDER BY $sort $order");
+    $stmt1->execute(['search' => "%$search%"]);
+    $products = $stmt1->fetchAll();
+  } else {
+    $search = '';
+    $sort = 'Product';
+    $order = 'asc';
+  }
   ?>
 
   <form action="" method="post">
     <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" placeholder="Search...">
     <select name="sort">
-      <option value="productImage">Product Image</option>
       <option value="Product">Product Name</option>
       <option value="Price">Price</option>
       <option value="Product_Status">Availability</option>
@@ -88,7 +102,15 @@ session_start();
       <?php foreach ($stock as $product): ?>
         <tr>
           <td>
-            <?php echo $product['Product']; ?>
+            <a href="indvProduct.php?id=<?php echo $product['SKU_number']; ?>">
+              <img src="productImages/<?php echo $product['SKU_number']; ?>.jpg" alt="<?php echo $product['Product']; ?>"
+                style="width:100px;height:100px;">
+            </a>
+          </td>
+          <td>
+            <a href="indvProduct.php?id=<?php echo $product['SKU_number']; ?>">
+              <?php echo $product['Product']; ?>
+            </a>
           </td>
           <td>
             <?php echo $product['Price']; ?>
