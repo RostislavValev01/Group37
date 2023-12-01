@@ -1,4 +1,4 @@
-CREATE TABLE clientDetails2 (
+CREATE TABLE clientDetails (
     Customer_ID  VARCHAR(11) NOT NULL,
     FirstName VARCHAR(40) NOT NULL,
     Surname VARCHAR(40) NOT NULL,
@@ -13,14 +13,14 @@ CREATE TABLE clientDetails2 (
     );
 
 
-ALTER TABLE clientdetails2
+ALTER TABLE clientdetails
 ADD AdminStatus BOOLEAN NOT NULL;
 
-ALTER TABLE clientdetails2
+ALTER TABLE clientdetails
 DROP PRIMARY KEY;
 
-ALTER TABLE clientdetails2
+ALTER TABLE clientdetails
 ADD PRIMARY KEY (Customer_ID);
 
-ALTER TABLE clientdetails2
+ALTER TABLE clientdetails
 ADD INDEX idx_Customer_ID (Customer_ID);
