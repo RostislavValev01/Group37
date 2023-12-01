@@ -25,6 +25,6 @@ CREATE TABLE queries(      --This table is in the hp_db database
     );
 
 ALTER TABLE queries
-ADD FOREIGN KEY (Customer_ID) REFERENCES clientdetails2(Customer_ID);
+ADD FOREIGN KEY (Customer_ID) REFERENCES accountdetails(Customer_ID);
 
 
