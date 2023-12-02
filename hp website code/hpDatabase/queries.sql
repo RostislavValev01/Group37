@@ -15,8 +15,8 @@
 
 
 CREATE TABLE queries(      --This table is in the hp_db database
-    Customer_ID VARCHAR(20) NOT NULL,
-    Query_ref VARCHAR (20) NOT NULL,
+    Customer_ID INT NOT NULL,
+    Query_ref INT NOT NULL AUTO-INCREMENT,
     First_Name VARCHAR(25) NOT NULL,
     Surname VARCHAR(40) NOT NULL,
     Email VARCHAR(100) NOT NULL,
