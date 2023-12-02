@@ -2,7 +2,7 @@ CREATE TABLE accountDetails (
     Customer_ID  VARCHAR(11) NOT NULL,
     FirstName VARCHAR(40) NOT NULL,
     Surname VARCHAR(40) NOT NULL,
-    MobileNumber INT NOT NULL,
+    MobileNumber VARCHAR(11) NOT NULL,
     Email VARCHAR(40) NOT NULL,
     CustomerAddress VARCHAR(40) NOT NULL,
     DateOfBirth DATE NOT NULL,
