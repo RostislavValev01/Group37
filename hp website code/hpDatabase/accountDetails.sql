@@ -25,7 +25,6 @@ ADD PRIMARY KEY (Customer_ID);
 ALTER TABLE accountdetails
 ADD INDEX idx_Customer_ID (Customer_ID);
 
-ALTER TABLE accountdetails 
-MODIFY COLUMN Customer_ID VARCHAR AUTO_INCREMENT;
+
 
 
