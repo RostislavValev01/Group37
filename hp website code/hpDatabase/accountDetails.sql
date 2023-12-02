@@ -33,14 +33,18 @@ VALUES ('220021','Ellen', 'Smith', '07456128791', 'ellen12@gmail.com',
         '44 Springfield Road, Birmingham, B12 3BE', '1982/01/09', '109817', '1');  --auto-increment function for customer_ID doesn't work--
 
 
-INSERT INTO accountDetails (FirstName, Surname,
-                            MobileNumber, Email, CustomerAddress, DateOfBirth,
-                            Admin_ID, AdminStatus)                         
+INSERT INTO accountDetails (FirstName, Surname, MobileNumber, Email, CustomerAddress, DateOfBirth, Admin_ID, AdminStatus)                         
 VALUES('Bob', 'Stone', '07129844651', 
        'stone@yahoo.com', 
        '102 Yardley Road , Coventry, CV12 9RU', '1987/09/15', 
        '909987', '1');    --auto-increment function for customer_ID works now--
 
+
+INSERT INTO accountDetails (FirstName, Surname, MobileNumber, Email, CustomerAddress, DateOfBirth, Admin_ID, AdminStatus)                         
+VALUES('Emily', 'Mitchells', '07198842650', 
+       'emilyM@yahoo.com', 
+       '98 Spring Road, Birmingham, B10 0AA', '1990/05/01', '',
+       '0');  
 
 
 
