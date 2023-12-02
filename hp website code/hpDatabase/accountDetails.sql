@@ -28,3 +28,10 @@ ADD INDEX idx_Customer_ID (Customer_ID);
 
 
 
+INSERT INTO accountDetails (Customer_ID, FirstName, Surname, MobileNumber, Email, CustomerAddress, DateOfBirth, Admin_ID, AdminStatus)
+VALUES ('220021','Ellen', 'Smith', '07456128791', 'ellen12@gmail.com', 
+        '44 Springfield Road, Birmingham, B12 3BE', '1982/01/09', '109817', '1');
+
+
+
+
