@@ -8,7 +8,6 @@ session_start();
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,40 +17,42 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order History</title>
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
-    <script defer src=""></script>
+    <script defer src="Checkout.js"></script>
     
 </head>
 
 <body>
-    <nav class="header">
-        <a href="homePage.php"><img src="hplogo3.png" alt="Company Logo"></a>
+    <nav class="banner">
+        <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
         <form action="/search" method="get">
             <input type="text" name="q" placeholder="Search...">
             <button type="submit">Go</button>
         </form>
-        <button><a href="accountPage.php">Account</a></button>
-        <button><a href="basketPage.php">Basket</a></button>
-        <button><a href="contactUsPage.php">Contact Us</a></button>
+        <div class="header">
+            <button><a href="accountPage.php">Account</a></button>
+            <button><a href="basketPage.php">Basket</a></button>
+            <button><a href="contactUsPage.php">Contact Us</a></button>
+        </div>
     </nav>
 
-    <nav class="header-nav">
+    <div class="header-nav">
         <ul class="navigation-bar">
             <li><a href="homePage">Home</a></li>
-            <li><a href="aboutUs.php">About Us</a></li>
-            <nav class=Products>
+            <li><a href="AboutUs.html">About Us</a></li>
+            <li class="Products">
                 <button class="dropbtn">Products</button>
-                <nav class="products-content">
+                <div class="products-content">
                     <a href="productPage.php">Prescriptions</a>
                     <a href="productPage.php">Skin Care</a>
                     <a href="productPage.php">Hair Care</a>
                     <a href="productPage.php">Medication</a>
-                </nav>
-            </nav>
+                </div>
+            </li>
         </ul>
-    </nav>
+    </div>
 
 
-<footer class="footer">
+       <footer class="footer">
         <div class="footer-section">
             <div>
                 <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
@@ -66,8 +67,6 @@ session_start();
             </div>
         </div>
     </footer>
-
-   
 
 </body>
 
