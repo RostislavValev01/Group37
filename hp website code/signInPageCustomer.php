@@ -12,56 +12,54 @@ session_start();
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
     <script defer src="loginAdmin.js"></script>
     <style>
-        .login {
+         body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content {
+            display: flex;
             justify-content: center;
             align-items: center;
-            padding-left: 82vh;
-            margin-top: -40vh;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff; /* Set the background color of the container */
+            padding: 20px;
+            margin-top: -20vh;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow for a subtle effect */
         }
 
         .login h1 {
-
-            margin-bottom: 0vh;
             font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .login-form {
-            margin-top: 15%;
-            width: 100%;
-            height: 20vh;
-            display: flex;
-            flex-wrap: wrap;
             text-align: center;
             gap: 10px;
-
         }
 
-        #login-form #email {
-            width: 100%;
-            border-radius: 5px;
-            text-align: center;
-
-        }
-
+        #login-form #email,
         #login-form #password {
             width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            text-align: center;
+            box-sizing: border-box;
+            margin-top: 5px;
         }
 
-        #login-form #login {
-            width: 80%;
-            height: 15%;
-            border-radius: 5px;
-            margin-left: 4vh;
-        }
-
+        #login-form #login,
         #login-form #register {
-            width: 80%;
-            height: 15%;
+            width: 100%;
+            height: 30px;
             border-radius: 5px;
-            margin-left: 4vh;
-            margin-top: 1vh;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -97,23 +95,40 @@ session_start();
     </nav>
 
     <div class="content">
-        <div class="login">
+        <div class="login-container">
             <h1 id="login-header">Customer Login</h1>
             <?php if ($error_message): ?>
                 <p class="error">
                     <?php echo $error_message; ?>
                 </p>
             <?php endif; ?>
-            <form id="login-form" action="" method="post"><br><br>
+            <form id="login-form" action="" method="post">
                 <input type="email" id="email" name="email" placeholder="Email" /><br><br>
                 <input type="password" id="password" name="password" placeholder="Password"><br><br>
                 <input type="submit" id="login" name="login" value="Login">
-                <input type="button" value="Register" id="register" class="button"
-                    onclick="location.href='signupcustomer.php';">
+                <input type="button" value="Register" id="register" class="button" onclick="location.href='signupcustomer.php';">
                 <br>
             </form>
         </div>
     </div>
 </body>
+<footer class="footer">
+  <div class="footer-section">
+    <div>
+      <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    </div>
+    <div>
+      <p>© 2023 HealthPoint. All rights reserved.
 
+        The content, design, and images on this website are the property of HealthPoint and are protected by
+        international copyright laws. Unauthorized use or reproduction of any materials without the express written
+        consent of HealthPoint is strictly prohibited. HealthPoint and the HealthPoint logo are trademarks of
+        HealthPoint.
+
+        For inquiries regarding the use or reproduction of any content on this website, please contact us at
+        HealthPoint@pharmacy.com</p>
+
+    </div>
+  </div>
+</footer>
 </html>
