@@ -14,14 +14,15 @@
 --Because queries2 and clientDetails2 were two tables in two different databases I wasn't able to make Customer_ID a foreign key in the queries2 table--
 
 
-CREATE TABLE queries(      --This table is in the hp_db database
+CREATE TABLE queries(      --this tale is in the hp_db database
     Customer_ID INT NOT NULL,
-    Query_ref INT NOT NULL AUTO-INCREMENT,
+    Query_ref INT NOT NULL AUTO_INCREMENT,
     First_Name VARCHAR(25) NOT NULL,
     Surname VARCHAR(40) NOT NULL,
     Email VARCHAR(100) NOT NULL,
-    Query_description VARCHAR(2000) NOT NULL,
-    PRIMARY KEY (Query_ref)
+    Query_description TEXT NOT NULL,
+    PRIMARY KEY (Customer_ID, Query_ref),
+    UNIQUE KEY (Query_ref)
     );
 
 ALTER TABLE queries
