@@ -31,7 +31,7 @@ session_start();
 
   <nav class="header-nav">
     <ul class="navigation-bar">
-      <li><a href="homePage">Home</a></li>
+      <li><a href="homePage.php">Home</a></li>
       <li><a href="aboutUs.php">About Us</a></li>
       <nav class=Products>
         <button class="dropbtn">Products</button>
@@ -48,34 +48,32 @@ session_start();
   <?php
   require 'connectdb.php';
 
-  $sql = "SELECT SKU_number, Product, Price, Price, Product_Status, Product_Category, Product_Description FROM stock3";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute();
-
-  $stock = $stmt->fetchAll();
-
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $search = $_POST['search'];
     $sort = $_POST['sort'];
     $order = $_POST['order'];
 
-    $stmt1 = $pdo->prepare("SELECT * FROM stock3 WHERE Product LIKE :search ORDER BY $sort $order");
-    $stmt1->execute(['search' => "%$search%"]);
-    $products = $stmt1->fetchAll();
+    $stmt = $pdo->prepare("SELECT * FROM stock3 WHERE Product LIKE :search ORDER BY $sort $order");
+    $stmt->execute(['search' => "%$search%"]);
   } else {
     $search = '';
     $sort = 'Product';
     $order = 'asc';
-  }
-  ?>
 
+    $stmt = $pdo->prepare("SELECT SKU_number, Product, Price, Product_Status, Product_Category, Product_Description FROM stock3 ORDER BY $sort $order");
+    $stmt->execute();
+  }
+
+  $stock = $stmt->fetchAll();
+  ?>
+<div class="content">
   <form action="" method="post">
     <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" placeholder="Search...">
     <select name="sort">
       <option value="Product">Product Name</option>
       <option value="Price">Price</option>
       <option value="Product_Status">Availability</option>
-      <option value="Product_Category">Description</option>
+      <option value="Product_Category">Product Category</option>
       <option value="Product_Description">Description</option>
 
     </select>
@@ -128,7 +126,26 @@ session_start();
       <?php endforeach; ?>
     </tbody>
   </table>
-
+</div>
 </body>
+<footer class="footer">
+  <div class="footer-section">
+    <div>
+      <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    </div>
+    <div>
+      <p>© 2023 HealthPoint. All rights reserved.
+
+        The content, design, and images on this website are the property of HealthPoint and are protected by
+        international copyright laws. Unauthorized use or reproduction of any materials without the express written
+        consent of HealthPoint is strictly prohibited. HealthPoint and the HealthPoint logo are trademarks of
+        HealthPoint.
+
+        For inquiries regarding the use or reproduction of any content on this website, please contact us at
+        HealthPoint@pharmacy.com</p>
+
+    </div>
+  </div>
+</footer>
 
 </html>
