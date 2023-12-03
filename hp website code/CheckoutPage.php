@@ -1,3 +1,13 @@
+<?php
+//include connection config
+       include('connectdb.php');
+
+// session start
+session_start();
+ 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
