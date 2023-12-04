@@ -11,3 +11,22 @@
       echo "Connection failed: " . $ex->getMessage();
       exit;
   } 
+
+
+
+<?php     --this is the php code to connect to the database--
+
+$serverName = "localhost";
+$userName = "root";
+$password  = "";
+$dbName = "hp_db";
+
+$con = mysqli_connect($serverName, $userName, $password, $dbName);
+
+if(mysqli_connect_errno()){
+    echo "Failed to connect";
+    exit();
+}
+echo "connected successfully";
+?>
+
