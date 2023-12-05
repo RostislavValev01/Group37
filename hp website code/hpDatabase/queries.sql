@@ -15,14 +15,13 @@
 
 
 CREATE TABLE queries(      --this tale is in the hp_db database
-    Customer_ID INT NOT NULL,
+    Customer_ID INT NULL,
     Query_ref INT NOT NULL AUTO_INCREMENT,
     First_Name VARCHAR(25) NOT NULL,
     Surname VARCHAR(40) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     Query_description TEXT NOT NULL,
-    PRIMARY KEY (Customer_ID, Query_ref),
-    UNIQUE KEY (Query_ref)
+    PRIMARY KEY (Query_ref)
     );
 
 ALTER TABLE queries
