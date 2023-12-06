@@ -12,7 +12,107 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="HealthPoint.css">
   <script defer src="loginAdmin.js"></script>
-  <style> </style>
+  <style>
+    form {
+      margin-bottom: 20px;
+    }
+
+    /*text within search bar settings */
+    input[type="text"],
+    select,
+    input[type="submit"] {
+      padding: 10px;
+      margin: 5px;
+    }
+
+    input[type="text"],
+    select {
+      width: 200px;
+    }
+
+    select {
+      width: 150px;
+    }
+
+    /* search bar 'search' button settings */
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* headings settings */
+    h1#products-header {
+      color: #333;
+      text-align: center;
+      margin-right: 60px;
+    }
+
+    /* size of table */
+    table.products-table {
+      width: 95%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
+    /* border style, size and colour */
+    table.products-table th,
+    table.products-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    /* colour of table headings */
+    table.products-table th {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    /* colour of table rows */
+    table.products-table tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* size of images */
+    table.products-table img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* potential product-container CSS*/
+h1 {
+    text-align: center;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.product-box img {
+    max-width: 100%;
+    max-height: 150px;
+}
+*/
+  </style>
 </head>
 
 <body>
@@ -36,10 +136,11 @@ session_start();
       <nav class=Products>
         <button class="dropbtn">Products</button>
         <nav class="products-content">
-          <a href="productPage.php">Prescriptions</a>
-          <a href="productPage.php">Skin Care</a>
-          <a href="productPage.php">Hair Care</a>
-          <a href="productPage.php">Medication</a>
+          <a href="productPage.php?category=Prescriptions">Prescriptions</a>
+          <a href="productPage.php?category=Skin Care">Skin Care</a>
+          <a href="productPage.php?category=Hair Care">Hair Care</a>
+          <a href="productPage.php?category=Dental Care">Dental Care</a>
+          <a href="productPage.php?category=Vitamins and Supplements">Vitamins and Supplements</a>
         </nav>
       </nav>
     </ul>
@@ -66,67 +167,80 @@ session_start();
 
   $stock = $stmt->fetchAll();
   ?>
-<div class="content">
-  <form action="" method="post">
-    <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" placeholder="Search...">
-    <select name="sort">
-      <option value="Product">Product Name</option>
-      <option value="Price">Price</option>
-      <option value="Product_Status">Availability</option>
-      <option value="Product_Category">Product Category</option>
-      <option value="Product_Description">Description</option>
 
-    </select>
+  <div class="content">
+    <form action="" method="post">
+      <input type="text" name="search"
+        value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : 'Search' ?>" placeholder="Search...">
+      <select name="sort">
+        <option value="Product">Product Name</option>
+        <option value="Price">Price</option>
+        <option value="Product_Status">Availability</option>
+        <option value="Product_Category">Product Category</option>
+        <option value="Product_Description">Description</option>
 
-    <select name="order">
-      <option value="asc">Ascending</option>
-      <option value="desc">Descending</option>
-    </select>
-    <input type="submit" value="Search">
-  </form>
+      </select>
 
-  <h1 id="products-header">Products</h1>
-  <table class="products-table">
-    <thead>
-      <tr>
-        <th>Product Image</th>
-        <th>Product Name</th>
-        <th>Product Price</th>
-        <th>Product Availability</th>
-        <th>Product Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($stock as $product): ?>
+      <select name="order">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+      <input type="submit" value="Search">
+    </form>
+
+    <h1 id="products-header">Our Products</h1>
+    <table class="products-table">
+      <thead>
         <tr>
-          <td>
-            <a href="indvProduct.php?id=<?php echo $product['SKU_number']; ?>">
-              <img src="productImages/<?php echo $product['SKU_number']; ?>.jpg" alt="<?php echo $product['Product']; ?>"
-                style="width:100px;height:100px;">
-            </a>
-          </td>
-          <td>
-            <a href="indvProduct.php?id=<?php echo $product['SKU_number']; ?>">
-              <?php echo $product['Product']; ?>
-            </a>
-          </td>
-          <td>
-            <?php echo $product['Price']; ?>
-          </td>
-          <td>
-            <?php echo $product['Product_Status']; ?>
-          </td>
-          <td>
-            <?php echo $product['Product_Category']; ?>
-          </td>
-          <td>
-            <?php echo $product['Product_Description']; ?>
-          </td>
+
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Availability</th>
+          <th>Product Description</th>
         </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+        <?php foreach ($stock as $product): ?>
+          <tr>
+            <td>
+              <a href="indvProduct.php?id=<?php echo $product['SKU_number']; ?>">
+                <img src="productImages/<?php echo $product['SKU_number']; ?>.jpg"
+                  alt="<?php echo $product['Product']; ?>" style="width:100px;height:100px;">
+                <?php echo $product['Product']; ?>
+              </a>
+            </td>
+            <td>
+              <?php echo $product['Price']; ?>
+            </td>
+            <td>
+              <?php echo $product['Product_Status']; ?>
+            </td>
+            <td>
+              <?php echo $product['Product_Category']; ?> form method="post" action="add_to_basket.php">
+              <input type="hidden" name="product_id" value="<?= $product['SKU_number']; ?>">
+              <button type="submit">Add to Basket</button>
+              </form>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+
+    <!-- <div class="product-container"> 
+    <?php foreach ($stock as $product): ?>
+        <div class="product-box">
+            <a href="indvProduct.php?id=<?php echo $product['SKU_number']; ?>">
+                <img src="productImages/<?php echo $product['SKU_number']; ?>.jpg" alt="<?php echo $product['Product']; ?>" style="width:100px;height:100px;">
+                <h3><?php echo $product['Product']; ?></h3>
+            </a>
+            <p>Price: $<?php echo $product['Price']; ?></p>
+            <p>Availability: <?php echo ($product['Product_Status'] > 0) ? 'In Stock' : 'Out of Stock'; ?></p>
+            <button>Add to Basket</button>
+        </div>
+    <?php endforeach; ?> -->
+  </div>
+
+  </div>
 </body>
 <footer class="footer">
   <div class="footer-section">
