@@ -12,7 +12,89 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
     <script defer src="loginAdmin.js"></script>
-    <style> </style>
+    <style>
+        form {
+            margin-bottom: 20px;
+        }
+
+        /*text within search bar settings */
+        input[type="text"],
+        select,
+        input[type="submit"] {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        input[type="text"],
+        select {
+            width: 200px;
+        }
+
+        select {
+            width: 150px;
+        }
+
+        /* search bar 'search' button settings */
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* headings settings */
+        h1#customer-header {
+            color: #333;
+            text-align: center;
+            margin-right: 60px;
+        }
+
+        /* size of table */
+        table.customer-table {
+            width: 95%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        /* border style, size and colour */
+        table.customer-table th,
+        table.customer-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* colour of table headings */
+        table.customer-table th {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        /* colour of table rows */
+        table.customer-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* size of images */
+        table.customer-table img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .table-np ul li{
+            margin-left: 20px;
+            list-style-type: none;
+            display: inline;
+            
+        }
+    </style>
 </head>
 
 <body>
@@ -31,20 +113,21 @@ session_start();
     </nav>
 
     <nav class="header-nav">
-        <ul class="navigation-bar">
-            <li><a href="homePage">Home</a></li>
-            <li><a href="aboutUs.php">About Us</a></li>
-            <nav class=Products>
-                <button class="dropbtn">Products</button>
-                <nav class="products-content">
-                    <a href="productPage.php">Prescriptions</a>
-                    <a href="productPage.php">Skin Care</a>
-                    <a href="productPage.php">Hair Care</a>
-                    <a href="productPage.php">Medication</a>
-                </nav>
-            </nav>
-        </ul>
-    </nav>
+    <ul class="navigation-bar">
+      <li><a href="homePage.php">Home</a></li>
+      <li><a href="aboutUs.php">About Us</a></li>
+      <nav class=Products>
+        <button class="dropbtn">Products</button>
+        <nav class="products-content">
+          <a href="productPage.php?category=Prescriptions">Prescriptions</a>
+          <a href="productPage.php?category=Skin Care">Skin Care</a>
+          <a href="productPage.php?category=Hair Care">Hair Care</a>
+          <a href="productPage.php?category=Dental Care">Dental Care</a>
+          <a href="productPage.php?category=Vitamins and Supplements">Vitamins and Supplements</a>
+        </nav>
+      </nav>
+    </ul>
+  </nav>
 
     <?php
     require 'connectdb.php';
@@ -91,7 +174,9 @@ session_start();
             </select>
             <input type="submit" value="Search">
         </form>
-        <table>
+
+        <h1 id="customer-header">Customer Database</h1>
+        <table class="customer-table">
             <thead>
                 <tr>
                     <th>Customer ID</th>
@@ -138,7 +223,7 @@ session_start();
                 </tr>
             <?php endforeach; ?>
         </table>
-        <nav>
+        <nav class="table-np">
             <ul>
                 <li><a href="?page=<?= max(1, $page - 1) ?>&search=<?= urlencode($search) ?>">Previous</a></li>
                 <li><a href="?page=<?= $page + 1 ?>&search=<?= urlencode($search) ?>">Next</a></li>
