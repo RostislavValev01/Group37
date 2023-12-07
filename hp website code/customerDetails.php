@@ -13,105 +13,48 @@ session_start();
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
     <link rel="stylesheet" type="text/css" href="customerDetails.css">
     <script defer src="loginAdmin.js"></script>
-    <style>
-        form {
-            margin-bottom: 20px;
-        }
-
-        /*text within search bar settings */
-        .search-bar,
-        select,
-        input[type="submit"] {
-            padding: 10px;
-            margin: 5px;
-        }
-
-        .search-bar,
-        select {
-            width: 200px;
-        }
-
-        select {
-            width: 150px;
-        }
-
-        /* search bar 'search' button settings */
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* headings settings */
-        h1#customer-header {
-            color: #333;
-            text-align: center;
-            margin-right: 60px;
-        }
-
-        /* size of table */
-        table.customer-table {
-            width: 95%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            margin-left: 20px;
-        }
-
-        /* border style, size and colour */
-        table.customer-table th,
-        table.customer-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        /* colour of table headings */
-        table.customer-table th {
-            background-color: #4caf50;
-            color: white;
-        }
-
-        /* colour of table rows */
-        table.customer-table tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        /* size of images */
-        table.customer-table img {
-            max-width: 100px;
-            max-height: 100px;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
-
-        .table-np ul li {
-            margin-left: 20px;
-            list-style-type: none;
-            display: inline;
-
-        }
-    </style>
 </head>
 
 <body>
 
-    <nav class="banner">
-        <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-        <form action="/search" method="get">
-            <input type="text" name="q" placeholder="Search...">
-            <button type="submit">Go</button>
-        </form>
+<nav class="banner">
+    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    <form action="/search" method="get">
+      <input type="text" name="q" placeholder="Search...">
+      <button type="submit">Go</button>
+    </form>
+    <?php
+    if (isset($_SESSION['loggedin'])) {
+      if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
+        ?>
         <nav class="header">
-            <button><a href="signInPageCustomer.php">Account</a></button>
+          <button><a href="AdminAccounts.php">Account</a></button>
+          <button><a href="Cart.php">Basket</a></button>
+          <button><a href="Contact.php">Contact Us</a></button>
+          <button><a href="logout.php">Logout</a></button>
+        </nav>
+        <?php
+    } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
+      ?>
+          <nav class="header">
+            <button><a href="CustomerAccounts.php">Account</a></button>
             <button><a href="Cart.php">Basket</a></button>
             <button><a href="Contact.php">Contact Us</a></button>
-        </nav>
-    </nav>
+            <button><a href="logout.php">Logout</a></button>
+          </nav>
+        <?php
+      }
+    } else {
+      ?>
+      <nav class="header">
+        <button><a href="signInPageCustomer.php">Sign In</a></button>
+        <button><a href="Cart.php">Basket</a></button>
+        <button><a href="Contact.php">Contact Us</a></button>
+      </nav>
+      <?php
+    }
+    ?>
+  </nav>
     <nav class="header-nav">
         <ul class="navigation-bar">
             <li><a href="homePage.php">Home</a></li>
