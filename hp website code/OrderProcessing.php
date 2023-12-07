@@ -8,8 +8,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
 
-</head>
+    <style>
+        /* Add custom styles for the search bar and filter button */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #b8cca3; /* Add your desired background color */
+        }
 
+        .search-bar input[type="text"] {
+            padding: 5px;
+            width: 70%;
+        }
+
+        .search-bar button {
+            padding: 5px;
+            background-color: #f5f5dc; /* Add your desired background color */
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
 <body>
     <nav class="banner">
         <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
@@ -40,10 +61,10 @@
         </ul>
     </nav>
 
-
-
-
-
+    <div class="search-bar">
+        <input type="text" name="search" placeholder="Enter your search...">
+        <button type="button">Filter</button>
+    </div>
 
     <footer class="footer">
   <div class="footer-section">
