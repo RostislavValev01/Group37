@@ -1,12 +1,13 @@
-CREATE TABLE stock(  --this table is in the healthpointdb database--
-    SKU_number INT NOT NULL,
-    Quantity INT,
-    ProductName VARCHAR(255),
-    Product_Description VARCHAR (60),
+CREATE TABLE stock( 
+    ProductSKU INT NOT NULL,
+    Quantity INT NOT NULL,
+    ProductName VARCHAR(255) NOT NULL,
+    Product_Description VARCHAR (255) NOT NULL,
     Barcode INT NOT NULL,
     Product_Status ENUM('In stock', 'Not in Stock') NOT NULL,
     Product_Category ENUM('General', 'SkinCare', 'Vitamins_Supplements', 'DentalCare', 'HairCare'),
-    PRIMARY KEY(SKU_number)
+    Price DECIMAL NOT NULL,
+    PRIMARY KEY(ProductSKU)
     );
 
 
