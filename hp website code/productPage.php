@@ -14,28 +14,54 @@ session_start();
   <link rel="stylesheet" type="text/css" href="productPage.css">
   <script defer src="loginAdmin.js"></script>
   <style>
-   
+
   </style>
 </head>
 
 <body>
-<nav class="banner">
-        <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-        <form action="/search" method="get">
-            <input type="text" name="q" placeholder="Search...">
-            <button type="submit">Go</button>
-        </form>
+  <nav class="banner">
+    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    <form action="/search" method="get">
+      <input type="text" name="q" placeholder="Search...">
+      <button type="submit">Go</button>
+    </form>
+    <?php
+    if (isset($_SESSION['loggedin'])) {
+      if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
+        ?>
         <nav class="header">
-            <button><a href="signInPageCustomer.php">Account</a></button>
+          <button><a href="AdminAccounts.php">Account</a></button>
+          <button><a href="Cart.php">Basket</a></button>
+          <button><a href="Contact.php">Contact Us</a></button>
+          <button><a href="logout.php">Logout</a></button>
+        </nav>
+        <?php
+    } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
+      ?>
+          <nav class="header">
+            <button><a href="CustomerAccounts.php">Account</a></button>
             <button><a href="Cart.php">Basket</a></button>
             <button><a href="Contact.php">Contact Us</a></button>
-        </nav>
-    </nav>
+            <button><a href="logout.php">Logout</a></button>
+          </nav>
+        <?php
+      }
+    } else {
+      ?>
+      <nav class="header">
+        <button><a href="signInPageCustomer.php">Sign In</a></button>
+        <button><a href="Cart.php">Basket</a></button>
+        <button><a href="Contact.php">Contact Us</a></button>
+      </nav>
+      <?php
+    }
+    ?>
+  </nav>
 
   <nav class="header-nav">
     <ul class="navigation-bar">
-      <li><a href="homePage.php">Home</a></li>
-      <li><a href="aboutUs.php">About Us</a></li>
+      <li><a href="Index.php">Home</a></li>
+      <li><a href="AboutUs.php">About Us</a></li>
       <nav class=Products>
         <a href="productPage.php"><button class="dropbtn">Products</button></a>
         <nav class="products-content">
@@ -51,6 +77,9 @@ session_start();
 
   <?php
   require 'connectdb.php';
+  echo 'Current session ID: ' . session_id();
+  echo ' un:' . $_SESSION['Customer_ID'];
+
   $sort = 'Product';
   $order = 'asc';
 
@@ -168,7 +197,12 @@ session_start();
       <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
     </div>
     <div>
-      <p>© 2023 HealthPoint. All rights reserved.
+
+      <p>
+        Images on this page were sourced from the following websites:
+        https://www.boots.com/
+        https://lloydspharmacy.com/
+        © 2023 HealthPoint. All rights reserved.
 
         The content, design, and images on this website are the property of HealthPoint and are protected by
         international copyright laws. Unauthorized use or reproduction of any materials without the express written
