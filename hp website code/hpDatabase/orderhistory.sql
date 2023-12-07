@@ -10,8 +10,8 @@ CREATE TABLE orderhistory (
     OrderDate DATE NOT NULL,
     OrderStatus VARCHAR(40) NOT NULL,
     PRIMARY KEY (OrderID),
-    FOREIGN KEY (Customer_ID) REFERENCES accountDetails.sql(Customer_ID),
-    FOREIGN KEY (ProductID) REFERENCES stockmanagement.sql(ProductID)
+    FOREIGN KEY (Customer_ID) REFERENCES accountdetails(Customer_ID),
+    FOREIGN KEY (ProductID) REFERENCES stock(ProductID)
     );
 
 INSERT INTO orderhistory (Customer_ID, ProductID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
