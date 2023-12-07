@@ -11,7 +11,7 @@ CREATE TABLE orderhistory (
     OrderStatus VARCHAR(40) NOT NULL,
     PRIMARY KEY (OrderID),
     FOREIGN KEY (Customer_ID) REFERENCES accountdetails(Customer_ID),
-    FOREIGN KEY (ProductID) REFERENCES stock(ProductID)
+    FOREIGN KEY (ProductID) REFERENCES stock(SKU_number)
     );
 
 INSERT INTO orderhistory (Customer_ID, ProductID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
