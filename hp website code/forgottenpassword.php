@@ -23,12 +23,34 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        .register #submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .register input[type="text"],
+        .register input[type="password"] {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .register #submit:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 
 
 <body>
 <?php
+ require 'connectdb.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -113,4 +135,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 </body>
+<footer class="footer">
+    <div class="footer-section">
+        <div>
+            <a href="homePage.php"><img src="images/hplogo3.png" class="logo" alt="Company Logo"></a>
+        </div>
+        <div>
+            <p>© 2023 HealthPoint. All rights reserved.
+
+                The content, design, and images on this website are the property of HealthPoint and are protected by
+                international copyright laws. Unauthorized use or reproduction of any materials without the express
+                written
+                consent of HealthPoint is strictly prohibited. HealthPoint and the HealthPoint logo are trademarks of
+                HealthPoint.
+
+                For inquiries regarding the use or reproduction of any content on this website, please contact us at
+                HealthPoint@pharmacy.com</p>
+
+        </div>
+    </div>
+</footer>
 </html>
