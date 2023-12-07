@@ -3,9 +3,9 @@
 CREATE TABLE queries(      --this tale is in the healthpointdb database
     Customer_ID INT NULL,
     Query_ref INT NOT NULL AUTO_INCREMENT,
-    First_Name VARCHAR(25) NOT NULL,
-    Surname VARCHAR(40) NOT NULL,
-    Email VARCHAR(100) NOT NULL,
+    First_Name VARCHAR(255) NOT NULL,
+    Surname VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
     Query_description TEXT NOT NULL,
     PRIMARY KEY (Query_ref)
     );
