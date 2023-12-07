@@ -8,7 +8,7 @@ CREATE TABLE accountdetails (
     DateOfBirth DATE NOT NULL,
     Admin_ID VARCHAR(11) NULL,
     AdminStatus BOOLEAN NOT NULL,
-    PRIMARY KEY (Customer_ID, Admin_ID)
+    PRIMARY KEY (Customer_ID)
     
     );
 
