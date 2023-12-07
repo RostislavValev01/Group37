@@ -134,17 +134,18 @@ h1 {
       <li><a href="homePage.php">Home</a></li>
       <li><a href="aboutUs.php">About Us</a></li>
       <nav class=Products>
-        <button class="dropbtn">Products</button>
+        <a href="productPage.php"><button class="dropbtn">Products</button></a>
         <nav class="products-content">
-          <a href="productPage.php?category=Prescriptions">Prescriptions</a>
-          <a href="productPage.php?category=Skin Care">Skin Care</a>
-          <a href="productPage.php?category=Hair Care">Hair Care</a>
-          <a href="productPage.php?category=Dental Care">Dental Care</a>
-          <a href="productPage.php?category=Vitamins and Supplements">Vitamins and Supplements</a>
+          <a href="productPage.php?category=General">General Medication</a>
+          <a href="productPage.php?category=Skin Care">SkinCare</a>
+          <a href="productPage.php?category=Hair Care">HairCare</a>
+          <a href="productPage.php?category=Dental Care">DentalCare</a>
+          <a href="productPage.php?category=Vitamins_Supplements">Vitamins and Supplements</a>
         </nav>
       </nav>
     </ul>
   </nav>
+
 
   <?php
   require 'connectdb.php';
