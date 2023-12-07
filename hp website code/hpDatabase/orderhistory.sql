@@ -1,17 +1,16 @@
 CREATE TABLE orderhistory (
     OrderID INT NOT NULL AUTO_INCREMENT,
     Customer_ID INT NOT NULL,
-    ProductID INT NOT NULL,
     ProductName VARCHAR(40) NOT NULL,
     ProductDescription VARCHAR(255) NOT NULL,
     Quantity INT NOT NULL,
     Price DECIMAL(10,2) NOT NULL,
-    ProductSKU VARCHAR(40) NOT NULL,
+    ProductSKU INT NOT NULL,
     OrderDate DATE NOT NULL,
     OrderStatus VARCHAR(40) NOT NULL,
     PRIMARY KEY (OrderID),
     FOREIGN KEY (Customer_ID) REFERENCES accountdetails(Customer_ID),
-    FOREIGN KEY (ProductID) REFERENCES stock(SKU_number)
+    FOREIGN KEY (ProductSKU) REFERENCES stock(ProductSKU)
     );
 
 INSERT INTO orderhistory (Customer_ID, ProductID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
@@ -22,3 +21,7 @@ VALUES ('220021','1001','Laptop','Intel Core i7, 256GB SSD, 15.6" Full HD Displa
 
 INSERT INTO orderhistory (Customer_ID, ProductID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
 VALUES ('909987','1002','Tablet','Apple A12 Chip, 128GB SSD, 10.5" Display', '2', '500.00', 'SKU-003', '2022-03-14', 'Shipped');
+
+
+INSERT INTO orderhistory (Customer_ID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
+VALUES ('220021''The Ordinary','Moisturising face cream', '3', '32.97', '1001', '2022-03-13', 'Shipped');
