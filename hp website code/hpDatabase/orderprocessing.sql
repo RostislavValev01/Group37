@@ -2,7 +2,7 @@ CREATE TABLE orderprocessing (
     OrderNumber INT NOT NULL AUTO_INCREMENT,
     OrderTotal DECIMAL(10, 2) NOT NULL,
     CustomerID INT NOT NULL,
-    ProductID INT NOT NULL,
+    ProductSKU INT NOT NULL,
     PRIMARY KEY (OrderNumber),
     FOREIGN KEY (CustomerID) REFERENCES accountdetails(Customer_ID),
     FOREIGN KEY (ProductSKU) REFERENCES stock(ProductSKU)
