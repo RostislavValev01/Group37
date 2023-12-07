@@ -15,3 +15,7 @@ ALTER TABLE `stock`
 MODIFY COLUMN SKU_number INT AUTO_INCREMENT;
 
 
+INSERT INTO stock (Quantity, ProductName, Product_Description, Barcode, Product_Status, Product_Category, Price)
+VALUES ('2', 'Cerave Cleanser', 'Foam Cleanser for all skin types', '4958', 'In stock', 'SkinCare', '15.00');
+
+
