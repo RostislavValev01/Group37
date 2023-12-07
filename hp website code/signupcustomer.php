@@ -7,7 +7,24 @@
 <script defer src="signup.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="HealthPoint.css">
+<style>
+    
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
+        .content table {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 
