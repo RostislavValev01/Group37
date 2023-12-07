@@ -24,4 +24,4 @@ VALUES ('909987','1002','Tablet','Apple A12 Chip, 128GB SSD, 10.5" Display', '2'
 
 
 INSERT INTO orderhistory (Customer_ID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
-VALUES ('220021''The Ordinary','Moisturising face cream', '3', '32.97', '1001', '2022-03-13', 'Shipped');
+VALUES ('220021''The Ordinary','Moisturising face cream', '3', '33', '1001', '2022-03-13', 'Shipped');
