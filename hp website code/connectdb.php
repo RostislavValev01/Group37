@@ -19,7 +19,7 @@
 $serverName = "localhost";
 $userName = "root";
 $password  = "";
-$dbName = "hp_db";
+$dbName = "healthpointdb";
 
 $con = mysqli_connect($serverName, $userName, $password, $dbName);
 
