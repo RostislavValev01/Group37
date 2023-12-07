@@ -1,5 +1,5 @@
 CREATE TABLE stock( 
-    ProductSKU INT NOT NULL AUTO_INCREMENT,
+    ProductSKU INT NOT NULL,
     Quantity INT NOT NULL,
     ProductName VARCHAR(255) NOT NULL,
     Product_Description VARCHAR (255) NOT NULL,
