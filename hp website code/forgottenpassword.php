@@ -7,12 +7,33 @@
 <script defer src="signup.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="HealthPoint.css">
+
 </head>
-<style>
-</style>
+
 
 <body>
+<?php
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $email = $_POST['email'];
+
+    
+    $to = $email;
+    $subject = "Password Reset";
+    $message = "Please follow the link to reset your password."; 
+
+    
+    $headers = "From: HealthPoint@gmail.com"; 
+
+    
+    if (mail($to, $subject, $message, $headers)) {
+        echo "Instructions to reset your password have been sent to your email.";
+    } else {
+        echo "Failed to send password reset instructions. Please try again later.";
+    }
+}
+?>
 <div class="banner">
     <a href='#' class="logo"><img src="images/hplogo3.png" class="logo"></a>
     <nav class="header">
