@@ -1,8 +1,5 @@
 <?php
-//include connection config
-       include('connectdb.php');
-
-// session start
+       include();
 session_start();
  
 
