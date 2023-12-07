@@ -1,5 +1,5 @@
 CREATE TABLE accountdetails (
-    Customer_ID  INT NOT NULL AUTO-INCREMENT,
+    Customer_ID  INT NOT NULL AUTO_INCREMENT,
     FirstName VARCHAR(40) NOT NULL,
     Surname VARCHAR(40) NOT NULL,
     MobileNumber VARCHAR(11) NOT NULL,
@@ -9,18 +9,11 @@ CREATE TABLE accountdetails (
     Admin_ID VARCHAR(11) NULL,
     AdminStatus BOOLEAN NOT NULL,
     PRIMARY KEY (Customer_ID)
-    
     );
 
 
-ALTER TABLE accountdetails
-ADD AdminStatus BOOLEAN NULL;
 
-ALTER TABLE accountdetails
-DROP PRIMARY KEY;
 
-ALTER TABLE accountdetails
-ADD PRIMARY KEY (Customer_ID);
 
 
 
