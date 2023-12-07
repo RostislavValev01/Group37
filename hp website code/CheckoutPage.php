@@ -49,28 +49,31 @@ session_start();
     </div>
 
 
-    <h2>Contact Information</h2>
-    
-    <div class="Contactinfo">
-        <form action="#" method="post">
-            <input type="email" id="email" name="email" placeholder="Email"><br><br>
-            
-            <input type="text" id="fname" name="fname" placeholder="First Name">
-            <input type="text" id="lname" name="lname" placeholder="Last Name"><br><br>
-            
-            <input type="text" id="address" name="address" placeholder="Address"><br><br>
-            
-            <input type="text" id="city" name="city" placeholder="City"><br><br>
-            
-            <div>
-                <input type="text" id="country" name="country" placeholder="Country">
-                <input type="text" id="postcode" name="postcode" placeholder="Postcode">
-            </div><br><br>
-            
-            <input type="tel" id="phone" name="phone" placeholder="Phone Number"><br><br>
-            
-            <input type="submit" value="Begin Checkout">
-        </form>
+    <div class="content">
+        <div class="contact-container">
+            <h1>Contact Information</h1>
+            <form action="#" method="post">
+                <input type="email" id="email" name="email" placeholder="Email"><br><br>
+                
+                <div class="name-fields">
+                    <input type="text" id="fname" name="fname" placeholder="First Name">
+                    <input type="text" id="lname" name="lname" placeholder="Last Name"><br><br>
+                </div>
+                
+                <input type="text" id="address" name="address" placeholder="Address"><br><br>
+                
+                <input type="text" id="city" name="city" placeholder="City"><br><br>
+                
+                <div class="country-fields">
+                    <input type="text" id="country" name="country" placeholder="Country">
+                    <input type="text" id="postcode" name="postcode" placeholder="Postcode">
+                </div><br><br>
+                
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number"><br><br>
+                
+                <input type="submit" id="submit" value="Begin Checkout">
+            </form>
+        </div>
     </div>
 
 
