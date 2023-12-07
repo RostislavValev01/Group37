@@ -15,6 +15,67 @@ session_start();
     <title>Checkout Page</title>
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
     <script defer src="Checkout.js"></script>
+    <style>
+    
+
+    .content h1{
+        margin-bottom: 50px;
+    }
+
+    .content {
+            display: flex;
+            align-items: left;
+            height: 100vh;
+            text-align: center;
+           
+        }
+    
+    .contact-container {
+            background-color: #fff; /* Set the background color of the container */
+            padding: 20px;
+            margin-top: -20vh;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow for a subtle effect */
+            margin-left: 300px;
+    }
+
+    #email,
+    #fname,
+    #lname,
+    #address,
+    #city,
+    #phone,
+    #submit,
+    #country,
+    #postcode {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box; /* Include padding and border in width calculations */
+    }
+
+    /* Set width for specific inputs */
+    #email,
+    #address,
+    #city,
+    #phone,
+    #submit {
+        width: 100%;
+    }
+
+    #fname,
+    #lname,
+    #country,
+    #postcode {
+        width: calc(50% - 5px); /* Set width for two inputs in a row */
+    }
+
+    #country,
+    #postcode {
+        margin-top: 10px; /* Add margin-top to align with the row above */
+    }
+       
     
 </head>
 
