@@ -1,7 +1,7 @@
 CREATE TABLE stock(  --this table is in the healthpointdb database--
     SKU_number INT NOT NULL,
     Quantity INT,
-    Product LONGBLOB,
+    ProductName VARCHAR(255),
     Product_Description VARCHAR (60),
     Barcode INT NOT NULL,
     Product_Status ENUM('In stock', 'Not in Stock') NOT NULL,
