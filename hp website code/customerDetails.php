@@ -11,6 +11,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
+    <link rel="stylesheet" type="text/css" href="customerDetails.css">
     <script defer src="loginAdmin.js"></script>
     <style>
         form {
@@ -18,14 +19,14 @@ session_start();
         }
 
         /*text within search bar settings */
-        input[type="text"],
+        .search-bar,
         select,
         input[type="submit"] {
             padding: 10px;
             margin: 5px;
         }
 
-        input[type="text"],
+        .search-bar,
         select {
             width: 200px;
         }
@@ -88,11 +89,11 @@ session_start();
             padding: 0;
         }
 
-        .table-np ul li{
+        .table-np ul li {
             margin-left: 20px;
             list-style-type: none;
             display: inline;
-            
+
         }
     </style>
 </head>
@@ -106,56 +107,69 @@ session_start();
             <button type="submit">Go</button>
         </form>
         <nav class="header">
-            <button><a href="accountPage.php">Account</a></button>
-            <button><a href="basketPage.php">Basket</a></button>
-            <button><a href="contactUsPage.php">Contact Us</a></button>
+            <button><a href="signInPageCustomer.php">Account</a></button>
+            <button><a href="Cart.php">Basket</a></button>
+            <button><a href="Contact.php">Contact Us</a></button>
         </nav>
     </nav>
-
     <nav class="header-nav">
-    <ul class="navigation-bar">
-      <li><a href="homePage.php">Home</a></li>
-      <li><a href="aboutUs.php">About Us</a></li>
-      <nav class=Products>
-        <button class="dropbtn">Products</button>
-        <nav class="products-content">
-          <a href="productPage.php?category=Prescriptions">Prescriptions</a>
-          <a href="productPage.php?category=Skin Care">Skin Care</a>
-          <a href="productPage.php?category=Hair Care">Hair Care</a>
-          <a href="productPage.php?category=Dental Care">Dental Care</a>
-          <a href="productPage.php?category=Vitamins and Supplements">Vitamins and Supplements</a>
-        </nav>
-      </nav>
-    </ul>
-  </nav>
+        <ul class="navigation-bar">
+            <li><a href="homePage.php">Home</a></li>
+            <li><a href="aboutUs.php">About Us</a></li>
+            <nav class=Products>
+                <a href="productPage.php"><button class="dropbtn">Products</button></a>
+                <nav class="products-content">
+                    <a href="productPage.php?Product_Category=General">General Medication</a>
+                    <a href="productPage.php?Product_Category=SkinCare">SkinCare</a>
+                    <a href="productPage.php?Product_Category=Haircare">HairCare</a>
+                    <a href="productPage.php?Product_Category=DentalCare">DentalCare</a>
+                    <a href="productPage.php?Product_Category=Vitamins_Supplements">Vitamins and Supplements</a>
+                </nav>
+            </nav>
+        </ul>
+    </nav>
 
     <?php
     require 'connectdb.php';
+    $sort = 'Product';
+    $order = 'asc';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $search = $_POST['search'];
+        $searchWithWildcards = '%' . $search . '%';
         $sort = $_POST['sort'];
         $order = $_POST['order'];
 
-        $stmt = $pdo->prepare("SELECT * FROM accountdetails WHERE (Customer_ID LIKE :search OR FirstName LIKE :search OR Surname LIKE :search OR MobileNumber LIKE :search OR Email LIKE :search OR CustomerAddress LIKE :search OR DateOfBirth LIKE :search OR AdminStatus LIKE :search OR Admin_ID LIKE :search) ORDER BY $sort $order");
-        $stmt1->execute(['search' => "%$search%"]);
-        $stmt->execute(['search' => "%$search%"]);
+        $query = "SELECT * FROM accountdetails WHERE (Customer_ID LIKE ? OR FirstName LIKE ? OR Surname LIKE ? OR MobileNumber LIKE ? OR Email LIKE ? OR CustomerAddress LIKE ? OR DateOfBirth LIKE ? OR AdminStatus LIKE ? OR Admin_ID LIKE ?) ORDER BY $sort $order";
+        $stmt = mysqli_prepare($con, $query);
+        mysqli_stmt_bind_param($stmt, "issssssis",
+            $searchWithWildcards,
+            $searchWithWildcards,
+            $searchWithWildcards,
+            $searchWithWildcards,
+            $searchWithWildcards,
+            $searchWithWildcards,
+            $searchWithWildcards,
+            $searchWithWildcards,
+            $searchWithWildcards);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
     } else {
         $search = '';
         $sort = 'Customer_ID';
         $order = 'asc';
 
-        $sql = "SELECT Customer_ID, FirstName, Surname, MobileNumber, Email, CustomerAddress, DateOfBirth, AdminStatus, Admin_ID FROM accountdetails";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+        $query = "SELECT Customer_ID, FirstName, Surname, MobileNumber, Email, CustomerAddress, DateOfBirth, AdminStatus, Admin_ID FROM accountdetails";
+        $result = mysqli_query($con, $query);
     }
 
-    $clientDetails = $stmt->fetchAll();
+    $clientDetails = mysqli_fetch_all($result, MYSQLI_ASSOC);
     ?>
 
     <div class="content">
         <form action="" method="post">
-            <input type="text" name="search" placeholder="Search..." value="<?= htmlspecialchars($search) ?>">
+            <input type="text" name="search" class="search-bar" placeholder="Search..."
+                value="<?= htmlspecialchars($search) ?>">
             <select name="sort">
                 <option value="Customer_ID">Customer ID</option>
                 <option value="FirstName">First Name</option>
