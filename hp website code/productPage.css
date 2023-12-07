@@ -1,0 +1,105 @@
+
+form {
+    margin-bottom: 20px;
+  }
+
+  /*text within search bar settings */
+  .search-bar,
+  select,
+  input[type="submit"] {
+    padding: 10px;
+    margin: 5px;
+  }
+
+  .search-bar,
+  select {
+    width: 200px;
+  }
+
+  select {
+    width: 150px;
+  }
+
+  /* search bar 'search' button settings */
+  input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* headings settings */
+  h1#products-header {
+    color: #333;
+    text-align: center;
+    margin-right: 60px;
+  }
+
+  /* size of table */
+  table.products-table {
+    width: 95%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  /* border style, size and colour */
+  table.products-table th,
+  table.products-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+
+  /* colour of table headings */
+  table.products-table th {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  /* colour of table rows */
+  table.products-table tr {
+    background-color: #f5f5f5;
+  }
+
+  table.products-table tr:hover {
+    background-color: #D3D3D3;
+  }
+
+  /* size of images */
+  table.products-table img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* potential product-container CSS
+  h1 {
+    text-align: center;
+  }
+
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .product-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    background-color: #fff;
+  }
+
+  .product-box img {
+    max-width: 100%;
+    max-height: 150px;
+  }
+
+  */
