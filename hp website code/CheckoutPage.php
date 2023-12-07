@@ -75,6 +75,32 @@ session_start();
     #postcode {
         margin-top: 10px; /* Add margin-top to align with the row above */
     }
+
+   #submit {
+        background-color: #ccc;
+        color: #000;
+        border: 1px solid #000;
+        padding: 6px 12px;
+        border-radius: 5px;
+        width: 120px;
+        display: block;
+        margin: 0 auto;
+        
+        cursor: pointer;
+    }
+
+    #submit:hover {
+        background-color: #888;
+        border-color: #000;
+        color: #fff;
+    }
+
+
+
+
+
+
+    </style>
        
     
 </head>
