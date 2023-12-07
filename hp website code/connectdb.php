@@ -1,7 +1,4 @@
-
-
-
-<?php     --this is the php code to connect to the database--
+<?php     /*this is the php code to connect to the database*/
 
 $serverName = "localhost";
 $userName = "root";
