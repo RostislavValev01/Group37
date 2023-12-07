@@ -1,4 +1,4 @@
-CREATE TABLE stock(  --this table is in the hp_db database--
+CREATE TABLE stock(  --this table is in the healthpointdb database--
     SKU_number INT NOT NULL,
     Quantity INT,
     Product LONGBLOB,
