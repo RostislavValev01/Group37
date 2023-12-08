@@ -2,40 +2,11 @@
 session_start();
 
 require 'connectdb.php';
+include 'search-function.php';
 
-  $sort = isset($_POST['sort']) ? $_POST['sort'] : 'Product';
-  $order = isset($_POST['order']) ? $_POST['order'] : 'asc';
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $search = $_POST['search'];
-    $searchWithWildcards = '%' . $search . '%';
-
-
-    $query = "SELECT * FROM stock WHERE Product LIKE ? ORDER BY $sort $order";
-    $stmt = mysqli_prepare($con, $query);
-    mysqli_stmt_bind_param($stmt, "s", $searchWithWildcards);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-
-  } else if (isset($_GET['Product_Category'])) {
-    $category = $_GET['Product_Category'];
-
-    $query = "SELECT SKU_number, Product, Price, Product_Status, Product_Category, Product_Description FROM stock WHERE Product_Category = ? ORDER BY $sort $order";
-    $stmt = mysqli_prepare($con, $query);
-    mysqli_stmt_bind_param($stmt, "s", $category);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-
-
-  } else {
-    $sort = isset($_POST['sort']) ? $_POST['sort'] : 'Product';
-    $order = isset($_POST['order']) ? $_POST['order'] : 'asc';
-    $query = "SELECT SKU_number, Product, Price, Product_Status, Product_Category, Product_Description FROM stock ORDER BY $sort $order";
-    $result = mysqli_query($con, $query);
-    
-  }
-
-  $stock = mysqli_fetch_all($result, MYSQLI_ASSOC);
+if (isset($_GET['search'])) {
+  $searchQuery = $_GET['search'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +25,7 @@ require 'connectdb.php';
 <body>
   <nav class="banner">
     <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-    <form action="" method="post">
+    <form action="" method="get">
       <input type="text" name="search" class="search-bar"
         value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
         <input type="submit" value="Go">
@@ -110,7 +81,7 @@ require 'connectdb.php';
   </nav>
 
   <div class="content">
-    <form action="" method="post">
+    <form action="productPage.php" method="get">
       <input type="text" name="search" class="search-bar"
         value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search...">
       <select name="sort">
@@ -130,7 +101,6 @@ require 'connectdb.php';
     </form>
 
     <h1 id="products-header">Our Products</h1><br>
-
     <div class="products-container">
       <?php foreach ($stock as $product): ?>
         <div class="product-box">
