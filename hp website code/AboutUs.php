@@ -33,12 +33,12 @@
 </head>
 <body>
 
-<nav class="banner">
+<<nav class="banner">
     <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-    <form action="/search" method="get">
-      <input type="text" name="q" placeholder="Search...">
-      <button type="submit">Go</button>
-    </form>
+    <form action="" method="get">
+      <input type="text" name="search" class="search-bar"
+        value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
+        <input type="submit" value="Go" class="search-bar-go"></form>
     <?php
     if (isset($_SESSION['loggedin'])) {
       if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
@@ -50,8 +50,8 @@
           <button><a href="logout.php">Logout</a></button>
         </nav>
         <?php
-    } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
-      ?>
+      } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
+        ?>
           <nav class="header">
             <button><a href="CustomerAccounts.php">Account</a></button>
             <button><a href="Cart.php">Basket</a></button>
@@ -86,6 +86,7 @@
           <a href="productPage.php?Product_Category=Vitamins_Supplements">Vitamins and Supplements</a>
         </nav>
       </nav>
+    </ul>
     </ul>
   </nav>
                 </div>
