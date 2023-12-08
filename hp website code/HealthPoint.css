@@ -46,11 +46,29 @@
     max-width: 130px;
     height: auto;
 }
-/* Navigation Bar */
+.search-bar,
+select {
+    padding: 10px;
+    margin: 5px;
+    background-color: white;
+    width: 200px;
+}
+
+select {
+    width: 150px;
+}
+
+.search-bar-go {
+    padding: 10px;
+    margin: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
 .header-nav {
     background-color: #f5f5dc;
     overflow: hidden;
-    padding-top: 150px; /* Adjusted padding for a cleaner look */
+    padding-top: 150px; 
 }
 
 .navigation-bar {
@@ -58,11 +76,11 @@
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* Center the navigation items */
+    justify-content: center; 
 }
 
 .navigation-bar li {
-    margin: 0 15px; /* Add some spacing between navigation items */
+    margin: 0 15px; 
 }
 
 .navigation-bar li a {
@@ -71,20 +89,20 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    transition: background-color 0.s ease; /* Smooth transition for hover effect */
+    transition: background-color 0.s ease; 
 }
 
 .navigation-bar li a:hover {
     background-color: #f5f5dc;
 }
 
-/* Optional: Add some styles for better readability */
+
 .navigation-bar li a:focus,
 .navigation-bar li a:active {
     background-color: #555;
     outline: none;
 }
-/* Dropdown Button */
+
 .dropbtn {
     background-color: #f5f5dc;
     color: black;
@@ -96,7 +114,7 @@
 .dropbtn a:hover{
     background-color: #f5f5dc;
 }
-/* Dropdown content */
+
 .products-content {
     display: none;
     position: absolute;
