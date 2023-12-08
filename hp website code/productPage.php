@@ -103,8 +103,8 @@ if (isset($_GET['search'])) {
     <div class="products-container">
       <?php foreach ($stock as $product): ?>
         <div class="product-box">
-          <a href="indvProduct.php?id=<?php echo $product['SKU_number']; ?>">
-            <img src="productImages/<?php echo $product['SKU_number']; ?>.jpg" alt="<?php echo $product['ProductName']; ?>"
+          <a href="indvProduct.php?id=<?php echo $product['ProductSKU']; ?>">
+            <img src="productImages/<?php echo $product['ProductSKU']; ?>.jpg" alt="<?php echo $product['ProductName']; ?>"
               style="height:200px;">
             <p class = "product-name">
               <?php echo $product['ProductName']; ?>
@@ -114,7 +114,7 @@ if (isset($_GET['search'])) {
             <?php echo '£' . $product['Price'] . '.00'; ?>
           </p>
           <form method="post" action="addtobasket.php"><br>
-            <input type="hidden" name="product_id" value="<?= $product['SKU_number']; ?>">
+            <input type="hidden" name="product_id" value="<?= $product['ProductSKU']; ?>">
             <button type="submit" >Add to Basket</button>
           </form>
           <p>
