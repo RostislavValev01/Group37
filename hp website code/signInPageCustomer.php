@@ -1,7 +1,10 @@
 <?php
 session_start();
 
-?>
+if(isset($_SESSION['Customer_ID'])){
+    header('Location:productPage.php');
+    } else { ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
@@ -13,74 +16,17 @@ session_start();
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
     <link rel="stylesheet" type="text/css" href="signin.css">
     <script defer src="loginAdmin.js"></script>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            background-color: #fff;
-            padding: 20px;
-            margin-top: -20vh;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .login h1 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .login-form {
-            text-align: center;
-            gap: 10px;
-        }
-
-        #login-form #email,
-        #login-form #password {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            margin-top: 5px;
-        }
-
-        #login-form #login,
-        #login-form #register {
-            width: 100%;
-            height: 30px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        #login-form #admin-login {
-            width: 100%;
-            height: 30px;
-            border-radius: 5px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
+   
 </head>
 
 <body>
 <nav class="banner">
-    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-    <form action="/search" method="get">
-      <input type="text" name="q" placeholder="Search...">
-      <button type="submit">Go</button>
-    </form>
+<a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+<form action="productPage.php" method="get">
+  <input type="text" name="search" class="search-bar"
+    value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
+  <input type="submit" value="Go" class="search-bar-go">
+</form>
     <?php
     if (isset($_SESSION['loggedin'])) {
       if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
@@ -92,8 +38,8 @@ session_start();
           <button><a href="logout.php">Logout</a></button>
         </nav>
         <?php
-    } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
-      ?>
+      } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
+        ?>
           <nav class="header">
             <button><a href="CustomerAccounts.php">Account</a></button>
             <button><a href="Cart.php">Basket</a></button>
@@ -132,6 +78,7 @@ session_start();
   </nav>
     <?php
     require 'connectdb.php';
+
     ?>
 
     <div class="content">
@@ -177,3 +124,4 @@ session_start();
 </footer>
 
 </html>
+<?php } ?>
