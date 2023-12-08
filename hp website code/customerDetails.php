@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1){
+    header('Location:productPage.php');
+    } else {
 ?>
 
 <!DOCTYPE html>
@@ -18,11 +21,12 @@ session_start();
 <body>
 
 <nav class="banner">
-    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-    <form action="/search" method="get">
-      <input type="text" name="q" placeholder="Search...">
-      <button type="submit">Go</button>
-    </form>
+<a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+<form action="productPage.php" method="get">
+  <input type="text" name="search" class="search-bar"
+    value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
+  <input type="submit" value="Go" class="search-bar-go">
+</form>
     <?php
     if (isset($_SESSION['loggedin'])) {
       if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
@@ -34,8 +38,8 @@ session_start();
           <button><a href="logout.php">Logout</a></button>
         </nav>
         <?php
-    } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
-      ?>
+      } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
+        ?>
           <nav class="header">
             <button><a href="CustomerAccounts.php">Account</a></button>
             <button><a href="Cart.php">Basket</a></button>
@@ -55,6 +59,7 @@ session_start();
     }
     ?>
   </nav>
+
     <nav class="header-nav">
         <ul class="navigation-bar">
             <li><a href="homePage.php">Home</a></li>
@@ -210,3 +215,4 @@ session_start();
 </footer>
 
 </html>
+<?php }?>
