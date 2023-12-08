@@ -8,89 +8,152 @@ session_start();
 
 <head>
     <title>
-        <?php echo $product['Product']; ?>
+        <?php echo $product['ProductName']; ?>
     </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
+    <link rel="stylesheet" type="text/css" href="css/indvProduct.css">
     <script defer src="loginAdmin.js"></script>
-    <style> </style>
+
 </head>
 
 <body>
-    <nav class="banner">
-        <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-        <form action="/search" method="get">
-            <input type="text" name="q" placeholder="Search...">
-            <button type="submit">Go</button>
-        </form>
-        <nav class="header">
-            <button><a href="accountPage.php">Account</a></button>
-            <button><a href="basketPage.php">Basket</a></button>
-            <button><a href="contactUsPage.php">Contact Us</a></button>
-        </nav>
-    </nav>
 
-    <nav class="header-nav">
-        <ul class="navigation-bar">
-            <li><a href="homePage">Home</a></li>
-            <li><a href="aboutUs.php">About Us</a></li>
-            <nav class=Products>
-                <button class="dropbtn">Products</button>
-                <nav class="products-content">
-                    <a href="productPage.php">Prescriptions</a>
-                    <a href="productPage.php">Skin Care</a>
-                    <a href="productPage.php">Hair Care</a>
-                    <a href="productPage.php">Medication</a>
-                </nav>
-            </nav>
-        </ul>
-    </nav>
-<div class="content">
-    <?php
-    // get id from productPage SKU_number
-    $id = $_GET['id'];
+    <head>
+        <title>Products</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="HealthPoint.css">
+        <link rel="stylesheet" type="text/css" href="productPage.css">
+        <script defer src="productPage\.js"></script>
+    </head>
 
-    // connect to database
-    require 'connectdb.php';
-
-    // prepare sql query
-    $stmt = $pdo->prepare("SELECT * FROM stock3 WHERE Product_ID = :id");
-    $stmt->execute(['id' => $id]);
-
-    // retrieve the product details
-    $product = $stmt->fetch();
-
-    // display the product details
-    echo "Product: " . $product['Product'] . "<br>";
-    echo "Image: <br>";
-    echo "<img src='productImages/" . $product['SKU_number'] . ".jpg' alt='" . $product['Product'] . "' style='width:100px;height:100px;'><br>";
-    echo "Price: " . $product['Price'] . "<br>";
-    echo "Status: " . $product['Product_Status'] . "<br>";
-    echo "Category: " . $product['Product_Category'] . "<br>";
-    echo "Description: " . $product['Product_Description'] . "<br>";
-    ?>
-</div>
-</body>
-<footer class="footer">
-    <div class="footer-section">
-        <div>
+    <body>
+        <nav class="banner">
             <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+            <form action="" method="get">
+                <input type="text" name="search" class="search-bar"
+                    value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>"
+                    placeholder="Search products...">
+                <input type="submit" value="Go" class="search-bar-go">
+            </form>
+            <?php
+            if (isset($_SESSION['loggedin'])) {
+                if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
+                    ?>
+                    <nav class="header">
+                        <button><a href="AdminAccounts.php">Account</a></button>
+                        <button><a href="Cart.php">Basket</a></button>
+                        <button><a href="Contact.php">Contact Us</a></button>
+                        <button><a href="logout.php">Logout</a></button>
+                    </nav>
+                    <?php
+                } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
+                    ?>
+                        <nav class="header">
+                            <button><a href="CustomerAccounts.php">Account</a></button>
+                            <button><a href="Cart.php">Basket</a></button>
+                            <button><a href="Contact.php">Contact Us</a></button>
+                            <button><a href="logout.php">Logout</a></button>
+                        </nav>
+                    <?php
+                }
+            } else {
+                ?>
+                <nav class="header">
+                    <button><a href="signInPageCustomer.php">Sign In</a></button>
+                    <button><a href="Cart.php">Basket</a></button>
+                    <button><a href="Contact.php">Contact Us</a></button>
+                </nav>
+                <?php
+            }
+            ?>
+        </nav>
+
+        <nav class="header-nav">
+            <ul class="navigation-bar">
+                <li><a href="Index.php">Home</a></li>
+                <li><a href="AboutUs.php">About Us</a></li>
+                <nav class=Products>
+                    <a href="productPage.php"><button class="dropbtn">Products</button></a>
+                    <nav class="products-content">
+                        <a href="productPage.php?Product_Category=General">General Medication</a>
+                        <a href="productPage.php?Product_Category=SkinCare">SkinCare</a>
+                        <a href="productPage.php?Product_Category=Haircare">HairCare</a>
+                        <a href="productPage.php?Product_Category=DentalCare">DentalCare</a>
+                        <a href="productPage.php?Product_Category=Vitamins_Supplements">Vitamins and Supplements</a>
+                    </nav>
+                </nav>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <?php
+            $id = $_GET['id'];
+
+            require 'connectdb.php';
+
+            $query = "SELECT ProductSKU, ProductName, Price, Product_Status, Product_Category, Product_Description FROM stock WHERE ProductSKU = ?";
+            $stmt = $con->prepare($query);
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $product = $result->fetch_assoc();
+            ?>
+            <div class="indvP">
+                <p class="pImg">
+                    <?php
+                    echo "<img src='productImages/" . $product['ProductSKU'] . ".jpg' alt='" . $product['ProductName'] . "' style='max-height: 550px; max-width: 500px;'><br>"; ?>
+                </p>
+                <div class="pDetails">
+                    <p class="pName">
+                        <?php echo $product['ProductName']; ?>
+                    </p>
+                    <p class="pPrice">
+                        <?php echo "Product Price: " . "£" . $product['Price']; ?>
+                    </p>
+                    <div class="pStatusBasket">
+                        <p class="pStatus">
+                            <?php echo $product['Product_Status'] . ":"; ?>
+                        </p>
+                        <form method="post" action="addtobasket.php" class="pAddToCart">
+                            <input type="hidden" name="product_id" value="<?= $product['ProductSKU']; ?>">
+                            <button type="submit">Add to Basket</button>
+                        </form>
+                    </div>
+                    <p class="pCategory">
+                        <?php echo "Product Category: " . $product['Product_Category']; ?>
+                    </p>
+                    <p class="pDescription">
+                        <?php echo $product['Product_Description']; ?>
+                    </p>
+
+                </div>
+            </div>
         </div>
-        <div>
-            <p>© 2023 HealthPoint. All rights reserved.
+    </body>
+    <footer class="footer">
+        <div class="footer-section">
+            <div>
+                <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+            </div>
+            <div>
+                <p>© 2023 HealthPoint. All rights reserved.
 
-                The content, design, and images on this website are the property of HealthPoint and are protected by
-                international copyright laws. Unauthorized use or reproduction of any materials without the express
-                written
-                consent of HealthPoint is strictly prohibited. HealthPoint and the HealthPoint logo are trademarks of
-                HealthPoint.
+                    The content, design, and images on this website are the property of HealthPoint and are protected by
+                    international copyright laws. Unauthorized use or reproduction of any materials without the express
+                    written
+                    consent of HealthPoint is strictly prohibited. HealthPoint and the HealthPoint logo are trademarks
+                    of
+                    HealthPoint.
 
-                For inquiries regarding the use or reproduction of any content on this website, please contact us at
-                HealthPoint@pharmacy.com</p>
+                    For inquiries regarding the use or reproduction of any content on this website, please contact us at
+                    HealthPoint@pharmacy.com</p>
 
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
 </html>
