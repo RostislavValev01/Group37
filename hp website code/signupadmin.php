@@ -52,42 +52,48 @@
 
 <body>
 <?php
- require 'connectdb.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-   
+ 
+ include("php/config.php");
+if (isset($_POST["submit"])) {
+$fname = $_POST['fname'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$lname = $_POST['lname'];
+$refkey = $_POST['refkey'];
 
-    
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+//verify the email
+$verify_query = mysqli_query($con, "SELECT Email FROM users WHERE Email='$email'");
+if (mysqli_num_rows($verify_query) !=0) {
+    echo "<div class='message'>
+            <p>This email is used, Try another One Please!</p>
+            </div> <br>";
+            "<a href='javascript:self.history.back()'><button class='btn'>Go Back</button>";
+}else{
+    $admin_reference_key = 'admin123';
+    if ($refkey === $admin_reference_key) {
+    mysqli_query($con, "INSERT INTO adminusers(FirstName, LastName, Email, Password) VALUES('$fname', '$lname', '$email', '$password')" ) or die("Error Occured");
+    echo "<div class='message'>
+            <p>Registration Successful!</p>
+            </div> <br>";
+            "<a href='index.php'><button class='btn'>Login Now</button>";
+    }else{
+        echo "<div class='message'>
+                    <p>Invalid Admin Reference Key!</p>
+                  </div> <br>";
     }
-
-
-    $sql = "INSERT INTO admins (first_name, last_name, email, password, reference_key)
-            VALUES ('$firstName', '$lastName', '$email', '$password', '$referenceKey')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New admin account created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
 }
+} else {
 ?>
 <div class="banner">
-    <a href='#' class="logo"><img src="images/hplogo3.png" class="logo"></a>
+    <a href='#' class="logo"><img src="hplogo3.png" class="logo"></a>
     <nav class="header">
     <form action="/search" method="get">
             <input type="text" name="q" placeholder="Search...">
             <button type="submit">Go</button>
         </form>
-<a href='#'>Account</a>
-<a href='#'>Basket</a>
-<a href='#'>Contact</a>
+<a href='signInPageCustomer.php'>Account</a>
+<a href='Cart.php'>Basket</a>
+<a href='Contact.php'>Contact</a>
     </nav>
 </div>
 
@@ -162,12 +168,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </tr>
 <tr>
     <th>
-        <input type="password" id="refkey" name="referenceKey" placeholder="Admin Reference Key" required><br><br>
+        <input type="password" id="refkey" name="refkey" placeholder="Admin Reference Key" required><br><br>
     </th>
 </tr>
 <tr>
 <th>
-    <input type="submit" id="submit" name="createaccount" value="Create new Account">
+    <input type="submit" id="submit" name="submit" value="Create new Account">
 
 </th>
 </tr>
@@ -181,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <footer class="footer">
     <div class="footer-section">
         <div>
-            <a href="homePage.php"><img src="images/hplogo3.png" class="logo" alt="Company Logo"></a>
+            <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
         </div>
         <div>
             <p>© 2023 HealthPoint. All rights reserved.
@@ -196,6 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 HealthPoint@pharmacy.com</p>
 
         </div>
+        <?php } ?>
     </div>
 </footer>
 </html>
