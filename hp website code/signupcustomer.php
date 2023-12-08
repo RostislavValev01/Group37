@@ -53,29 +53,33 @@
 <body>
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+include("php/config.php");
+if (isset($_POST["submit"])) {
+$fname = $_POST['fname'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$lname = $_POST['lname'];
 
-    
-    
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    
-    $sql = "INSERT INTO users (first_name, last_name, email, password)
-            VALUES ('$firstName', '$lastName', '$email', '$password')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
+//verify the email
+$verify_query = mysqli_query($con, "SELECT Email FROM users WHERE Email='$email'");
+if (mysqli_num_rows($verify_query) !=0) {
+    echo "<div class='message'>
+            <p>This email is used, Try another One Please!</p>
+            </div> <br>";
+            "<a href='javascript:self.history.back()'><button class='btn'>Go Back</button>";
+} 
+else{
+    mysqli_query($con, "INSERT INTO users(FirstName, LastName, Email, Password) VALUES('$fname', '$lname', '$email', '$password')" ) or die("Error Occured");
+    echo "<div class='message'>
+            <p>Registration Successful!</p>
+            </div> <br>";
+            "<a href='index.php'><button class='btn'>Login Now</button>";
 }
+} else {
+
 ?>
 <div class="banner">
-    <a href='#' class="logo"><img src="images/hplogo3.png" class="logo"></a>
+    <a href='#' class="logo"><img src="hplogo3.png" class="logo"></a>
     <nav class="header">
     <form action="/search" method="get">
             <input type="text" name="q" placeholder="Search...">
@@ -152,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </tr>
 <tr>
 <th>
-    <input type="submit" id="submit" name="createaccount" value="Create new Account">
+    <input type="submit" id="submit" name="submit" value="Create new Account">
 
 </th>
 </tr>
@@ -162,11 +166,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </table>
 </div>
 </form>
+<?php } ?>
 </body>
 <footer class="footer">
     <div class="footer-section">
         <div>
-            <a href="homePage.php"><img src="images/hplogo3.png" class="logo" alt="Company Logo"></a>
+            <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
         </div>
         <div>
             <p>© 2023 HealthPoint. All rights reserved.
