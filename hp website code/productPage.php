@@ -28,8 +28,7 @@ if (isset($_GET['search'])) {
     <form action="" method="get">
       <input type="text" name="search" class="search-bar"
         value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
-        <input type="submit" value="Go">
-    </form>
+        <input type="submit" value="Go" class="search-bar-go"></form>
     <?php
     if (isset($_SESSION['loggedin'])) {
       if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
@@ -85,7 +84,7 @@ if (isset($_GET['search'])) {
       <input type="text" name="search" class="search-bar"
         value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search...">
       <select name="sort">
-        <option value="Product">Product Name</option>
+        <option value="ProductName">Product Name</option>
         <option value="Price">Price</option>
         <option value="Product_Status">Availability</option>
         <option value="Product_Category">Product Category</option>
@@ -105,10 +104,10 @@ if (isset($_GET['search'])) {
       <?php foreach ($stock as $product): ?>
         <div class="product-box">
           <a href="indvProduct.php?id=<?php echo $product['SKU_number']; ?>">
-            <img src="productImages/<?php echo $product['SKU_number']; ?>.jpg" alt="<?php echo $product['Product']; ?>"
+            <img src="productImages/<?php echo $product['SKU_number']; ?>.jpg" alt="<?php echo $product['ProductName']; ?>"
               style="height:200px;">
             <p class = "product-name">
-              <?php echo $product['Product']; ?>
+              <?php echo $product['ProductName']; ?>
             </p>
           </a>
           <p class = "product-price">
@@ -124,9 +123,7 @@ if (isset($_GET['search'])) {
         </div>
       <?php endforeach; ?>
     </div>
-
   </div>
-
 </body>
 
 <footer class="footer">
