@@ -8,17 +8,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $query = "SELECT Customer_ID, Email, Password_hash, AdminStatus FROM accountdetails WHERE Email = ?";
+        $query = "SELECT Customer_ID, Email, Password, AdminStatus FROM accountdetails WHERE Email = ?";
         $stmt = $con->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
 
-        $verifyResult = password_verify($password, $user['Password_hash']);
+        $verifyResult = password_verify($password, $user['Password']);
 
 
-        if ($user && $password == $user['Password_hash']) { // change to == verifyResult
+        if ($user && $password == $user['Password']) { // change to == verifyResult
             $_SESSION['Customer_ID'] = $user['Customer_ID'];
             $_SESSION['AdminStatus'] = 0;
             $_SESSION['loggedin'] = true;
