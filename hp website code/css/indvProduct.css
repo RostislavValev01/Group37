@@ -1,0 +1,69 @@
+.indvP {
+    display: flex;
+    width: 90%;
+    height: 600px;
+    margin-top: 20px;
+    background-color: white;
+    margin-left:5%;
+    border: 4px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: -10px;
+
+}
+
+.pImg {
+    flex: 1;
+    margin-left: 10%;
+    margin-right: 3%;
+    margin-bottom: -10px;
+}
+
+.pDetails {
+    flex: 2;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    border-left: 4px solid #ddd;
+    text-align: center;
+}
+
+.pName,
+.pPrice,
+.pStatus,
+.pAddToCart {
+    background-color: white;
+    width: 100%;
+    height: 10%;
+    padding-top: 15px;
+}
+
+.pName {
+    font-size: 40px;
+    font-style: bold #ddd;
+    padding-bottom: 60px;
+}
+
+.pAddToCart {
+    margin-bottom: 0px;
+    padding-bottom: 30px;
+    margin-right: 250px;
+
+}
+.pStatus{
+    padding-bottom: 25px;
+    margin-left: 250px;
+}
+.pCategory,
+.pDescription {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    padding-top: 10px;
+}
+
+.pStatusBasket {
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
