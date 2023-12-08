@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(isset($_SESSION['Customer_ID'])){
+    header('Location:productPage.php');
+    } else {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,61 +13,8 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
+    <link rel="stylesheet" type="text/css" href="signin.css">
     <script defer src="loginAdmin.js"></script>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            background-color: #fff;
-            /* Set the background color of the container */
-            padding: 20px;
-            margin-top: -20vh;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            /* Add a box shadow for a subtle effect */
-        }
-
-        .login h1 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .login-form {
-            text-align: center;
-            gap: 10px;
-        }
-
-        #login-form #email,
-        #login-form #password,
-        #login-form #adminID {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            margin-top: 5px;
-        }
-
-        #login-form #login,
-        #login-form #register {
-            width: 100%;
-            height: 30px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -73,7 +23,7 @@ session_start();
 <form action="productPage.php" method="get">
   <input type="text" name="search" class="search-bar"
     value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
-  <input type="submit" value="Go">
+  <input type="submit" value="Go" class="search-bar-go">
 </form>
     <?php
     if (isset($_SESSION['loggedin'])) {
@@ -171,3 +121,4 @@ session_start();
 </footer>
 
 </html>
+<?php }?>
