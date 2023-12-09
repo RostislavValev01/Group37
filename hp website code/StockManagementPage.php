@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+require 'connectdb.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -109,38 +112,39 @@ session_start();
 
     <?php
     require 'connectdb.php';
-
-    // Assuming you have a table named 'inventory'
-    $sql = "SELECT * FROM inventory";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-
-    $inventoryDetails = $stmt->fetchAll();
     ?>
 
-    <div class="container">
-        <h2>Inventory</h2>
-        <table>
-            <thead>
+<div class="container">
+    <h2>Stock Management</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Number</th>
+                <th>Quantity</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Barcode</th>
+                <th>Product Status</th>
+                <th>Product Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($stock as $product): ?>
                 <tr>
-                    <th>Item Number</th>
-                    <th>Item Description</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <td><?= htmlspecialchars($product['ProductSKU']) ?></td>
+                    <td><?= htmlspecialchars($product['Quantity']) ?></td>
+                    <td><?= htmlspecialchars($product['ProductName']) ?></td>
+                    <td><?= htmlspecialchars($product['Product_Description']) ?></td>
+                    <td><?= htmlspecialchars($product['Barcode']) ?></td>
+                    <td><?= htmlspecialchars($product['Product_Status']) ?></td>
+                    <td><?= htmlspecialchars($product['Product_Category']) ?></td>
+                    <td><?= htmlspecialchars($product['Price']) ?></td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($inventoryDetails as $item): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($item['part_number']) ?></td>
-                        <td><?= htmlspecialchars($item['part_description']) ?></td>
-                        <td><?= htmlspecialchars($item['quantity']) ?></td>
-                        <td><?= htmlspecialchars($item['price']) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 </body>
 
 <footer class="footer">
