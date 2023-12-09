@@ -107,3 +107,5 @@ $result = $con->query($sql);
     </div>
   </div>
 </footer>
+</body>
+</html>
