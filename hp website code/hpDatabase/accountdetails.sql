@@ -4,6 +4,7 @@ CREATE TABLE accountdetails (
     Surname VARCHAR(40) NOT NULL,
     MobileNumber VARCHAR(11) NOT NULL,
     Email VARCHAR(40) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
     CustomerAddress VARCHAR(40) NOT NULL,
     DateOfBirth DATE NOT NULL,
     Admin_ID VARCHAR(11) NULL,
