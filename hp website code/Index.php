@@ -1,13 +1,8 @@
 <?php
 //include connection config
-       include('connection.php');
-
+include('connectdb.php');
 // session start
-session_start();
- 
-
- 
- 
+session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,184 +10,168 @@ session_start();
 <head>
 <title>Homepage - Health Point</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="HealthPoint.css">
+
 </head>
 <style>
 </style>
-<body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="index.php"><img src="img/hplogo3.png" height="50"></a>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="aboutus.php">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="contact.php">Contact</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Products
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="productPage.php">Prescriptions</a></li>
-            <li><a class="dropdown-item" href="productPage.php">Skin Care</a></li>
-            <li><a class="dropdown-item" href="productPage.php">Hair Care</a></li>
-            <li><a class="dropdown-item" href="productPage.php">Medication</a></li>
-          </ul>
-        </li>
-     
-      
-      </ul>
-      <form class="d-flex " action="/search" method="get">       
+<body class="">
+<nav class="banner">
+    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    <form action="/search" method="get">
+      <input type="text" name="q" placeholder="Search...">
+      <button type="submit">Go</button>
+    </form>
+    <nav class="header">
+      <button><a href="accountPage.php">Account</a></button>
+      <button><a href="basketPage.php">Basket</a></button>
+      <button><a href="contactUsPage.php">Contact Us</a></button>
+    </nav>
+  </nav>
 
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="login.php">Account/Login</a>
-        </li>
-      
-        <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="cart.php">Basket</a>
-        </li>
-      
-        
-     
-      
-      </ul>
-    
-    </div>
-  </div>
-</nav>
-<section class="home-slider">
-<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="10000">
-      <img src="img/slider.png" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item" data-bs-interval="2000">
-      <img src="img/slider.png" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="img/slider.png" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+  <nav class="header-nav">
+    <ul class="navigation-bar">
+      <li><a href="homePage.php">Home</a></li>
+      <li><a href="aboutUs.php">About Us</a></li>
+      <nav class=Products>
+        <a href="productPage.php"><button class="dropbtn">Products</button></a>
+        <nav class="products-content">
+          <a href="productPage.php?category=General">General Medication</a>
+          <a href="productPage.php?category=Skin Care">SkinCare</a>
+          <a href="productPage.php?category=Hair Care">HairCare</a>
+          <a href="productPage.php?category=Dental Care">DentalCare</a>
+          <a href="productPage.php?category=Vitamins_Supplements">Vitamins and Supplements</a>
+        </nav>
+      </nav>
+    </ul>
+  </nav>
+
+<div class="content">
+<section>
+  <!-- Slideshow container -->
+<div class="slideshow-container">
+
+<!-- Full-width images with number and caption text -->
+<div class="slider fade">
+  <div class="numbertext">1 / 3</div>
+  <img src="slider.png" style="width:100%">
+  <div class="text">Caption Text</div>
 </div>
+
+<div class="slider fade">
+  <div class="numbertext">2 / 3</div>
+  <img src="slider.png" style="width:100%">
+  <div class="text">Caption Two</div>
+</div>
+
+<div class="slider fade">
+  <div class="numbertext">3 / 3</div>
+  <img src="slider.png" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+
+
+</div>
+<br>
+
+
 </section>
 <section class="home mt-3">
-<div class="container">
 <div class="row">
-  <div class="col-2"><img src="img/hplogo3.png" alt="LA" style="width:100%">
+  <div class="col-2" style="width:20%"><img src="hplogo3.png" alt="LA" style="width:100%">
 </div>
-<div class="col-10">
+<div class="col-10" style="width:80%">
  <h1>Company Intro</h1>
  <p>This is a paragraph.</p>
  <p>This is another paragraph.</p>
 </div>
 </div>
 
-</div>
 
 </section>
 <section class="product-category mt-3">
-<div class="container-fluid">
 <div class="row">
-  <div class="col-2"> <h1>Category</h1>
+  <div style="width:100%"> <h1>Category</h1>
+</div></div>
+
+<br>
+<div class="row">
+  <div style="width:20%">
+    <div class="card" >
+  <img src="na.jpg" class="card-img-top" alt="Product">
+  <div class="card-body">
+    <h3 class="card-title">Product title</h5>
+    <p class="card-text">Product Description.</p>
+    <a href="#" class="btn btn-dark">Product Url</a>
+  </div>
 </div>
-  <div class="col-2">
+</div>
+<div style="width:20%">
     <div class="card" >
-  <img src="img/na.jpg" class="card-img-top" alt="Product">
+  <img src="na.jpg" class="card-img-top" alt="Product">
+  <div class="card-body">
+  <h3 class="card-title">Product title</h5>
+    <p class="card-text">Product Description.</p>
+    <a href="#" class="btn btn-dark">Product Url</a>
+  </div>
+</div>
+</div>
+<div style="width:20%">
+    <div class="card" >
+  <img src="na.jpg" class="card-img-top" alt="Product">
+  <div class="card-body">
+  <h3 class="card-title">Product title</h5>
+    <p class="card-text">Product Description.</p>
+    <a href="#" class="btn btn-dark">Product Url</a>
+  </div>
+</div>
+</div>
+<div style="width:20%">
+    <div class="card" >
+  <img src="na.jpg" class="card-img-top" alt="Product">
   <div class="card-body">
     <h5 class="card-title">Product title</h5>
     <p class="card-text">Product Description.</p>
     <a href="#" class="btn btn-dark">Product Url</a>
   </div>
-</div></div>
-<div class="col-2">
+</div>
+</div>
+<div style="width:20%">
     <div class="card" >
-  <img src="img/na.jpg" class="card-img-top" alt="Product">
+  <img src="na.jpg" class="card-img-top" alt="Product">
   <div class="card-body">
-    <h5 class="card-title">Product title</h5>
+  <h3 class="card-title">Product title</h5>
     <p class="card-text">Product Description.</p>
     <a href="#" class="btn btn-dark">Product Url</a>
   </div>
-</div></div>
-<div class="col-2">
-    <div class="card" >
-  <img src="img/na.jpg" class="card-img-top" alt="Product">
-  <div class="card-body">
-    <h5 class="card-title">Product title</h5>
-    <p class="card-text">Product Description.</p>
-    <a href="#" class="btn btn-dark">Product Url</a>
-  </div>
-</div></div>
-<div class="col-2">
-    <div class="card" >
-  <img src="img/na.jpg" class="card-img-top" alt="Product">
-  <div class="card-body">
-    <h5 class="card-title">Product title</h5>
-    <p class="card-text">Product Description.</p>
-    <a href="#" class="btn btn-dark">Product Url</a>
-  </div>
-</div></div>
-<div class="col-2">
-    <div class="card" >
-  <img src="img/na.jpg" class="card-img-top" alt="Product">
-  <div class="card-body">
-    <h5 class="card-title">Product title</h5>
-    <p class="card-text">Product Description.</p>
-    <a href="#" class="btn btn-dark">Product Url</a>
-  </div>
-</div></div></div>
-
-
-</section>
-<section class="footer">
-<div class="container-fluid">
-<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-body-secondary">© 2023 Health Point</p>
-
- 
-  </footer>
+</div>
+</div>
 
 </div>
+
 </section>
+</div>
+<footer class="footer">
+  <div class="footer-section">
+    <div>
+      <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    </div>
+    <div>
+      <p>© 2023 HealthPoint. All rights reserved.
+
+        The content, design, and images on this website are the property of HealthPoint and are protected by
+        international copyright laws. Unauthorized use or reproduction of any materials without the express written
+        consent of HealthPoint is strictly prohibited. HealthPoint and the HealthPoint logo are trademarks of
+        HealthPoint.
+
+        For inquiries regarding the use or reproduction of any content on this website, please contact us at
+        HealthPoint@pharmacy.com</p>
+
+    </div>
+  </div>
+</footer>
+<script defer src="slider.js"></script>
+
 </body>
-<script src="js/bootstrap.min.js"></script>
-
 </html>
 
