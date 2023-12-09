@@ -3,6 +3,24 @@
 include('connectdb.php');
 // session start
 session_start(); 
+
+
+if(isset($_SESSION["Customer_ID"]) && $_SESSION["loggedin"] === true){
+
+
+	$cID=$_SESSION["Customer_ID"] ;
+
+}
+else
+{
+
+  header('Location: signInPageCustomer.php');
+}
+$query = 'SELECT * FROM customerbasket  WHERE CustomerID = '.$cID;
+$result = mysqli_query($con, $query) or die (mysqli_error($con));
+$sum = 0;
+$count = 0;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +28,7 @@ session_start();
 <head>
 <title>Shopping Cart - Health Point</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" type="text/css" href="css/contact.css">
+<link rel="stylesheet" type="text/css" href="HealthPoint.css">
 
 </head>
 <style>
@@ -66,21 +84,23 @@ session_start();
   <tbody>
   <?php                  
 
-  $query = 'SELECT * FROM customerbasket';
-                            $result = mysqli_query($con, $query) or die (mysqli_error($con));
 
                                 while ($row = mysqli_fetch_assoc($result)) {
 
                                     echo '<tr>';
                                     echo '<td>'. $row['ProductID'].'</td>';
                                     echo '<td>'. $row['ProductName'].'</td>';
-                                    echo '<td><input type="number" value="'. $row['Quantity'].'" min="0" max="10" step="1"/></td>';
-
+                                   // echo '<td><input type="number" value="'. $row['Quantity'].'" min="0" max="10" step="1"/></td>';
+                                   echo '<td>'. $row['Quantity'].'</td>';
                                     echo '<td>'. $row['Price'].'</td>';
                                     echo '<td>';
 
-                                    echo ' <a  type="button" class="btn btn-danger" href="crud.php?action=remove&id=' . $row['ProductID'] . '">Remove </a> </td>';
+                                    echo ' <a  type="button" class="btn btn-danger" href="removefromcart.php?ProductID=' . $row['ProductID'].'">Remove </a> </td>';
                                     echo '</tr> ';
+                                    $sum=$sum+ $row['Price'];
+                                    $count=$count+ $row['Quantity'];
+
+                                   // $count++;
                         }
                     ?> 
 
@@ -94,10 +114,10 @@ session_start();
 <table class="table table-bordered table-hover"><tr><td colspan="2" class="text-center"><strong>Order Summary</strong></td></tr>
 
 <tbody>
-  <tr><td>Total Items</td><td>1</td></tr>
-  <tr><td>Delivery</td><td>1</td></tr>
+  <tr><td>Total Items</td><td><?php echo $count; ?> </td></tr>
 
-  <tr><td>Total Price</td><td>9</td></tr>
+
+  <tr><td>Total Price</td><td><?php echo $sum;?></td></tr>
 
 </tbody></table>
 
