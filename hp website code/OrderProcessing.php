@@ -1,3 +1,12 @@
+<?php
+// Include the database connection file
+require_once "connectdb.php";
+
+// Fetch data from the 'orderprocessing' table
+$sql = "SELECT OrderNumber, OrderTotal, CustomerID, ProductSKU, OrderStatus FROM orderprocessing";
+$result = $con->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
@@ -7,29 +16,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
+    <link rel="stylesheet" type="text/css" href="OrderProcessing.css">
 
-    <style>
-        /* Add custom styles for the search bar and filter button */
-        .search-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-            background-color: #b8cca3; /* Add your desired background color */
-        }
-
-        .search-bar input[type="text"] {
-            padding: 5px;
-            width: 70%;
-        }
-
-        .search-bar button {
-            padding: 5px;
-            background-color: #f5f5dc; /* Add your desired background color */
-            border: none;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
     <nav class="banner">
@@ -65,6 +53,40 @@
         <input type="text" name="search" placeholder="Enter your search...">
         <button type="button">Filter</button>
     </div>
+
+
+    <table class="order-table">
+        <thead>
+            <tr>
+                <th>OrderNumber</th>
+                <th>OrderTotal</th>
+                <th>CustomerID</th>
+                <th>ProductSKU</th>
+                <th>OrderStatus</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["OrderNumber"] . "</td>";
+                echo "<td>" . $row["OrderTotal"] . "</td>";
+                echo "<td>" . $row["CustomerID"] . "</td>";
+                echo "<td>" . $row["ProductSKU"] . "</td>";
+                echo "<td>" . $row["OrderStatus"] . "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+
+    <?php
+    // Close the database connection
+    $con->close();
+    ?>
+
+
 
     <footer class="footer">
   <div class="footer-section">
