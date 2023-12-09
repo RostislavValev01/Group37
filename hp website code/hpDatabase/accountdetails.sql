@@ -38,6 +38,5 @@ VALUES('Emily', 'Mitchells', '07198842650',
        '0');  
 
 
-ALTER TABLE accountdetails
-ADD COLUMN Password VARCHAR(255) AFTER  NOT NULL Email;
+
 
