@@ -80,7 +80,7 @@ session_start();
       <div class="col-12 col-md-8 " style="width:50%">
       <h2 class="text-center" >Contact Us By Email</h2>
 <hr>
-        <form method="post" class="contact"  action="contact.php">
+        <form method="post" class="contact"  action="contactcode.php">
           <div class="form-group">
             <label class="control-label">First name:</label>
             <input type="text" id="fname" name="fname" placeholder="Write your first name here" class="form-control">
@@ -146,4 +146,5 @@ session_start();
 </body>
 <script src="slider.js"/>
 </html>
+
 
