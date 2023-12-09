@@ -1,0 +1,321 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+.banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 100px;
+    background-color: #f5f5dc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.content{
+    background-color:#b8cca3;
+    min-height: 100vh;
+    width: 100%;
+    color:rgb(0, 0, 0);
+    align-items: center;
+
+
+}
+.header {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+.header a{
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    transition: opacity 0.3s ease;
+}
+.header a:hover{
+    opacity:0.50;
+}
+.logo{
+    max-width: 130px;
+    height: auto;
+}
+/* Navigation Bar */
+.header-nav {
+    background-color: #f5f5dc;
+    overflow: hidden;
+    padding-top: 150px; /* Adjusted padding for a cleaner look */
+}
+
+.navigation-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center the navigation items */
+}
+
+.navigation-bar li {
+    margin: 0 15px; /* Add some spacing between navigation items */
+}
+
+.navigation-bar li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.s ease; /* Smooth transition for hover effect */
+}
+
+.navigation-bar li a:hover {
+    background-color: #f5f5dc;
+}
+
+/* Optional: Add some styles for better readability */
+.navigation-bar li a:focus,
+.navigation-bar li a:active {
+    background-color: #555;
+    outline: none;
+}
+/* Dropdown Button */
+.dropbtn {
+    background-color: #f5f5dc;
+    color: black;
+    padding: 14px 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.dropbtn a:hover{
+    background-color: #f5f5dc;
+}
+/* Dropdown content */
+.products-content {
+    display: none;
+    position: absolute;
+    color: #b8cca3;
+    text-decoration: none;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+}
+.products-content a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.Products:hover .products-content {
+    display: block;
+}
+
+
+.footer {
+    background-color: #f5f5dc;
+    color: #000000;
+    text-align: center;
+    padding: 50px; 
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.footer-section {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.footer-section div {
+    width: 100%; 
+    margin-bottom: 10px; 
+}
+
+ /* search bar 'search' button settings */
+ input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+  }
+  form {
+    margin-bottom: 20px;
+  }
+
+  /*text within search bar settings */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+textarea,
+  select,
+  input[type="submit"] {
+    padding: 10px;
+    margin: 5px;
+  }
+  input[type="text"],
+  select {
+    width: 200px;
+  }
+
+  select {
+    width: 150px;
+  }
+  .container{
+    width: 80%;
+    padding: 25px;
+  }
+  .container-fluid{
+    width: 100%;
+    padding: 25px;
+  }
+  .home{
+    background-color: #f9f9f9;
+  }
+  .content-basket{
+padding: 25px ;
+
+  }
+  .row
+  {
+    display: flex;
+  }
+  /*Tables css*/
+  table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+table th,
+table td {
+    padding: 12px 15px;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.contact input,textarea{
+    width: 100%;
+}
+.home,.product-category
+{
+padding:20px;
+}
+.card
+{
+    border-radius: 2%;
+    background-color: beige;
+    margin:5px;
+    overflow: hidden;
+}
+
+/*Slider*/
+
+
+/* Hide the images by default */
+.slider {
+    display: none;
+  }
+
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  /* Caption text */
+  .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+
+  /* Fading animation */
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
