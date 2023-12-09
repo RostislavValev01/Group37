@@ -1,167 +1,136 @@
 <?php
-       include();
 session_start();
- 
 
+require 'connectdb.php';
+include 'search-function.php';
 
+if (isset($_GET['search'])) {
+  $searchQuery = $_GET['search'];
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Page</title>
-    <link rel="stylesheet" type="text/css" href="HealthPoint.css">
-    <script defer src="Checkout.js"></script>
-    <style>
-    
-
-    .content h1{
-        margin-bottom: 50px;
-    }
-
-    .content {
-            display: flex;
-            align-items: left;
-            height: 100vh;
-            text-align: center;
-           
-        }
-    
-    .contact-container {
-            background-color: #fff; /* Set the background color of the container */
-            padding: 20px;
-            margin-top: -20vh;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow for a subtle effect */
-            margin-left: 300px;
-    }
-
-    #email,
-    #fname,
-    #lname,
-    #address,
-    #city,
-    #phone,
-    #submit,
-    #country,
-    #postcode {
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box; /* Include padding and border in width calculations */
-    }
-
-    /* Set width for specific inputs */
-    #email,
-    #address,
-    #city,
-    #phone,
-    #submit {
-        width: 100%;
-    }
-
-    #fname,
-    #lname,
-    #country,
-    #postcode {
-        width: calc(50% - 5px); /* Set width for two inputs in a row */
-    }
-
-    #country,
-    #postcode {
-        margin-top: 10px; /* Add margin-top to align with the row above */
-    }
-
-   #submit {
-        background-color: #ccc;
-        color: #000;
-        border: 1px solid #000;
-        padding: 6px 12px;
-        border-radius: 5px;
-        width: 120px;
-        display: block;
-        margin: 0 auto;
-        
-        cursor: pointer;
-    }
-
-    #submit:hover {
-        background-color: #888;
-        border-color: #000;
-        color: #fff;
-    }
-
-
-
-
-
-
-    </style>
-       
-    
+  <title>Products</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="HealthPoint.css">
+  <link rel="stylesheet" type="text/css" href="Checkout.css"> 
+  <script defer src="checkout.js"></script>
 </head>
 
 <body>
-    <nav class="banner">
-        <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-        <form action="/search" method="get">
-            <input type="text" name="q" placeholder="Search...">
-            <button type="submit">Go</button>
-        </form>
-        <div class="header">
-            <button><a href="accountPage.php">Account</a></button>
-            <button><a href="basketPage.php">Basket</a></button>
-            <button><a href="contactUsPage.php">Contact Us</a></button>
+  <nav class="banner">
+    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    <form action="" method="get">
+      <input type="text" name="search" class="search-bar"
+        value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
+        <input type="submit" value="Go" class="search-bar-go"></form>
+    <?php
+    if (isset($_SESSION['loggedin'])) {
+      if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
+        ?>
+        <nav class="header">
+          <button><a href="AdminAccounts.php">Account</a></button>
+          <button><a href="Cart.php">Basket</a></button>
+          <button><a href="Contact.php">Contact Us</a></button>
+          <button><a href="logout.php">Logout</a></button>
+        </nav>
+        <?php
+      } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
+        ?>
+          <nav class="header">
+            <button><a href="CustomerAccounts.php">Account</a></button>
+            <button><a href="Cart.php">Basket</a></button>
+            <button><a href="Contact.php">Contact Us</a></button>
+            <button><a href="logout.php">Logout</a></button>
+          </nav>
+        <?php
+      }
+    } else {
+      ?>
+      <nav class="header">
+        <button><a href="signInPageCustomer.php">Sign In</a></button>
+        <button><a href="Cart.php">Basket</a></button>
+        <button><a href="Contact.php">Contact Us</a></button>
+      </nav>
+      <?php
+    }
+    ?>
+  </nav>
+
+  <nav class="header-nav">
+    <ul class="navigation-bar">
+      <li><a href="Index.php">Home</a></li>
+      <li><a href="AboutUs.php">About Us</a></li>
+      <nav class=Products>
+        <a href="productPage.php"><button class="dropbtn">Products</button></a>
+        <nav class="products-content">
+          <a href="productPage.php?Product_Category=General">General Medication</a>
+          <a href="productPage.php?Product_Category=SkinCare">SkinCare</a>
+          <a href="productPage.php?Product_Category=Haircare">HairCare</a>
+          <a href="productPage.php?Product_Category=DentalCare">DentalCare</a>
+          <a href="productPage.php?Product_Category=Vitamins_Supplements">Vitamins and Supplements</a>
+        </nav>
+      </nav>
+    </ul>
+  </nav>
+
+
+  <div class="content">
+  <div class="address-container">
+    <h1>Delivery Address</h1>
+    <form action="#" method="post" id="addressForm">
+        <input type="email" id="email" name="email" placeholder="Email"><br><br>
+        
+        <div class="name-fields">
+            <input type="text" id="fname" name="fname" placeholder="First Name">
+            <input type="text" id="lname" name="lname" placeholder="Last Name"><br><br>
         </div>
-    </nav>
+        
+        <input type="text" id="address" name="address" placeholder="Address"><br><br>
+        
+        <input type="text" id="city" name="city" placeholder="City"><br><br>
+        
+        <div class="country-fields">
+            <input type="text" id="country" name="country" placeholder="Country">
+            <input type="text" id="postcode" name="postcode" placeholder="Postcode">
+        </div><br><br>
+        
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number"><br><br>
+        
+        <input type="submit" id="submit" value="Add Address">
+    </form>
+</div>
+    <div class="payment-container">
+            <h1>Payment Method</h1>
+            <div class="payment-details">
+                <img alt="Visa/Delta/Electron" src="https://m.media-amazon.com/images/I/71DcD1e5IfL._SL40_.png" width="40px">
+                <a href="#" class="card-button" id="cardLink">Add a Credit or Debit Card</a>
+            </div>
+        </div>
 
-    <div class="header-nav">
-        <ul class="navigation-bar">
-            <li><a href="homePage">Home</a></li>
-            <li><a href="AboutUs.html">About Us</a></li>
-            <li class="Products">
-                <button class="dropbtn">Products</button>
-                <div class="products-content">
-                    <a href="productPage.php">Prescriptions</a>
-                    <a href="productPage.php">Skin Care</a>
-                    <a href="productPage.php">Hair Care</a>
-                    <a href="productPage.php">Medication</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-
-    <div class="content">
-        <div class="contact-container">
-            <h1>Contact Information</h1>
-            <form action="#" method="post">
-                <input type="email" id="email" name="email" placeholder="Email"><br><br>
-                
-                <div class="name-fields">
-                    <input type="text" id="fname" name="fname" placeholder="First Name">
-                    <input type="text" id="lname" name="lname" placeholder="Last Name"><br><br>
-                </div>
-                
-                <input type="text" id="address" name="address" placeholder="Address"><br><br>
-                
-                <input type="text" id="city" name="city" placeholder="City"><br><br>
-                
-                <div class="country-fields">
-                    <input type="text" id="country" name="country" placeholder="Country">
-                    <input type="text" id="postcode" name="postcode" placeholder="Postcode">
+        <div class="card-overlay" id="cardOverlay"></div>
+        <div id="cardForm" class="card-form">
+            <form class="credit-form">
+                <h2>Card Details</h2>
+                <input type="text" id="cardholderName" name="cardholderName" placeholder="Cardholder Name"><br><br>
+                <div class="inline-fields">
+                    <input type="text" id="expiryDate" name="expiryDate" placeholder="Expiry Date (MM/YY)">
+                    <input type="text" id="cvv" name="cvv" placeholder="CVV">
                 </div><br><br>
-                
-                <input type="tel" id="phone" name="phone" placeholder="Phone Number"><br><br>
-                
-                <input type="submit" id="submit" value="Begin Checkout">
+                <input type="text" id="cardNumber" name="cardNumber" placeholder="Card Number"><br><br>
+                <input type="submit" id="submitCard" value="Insert Payment Details">
+                <button type="button" id="closeButton" onclick="closeCardForm()">Close</button>
             </form>
         </div>
-    </div>
+</div>
+
+</div>
+
 
 
        <footer class="footer">
