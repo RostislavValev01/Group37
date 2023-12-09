@@ -3,6 +3,18 @@ session_start();
 
 require 'connectdb.php';
 
+$sql = "SELECT * FROM stock";
+$result = mysqli_query($con, $sql);
+
+if (!$result) {
+    die('Error executing query: ' . mysqli_error($con));
+}
+
+$stockDetails = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+if ($stockDetails === null) {
+    die('Error fetching data from the database');
+}
 ?>
 
 <!DOCTYPE html>
@@ -130,7 +142,7 @@ require 'connectdb.php';
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($stock as $product): ?>
+        <?php foreach ($stockDetails as $product): ?>
                 <tr>
                     <td><?= htmlspecialchars($product['ProductSKU']) ?></td>
                     <td><?= htmlspecialchars($product['Quantity']) ?></td>
