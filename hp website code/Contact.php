@@ -10,7 +10,7 @@ session_start();
 <head>
 <title>Contact Us - Health Point</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" type="text/css" href="css/contact.css">
+<link rel="stylesheet" type="text/css" href="HealthPoint.css">
 
 </head>
 <style>
@@ -53,7 +53,7 @@ session_start();
       <div class="col-12 col-md-8 " style="width:50%">
       <h2 class="text-center" >Contact Us By Email</h2>
 <hr>
-        <form method="post" class="contact">
+        <form method="post" class="contact"  action="contact.php">
           <div class="form-group">
             <label class="control-label">First name:</label>
             <input type="text" id="fname" name="fname" placeholder="Write your first name here" class="form-control">
@@ -66,12 +66,11 @@ session_start();
 
 
           </div>
-          <div class="form-group">
+      <!--    <div class="form-group">
             <label class="control-label">Contact No:</label>
             <input type="tel" id="contact" name="contact" placeholder="Write your contact no" class="form-control">
-
-
-          </div>
+            
+          </div>-->
           <div class="form-group">
             <label class="control-label">Email:</label>
             <input type="email" id="email" name="email" placeholder="abc@xyz.com" class="form-control">
