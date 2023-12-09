@@ -1,1 +1,182 @@
 
+
+
+.content h1{
+    margin-bottom: 50px;
+}
+
+.content {
+        display: flex;
+        align-items: left;
+        height: 100vh;
+        text-align: center;
+        width: 100%;
+       
+    }
+
+.address-container {
+        background-color: #fff; /* Set the background color of the container */
+        padding: 20px;
+        margin-top: -20vh;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+        margin-left: 300px;
+}
+
+#email,
+#fname,
+#lname,
+#address,
+#city,
+#phone,
+#submit,
+#country,
+#postcode {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Set width for specific fields */
+#email,
+#address,
+#city,
+#phone,
+#submit {
+    width: 100%;
+}
+
+#fname,
+#lname,
+#country,
+#postcode {
+    width: calc(50% - 5px); /*set specific size of width*/
+}
+
+#country,
+#postcode {
+    margin-top: 10px; 
+}
+
+#submit {
+    background-color: #ccc;
+    color: #000;
+    border: 1px solid #000;
+    padding: 6px 12px;
+    border-radius: 5px;
+    width: 120px;
+    display: block;
+    margin: 0 auto;
+    
+    cursor: pointer;
+}
+
+#submit:hover {
+    background-color: #888;
+    border-color: #000;
+    color: #fff;
+}
+
+
+.payment-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    margin-top: -57vh; /* Adjusted this value for visibility */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 100px;
+}
+
+.payment-details {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.payment-container .payment-details .card-button {
+    margin-top: 2px;
+    margin-left: 10px;
+}
+
+.payment-details img {
+    margin-right: 10px;
+}
+.card-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 20px;
+    z-index: 2;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Adjust width as needed */
+  }
+  
+  #cardNumber,
+  #cardholderName,
+  #expiryDate,
+  #cvv,
+  #submitCard,
+  #closeButton {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  #cvv {
+    width: calc(30% - 5px);
+  }
+  
+  #expiryDate {
+    width: calc(70% - 5px);
+  }
+  
+  #submitCard,
+  #closeButton {
+    background-color: #ccc;
+    color: #000;
+    border: 1px solid #000;
+    padding: 6px 12px;
+    border-radius: 5px;
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  #submitCard:hover,
+  #closeButton:hover {
+    background-color: #888;
+    border-color: #000;
+    color: #fff;
+  }
+  
+  .card-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  .credit-form h2{
+    margin-bottom: 10px;
+
+  }
