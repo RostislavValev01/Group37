@@ -37,6 +37,8 @@ VALUES('Emily', 'Mitchells', '07198842650',
        '98 Spring Road, Birmingham, B10 0AA', '1990/05/01', '',
        '0');  
 
+ALTER TABLE accountdetails
+ADD COLUMN Password VARCHAR(255) NOT NULL AFTER Email;
 
 
 
