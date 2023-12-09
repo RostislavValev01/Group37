@@ -1,0 +1,46 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #b8cca3; /* Add your desired background color */
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    width: 70%;
+}
+
+.search-bar button {
+    padding: 5px;
+    background-color: #f5f5dc; /* Add your desired background color */
+    border: none;
+    cursor: pointer;
+}
+
+/* Add styles for the table */
+.order-table {
+    width: 50%; /* Reduce the width to fit all columns in one line */
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.order-table th, .order-table td {
+    border: 1px solid #b8cca3;
+    padding: 8px;
+    text-align: left;
+}
+
+.order-table th {
+    background-color: #b8cca3; /* Add your desired header background color */
+}
+
+/* Add styles for the OrderStatus column */
+.order-status {
+    width: 20%;
+    margin-left: 20px;
+}
+
+.order-status h3 {
+    margin-bottom: 10px;
+}
