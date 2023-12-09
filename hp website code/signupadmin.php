@@ -7,46 +7,8 @@
 <script defer src="signup.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="HealthPoint.css">
-<style>
-        
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        
-        .content table {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .register input[type="text"],
-        .register input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .register #submit {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+<link rel="stylesheet" href ="signup.css">
 
-
-        .register #submit:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 
 
@@ -58,11 +20,15 @@ if (isset($_POST["submit"])) {
 $fname = $_POST['fname'];
 $email = $_POST['email'];
 $password = $_POST['password'];
-$lname = $_POST['lname'];
+$surname = $_POST['surname'];
 $refkey = $_POST['refkey'];
+$mnumber = $_POST['mnumber'];
+$address = $_POST['address'];
+$dob = $_POST['dob'];
+
 
 //verify the email
-$verify_query = mysqli_query($con, "SELECT Email FROM users WHERE Email='$email'");
+$verify_query = mysqli_query($con, "SELECT Email FROM accountdetails WHERE Email='$email'");
 if (mysqli_num_rows($verify_query) !=0) {
     echo "<div class='message'>
             <p>This email is used, Try another One Please!</p>
@@ -71,7 +37,7 @@ if (mysqli_num_rows($verify_query) !=0) {
 }else{
     $admin_reference_key = 'admin123';
     if ($refkey === $admin_reference_key) {
-    mysqli_query($con, "INSERT INTO adminusers(FirstName, LastName, Email, Password) VALUES('$fname', '$lname', '$email', '$password')" ) or die("Error Occured");
+    mysqli_query($con, "INSERT INTO accountdetails(FirstName, Surname, MobileNumber, Email, Password, CustomerAddress, DateOfBirth, AdminStatus) VALUES('$fname', '$surname', '$mnumber', '$email', '$password', '$address', '$dob', 1)" ) or die("Error Occured");
     echo "<div class='message'>
             <p>Registration Successful!</p>
             </div> <br>";
@@ -115,71 +81,82 @@ if (mysqli_num_rows($verify_query) !=0) {
 <form class="register" id="registerForm"  method="post">
 <div class="content">
 
-<table>
-<tr>
-    <th>
-        <h3>Create an Admin account</h3>
-    </th>
-</tr>
-<tr>
-<th>
-<label for="fname">First name:</label></tr>    
-</th>
-</tr>
-<tr>
-<th>
-<input type="text" id="fname" name="fname" placeholder="First Name" required><br><br>
-</th>
-</tr>
-<tr>
-<th>
-<label for="lname">Last name:</label>
-</th>
-</tr>
-<tr>
-<th>
-<input type="text" id="lname" name="lname" placeholder="Last Name" required><br><br>
-</th>
-</tr>
-<tr>
-<th>
-<label for="email">Email:</label>   
-</th>
-</tr>
-<tr>
-<th>
-<input type="text" id="email" name="email" placeholder="Email" required><br><br>
-</th>
-</tr>
-<tr>
-    <th>
-        <label for="pass">Password:</label>
-    </th>
-</tr>
-<tr>
-    <th>
-    <input type="password" id="password" name="password" placeholder="Password" required><br><br>
-    </th>
-</tr>
-<tr>
-    <th>
-        <label for="refkey">Reference Key:</label>
-    </th>
-</tr>
-<tr>
-    <th>
-        <input type="password" id="refkey" name="refkey" placeholder="Admin Reference Key" required><br><br>
-    </th>
-</tr>
-<tr>
-<th>
-    <input type="submit" id="submit" name="submit" value="Create new Account">
-
-</th>
-</tr>
-
-
-</table>
+<table class="registration-table">
+                <tr>
+                    <th colspan="2">
+                        <h3>Create an Admin account</h3>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fname">First name:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="fname" name="fname" placeholder="First Name" required><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="surname">Surname:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="surname" name="surname" placeholder="Surname" required><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="email" name="email" placeholder="Email" required><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" id="password" name="password" placeholder="Password" required><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="address">Address:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="address" name="address" placeholder="Address" required><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mnumber">Mobile Number:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="mnumber" name="mnumber" placeholder="Mobile Number" required><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="dob">Date of Birth:</label>
+                    </td>
+                    <td>
+                        <input type="date" id="dob" name="dob" placeholder="Date of Birth" required><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="refkey">Admin Reference Key:</label>
+                    </td>
+                    <td>
+                        <input type="password" id="refkey" name="refkey" placeholder="Reference Key" required><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" id="submit" name="submit" value="Create new Account">
+                    </td>
+                </tr>
+            </table>
 </div>
 </form>
 
