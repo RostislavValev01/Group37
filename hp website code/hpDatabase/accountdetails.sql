@@ -5,6 +5,7 @@ CREATE TABLE accountdetails (
     MobileNumber VARCHAR(11) NOT NULL,
     Email VARCHAR(40) NOT NULL,
     Password VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
     CustomerAddress VARCHAR(40) NOT NULL,
     DateOfBirth DATE NOT NULL,
     Admin_ID VARCHAR(11) NULL,
@@ -37,8 +38,6 @@ VALUES('Emily', 'Mitchells', '07198842650',
        '98 Spring Road, Birmingham, B10 0AA', '1990/05/01', '',
        '0');  
 
-ALTER TABLE accountdetails
-ADD COLUMN Password VARCHAR(255) NOT NULL AFTER Email;
 
 
 
