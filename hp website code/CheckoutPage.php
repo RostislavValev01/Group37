@@ -9,33 +9,34 @@ if (isset($_GET['search'])) {
 }
 
 
-if(!isset($_SESSION['Customer_ID'])){
-  header('Location:productPage.php');
-  } else {
-   
+/* if(!isset($_SESSION['Customer_ID'])){
+ header('Location:productPage.php');
+ } else { */
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
 
-<head>  
-  <title>Products</title>
+<head>
+  <title>Checkout</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="HealthPoint.css">
-  <link rel="stylesheet" type="text/css" href="css/xCheckout.css">
+  <link rel="stylesheet" type="text/css" href="css/Checkout.css">
   <script defer src="checkout.js"></script>
 </head>
 
 <body>
-<nav class="banner">
-<a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-<form action="productPage.php" method="get">
-  <input type="text" name="search" class="search-bar"
-    value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
-  <input type="submit" value="Go" class="search-bar-go">
-</form>
+  <nav class="banner">
+    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    <form action="productPage.php" method="get">
+      <input type="text" name="search" class="search-bar"
+        value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>"
+        placeholder="Search products...">
+      <input type="submit" value="Go" class="search-bar-go">
+    </form>
     <?php
     if (isset($_SESSION['loggedin'])) {
       if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
@@ -108,37 +109,90 @@ if(!isset($_SESSION['Customer_ID'])){
         </div><br><br>
 
         <input type="tel" id="phone" name="phone" placeholder="Phone Number"><br><br>
-        
-    <button type="submit" name="submitOrder">Submit Order</button>
-    </form>
-  </div>
 
-  <div class="payment-container">
-          <h1>Payment Method</h1>
-          <div class="payment-details">
-            <img alt="Visa/Delta/Electron" src="https://m.media-amazon.com/images/I/71DcD1e5IfL._SL40_.png"
-              width="40px">
-            <a href="#" class="card-button" id="cardLink">Add a Credit or Debit Card</a>
-          </div>
-        </div>
+        <button type="submit" name="submitOrder">Submit Order</button>
+      </form>
+    </div>
 
-        <div class="card-overlay" id="cardOverlay"></div>
-        <div id="cardForm" class="card-form">
-          <form class="credit-form">
-            <h2>Card Details</h2>
-            <input type="text" id="cardholderName" name="cardholderName" placeholder="Cardholder Name"><br><br>
-            <div class="inline-fields">
-              <input type="text" id="expiryDate" name="expiryDate" placeholder="Expiry Date (MM/YY)">
-              <input type="text" id="cvv" name="cvv" placeholder="CVV">
-            </div><br><br>
-            <input type="text" id="cardNumber" name="cardNumber" placeholder="Card Number"><br><br>
-            <!-- <input type="submit" id="submitCard" value="Insert Payment Details">
-                <button type="button" id="closeButton" onclick="closeCardForm()">Close</button> -->
-          </form>
-        </div>
+    <div class="payment-container">
+      <h1>Payment Method</h1>
+      <div class="payment-details">
+        <img alt="Visa/Delta/Electron" src="https://m.media-amazon.com/images/I/71DcD1e5IfL._SL40_.png" width="40px">
+        <a href="#" class="card-button" id="cardLink">Add a Credit or Debit Card</a>
+      </div>
+    </div>
+
+    <div class="card-overlay" id="cardOverlay"></div>
+    <div id="cardForm" class="card-form">
+      <form class="credit-form">
+        <h2>Card Details</h2>
+        <input type="text" id="cardholderName" name="cardholderName" placeholder="Cardholder Name"><br><br>
+        <div class="inline-fields">
+          <input type="text" id="expiryDate" name="expiryDate" placeholder="Expiry Date (MM/YY)">
+          <input type="text" id="cvv" name="cvv" placeholder="CVV">
+        </div><br><br>
+        <input type="text" id="cardNumber" name="cardNumber" placeholder="Card Number"><br><br>
+        <!--<input type="submit" id="submitCard" value="Insert Payment Details">-->
+        <button type="button" id="closeButton" onclick="closeCardForm()">Close</button>
+      </form>
     </div>
   </div>
-  
+
+  <div class="Total">
+    <h1>Order Summary</h1>
+    <table>
+      <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Subtotal</th>
+      </tr>
+      <?php
+      require 'connectdb.php';
+
+      if (isset($_SESSION['Customer_ID'])) {
+        $user_id = $_SESSION['Customer_ID'];
+
+        $query = "SELECT ProductName, Quantity, Price FROM customerbasket WHERE CustomerID = ?";
+        $stmt = mysqli_prepare($con, $query);
+        mysqli_stmt_bind_param($stmt, "i", $user_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        $orderTotal = 0; 
+      
+        while ($row = mysqli_fetch_assoc($result)) {
+          echo '<tr>';
+          echo '<td>' . $row['ProductName'] . '</td>';
+          echo '<td>' . $row['Quantity'] . '</td>';
+          echo '<td>$' . $row['Price'] . '</td>';
+
+          $subtotal = $row['Quantity'] * $row['Price']; 
+          echo '<td>$' . number_format($subtotal, 2) . '</td>';
+          echo '</tr>';
+
+          $orderTotal += $subtotal; 
+        }
+
+        echo '<tr><td colspan="3" style="text-align: right;"><strong>Total</strong></td><td>$' . number_format($orderTotal, 2) . '</td></tr>';
+      }
+      ?>
+    </table>
+
+    <?php if (isset($_SESSION['Customer_ID'])): ?>
+      <p>Total Amount: $
+        <?php echo number_format($orderTotal, 2); ?>
+      </p>
+    <?php endif; ?>
+  </div>
+
+
+  </div>
+
+
+
+  </div>
+
 
 
   <footer class="footer">
@@ -164,4 +218,4 @@ if(!isset($_SESSION['Customer_ID'])){
 </body>
 
 </html>
-<?php }?>
+<?php ?>
