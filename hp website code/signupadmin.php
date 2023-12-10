@@ -41,7 +41,7 @@ if (mysqli_num_rows($verify_query) !=0) {
     echo "<div class='message'>
             <p>Registration Successful!</p>
             </div> <br>";
-            header("Location: signInPageCustomer.php"); 
+            header("Location: signInPageAdmin.php"); 
             exit();
     }else{
         echo "<div class='message'>
