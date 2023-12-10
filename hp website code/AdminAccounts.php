@@ -22,7 +22,7 @@ if (isset($_SESSION['Customer_ID'])) {
 
     // Fetch Email and Phone Number from the database
     $sql = "SELECT Email, MobileNumber FROM accountdetails WHERE Customer_ID = ?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $con->prepare($sql);
     $stmt->bind_param("i", $Customer_ID);
     $stmt->execute();
     $stmt->bind_result($Email, $MobileNumber);
@@ -31,7 +31,7 @@ if (isset($_SESSION['Customer_ID'])) {
 
     // Fetch CustomerAddress from the database
     $sql = "SELECT CustomerAddress FROM accountdetails WHERE Customer_ID = ?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $con->prepare($sql);
     $stmt->bind_param("i", $CustomerID);
     $stmt->execute();
     $stmt->bind_result($CustomerAddress);
@@ -158,7 +158,7 @@ if (isset($_SESSION['Customer_ID'])) {
 
     <?php
     // Close the database connection
-    $conn->close();
+    $con->close();
     ?>
 
     <footer class="footer">
