@@ -19,7 +19,7 @@
         padding: 20px;
         margin-top: -20vh;
         border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
         margin-left: 300px;
 }
 
@@ -86,7 +86,7 @@
     flex-direction: column;
     background-color: #fff;
     padding: 20px;
-    margin-top: -57vh; /* Adjusted this value for visibility */
+    margin-top: -57vh; 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-left: 100px;
@@ -182,25 +182,36 @@
   }
 
   .Total {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-right: 20px; /* Adjust margin to move it to the right */
-    float: right; /* Align to the right side */
-}
-
-table {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding-top: 20px;
+  }
+  
+  .Total h1 {
+    margin-bottom: 16px;
+  }
+  
+  .Total table {
     border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Total th, .Total td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
-}
-
-th {
+  }
+  
+  .Total th {
     background-color: #f2f2f2;
-}
+  }
+  
+  .Total p {
+    font-size: 18px;
+    margin-top: 12px;
+  }
+
