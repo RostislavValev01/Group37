@@ -14,14 +14,14 @@ if(!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
-    <link rel="stylesheet" type="text/css" href="customerDetails.css">
+    <link rel="stylesheet" type="text/css" href="css/customerDetails.css">
     <script defer src="loginAdmin.js"></script>
 </head>
 
 <body>
 
 <nav class="banner">
-<a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+<a href="Index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
 <form action="productPage.php" method="get">
   <input type="text" name="search" class="search-bar"
     value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
