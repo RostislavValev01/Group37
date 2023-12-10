@@ -16,7 +16,7 @@ CREATE TABLE orderhistory (
 
 
 INSERT INTO orderhistory (Customer_ID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
-VALUES ('220021','The Ordinary','Moisturising face cream', '3', '33', '1001', '2022-03-13', 'Shipped');
+VALUES ('220021','Selsun 2.5% selenium sulphide shampoo','2.5% selenium sulphide. Medicated shampoo. Reduces greasiness of scalp. Slows down the growth of skin on scalp that causes flakes', '3', '12', '1', '2022-03-13', 'Shipped');
 
 
 
