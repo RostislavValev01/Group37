@@ -1,8 +1,8 @@
 CREATE TABLE orderhistory (
     OrderID INT NOT NULL AUTO_INCREMENT,
     Customer_ID INT NOT NULL,
-    ProductName VARCHAR(40) NOT NULL,
-    ProductDescription VARCHAR(255) NOT NULL,
+    ProductName VARCHAR(255) NOT NULL,
+    ProductDescription VARCHAR(6000) NOT NULL,
     Quantity INT NOT NULL,
     Price DECIMAL(10,2) NOT NULL,
     ProductSKU INT NOT NULL,
