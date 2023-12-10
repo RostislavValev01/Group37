@@ -7,7 +7,7 @@ CREATE TABLE orderhistory (
     Price DECIMAL(10,2) NOT NULL,
     ProductSKU INT NOT NULL,
     OrderDate DATE NOT NULL,
-    OrderStatus VARCHAR(40) NOT NULL,
+    OrderStatus ENUM ('Pending', 'Processing', 'Shipped', 'Delivered') NOT NULL,
     PRIMARY KEY (OrderID),
     FOREIGN KEY (Customer_ID) REFERENCES accountdetails(Customer_ID),
     FOREIGN KEY (ProductSKU) REFERENCES stock(ProductSKU)
