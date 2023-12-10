@@ -3,7 +3,7 @@
 require_once "connectdb.php";
 
 // Fetch data from the 'orderprocessing' table
-$sql = "SELECT OrderNumber, OrderTotal, CustomerID, ProductSKU, OrderStatus FROM orderprocessing";
+$sql = "SELECT OrderNumber, OrderTotal, CustomerID, OrderStatus, Order_Description FROM orderprocessing";
 $result = $con->query($sql);
 ?>
 
@@ -50,7 +50,7 @@ $result = $con->query($sql);
     </nav>
 
     <div class="search-bar">
-        <input type="text" name="search" placeholder="Enter your search...">
+        <input type="text" name="search" placeholder=" search...">
         <button type="button">Filter</button>
     </div>
 
@@ -61,8 +61,8 @@ $result = $con->query($sql);
                 <th>OrderNumber</th>
                 <th>OrderTotal</th>
                 <th>CustomerID</th>
-                <th>ProductSKU</th>
                 <th>OrderStatus</th>
+                <th>Order_Description</th>
             </tr>
         </thead>
         <tbody>
@@ -73,8 +73,8 @@ $result = $con->query($sql);
                 echo "<td>" . $row["OrderNumber"] . "</td>";
                 echo "<td>" . $row["OrderTotal"] . "</td>";
                 echo "<td>" . $row["CustomerID"] . "</td>";
-                echo "<td>" . $row["ProductSKU"] . "</td>";
                 echo "<td>" . $row["OrderStatus"] . "</td>";
+                echo "<td>" . $row["Order_Description"] . "</td>";
                 echo "</tr>";
             }
             ?>
