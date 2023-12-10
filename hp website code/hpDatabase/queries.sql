@@ -7,11 +7,11 @@ CREATE TABLE queries(      --this tale is in the healthpointdb database
     Surname VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL,
     Query_description TEXT NOT NULL,
-    PRIMARY KEY (Query_ref)
+    PRIMARY KEY (Query_ref),
+    FOREIGN KEY (Customer_ID) REFERENCES accountdetails(Customer_ID);
     );
 
-ALTER TABLE queries
-ADD FOREIGN KEY (Customer_ID) REFERENCES accountdetails(Customer_ID);
+
 
 INSERT INTO queries (Customer_ID, Query_ref, First_Name, Surname, Email, Query_description)                         
 VALUES('220023', '121230', 'Emily', 'Mitchells', 'emilyM@yahoo.com', 'My order did not arrive yet');  -- at the moment only customers are allowed to make queries--
