@@ -13,6 +13,22 @@ CREATE TABLE orderhistory (
     FOREIGN KEY (ProductSKU) REFERENCES stock(ProductSKU)
     );
 
+
+
+INSERT INTO orderhistory (Customer_ID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
+VALUES ('220021','The Ordinary','Moisturising face cream', '3', '33', '1001', '2022-03-13', 'Shipped');
+
+
+
+
+
+
+
+
+
+
+
+
 INSERT INTO orderhistory (Customer_ID, ProductID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
 VALUES ('220021','1000','Smartphone','Intel Core i5, 128GB SSD, 5.44" QHD+ Display', '1', '600.00', 'SKU-001', '2022-03-12', 'Shipped');
 
@@ -23,5 +39,4 @@ INSERT INTO orderhistory (Customer_ID, ProductID, ProductName, ProductDescriptio
 VALUES ('909987','1002','Tablet','Apple A12 Chip, 128GB SSD, 10.5" Display', '2', '500.00', 'SKU-003', '2022-03-14', 'Shipped');
 
 
-INSERT INTO orderhistory (Customer_ID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
-VALUES ('220021''The Ordinary','Moisturising face cream', '3', '33', '1001', '2022-03-13', 'Shipped');
+
