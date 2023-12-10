@@ -21,7 +21,7 @@ if(isset($_SESSION['Customer_ID'])){
 
 <body>
 <nav class="banner">
-<a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+<a href="Index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
 <form action="productPage.php" method="get">
   <input type="text" name="search" class="search-bar"
     value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
