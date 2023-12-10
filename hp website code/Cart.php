@@ -157,7 +157,7 @@ $count = 0;
 <hr>
 <div class="mt-3 d-grid gap-2">
 
-  <button class="btn btn-success" style="float:right;"> Proceed To Checkout</button>
+  <button class="btn btn-success" style="float:right;" onclick="location.href='CheckoutPage.php';"> Proceed To Checkout</button>
 </div>
 </div>
 <footer class="footer">
