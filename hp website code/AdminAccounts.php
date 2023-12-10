@@ -18,6 +18,15 @@ session_start();
 if (isset($_SESSION['Customer_ID'])) {
     $customerID = $_SESSION['Customer_ID'];
 
+
+    $sql = "SELECT FirstName, Password FROM accountdetails WHERE Customer_ID = ?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $CustomerID);
+    $stmt->execute();
+    $stmt->bind_result($FirstName, $Password);
+    $stmt->fetch();
+    $stmt->close();
+
     // Fetch Email and Phone Number from the database
     $sql = "SELECT Email, MobileNumber FROM accountdetails WHERE Customer_ID = ?";
     $stmt = $con->prepare($sql);
@@ -35,6 +44,7 @@ if (isset($_SESSION['Customer_ID'])) {
     $stmt->bind_result($CustomerAddress);
     $stmt->fetch();
     $stmt->close();
+   
 } else {
     // Redirect to the login page if the user is not logged in
     header("Location: signInPageAdmin.php");
@@ -118,8 +128,8 @@ if (isset($_SESSION['Customer_ID'])) {
         <div class="admin-content">
             <div class="box">
                 <p>(Visible to logged in user)</p>
-                <p>Name:</p>
-                <p>Password:</p>
+                <p>Name: <?php echo $FirstName; ?></p>
+                <p>Password: <?php echo $Password; ?></p>
                 <button onclick="updatePastOrders()">Update</button>
             </div>
 
