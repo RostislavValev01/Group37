@@ -24,7 +24,7 @@ if (isset($_GET['search'])) {
 
 <body>
   <nav class="banner">
-    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    <a href="Index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
     <form action="" method="get">
       <input type="text" name="search" class="search-bar"
         value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
