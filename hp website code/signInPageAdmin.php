@@ -13,7 +13,7 @@ if(isset($_SESSION['Customer_ID'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
-    <link rel="stylesheet" type="text/css" href="signin.css">
+    <link rel="stylesheet" type="text/css" href="css/signin.css">
     <script defer src="loginAdmin.js"></script>
 </head>
 
