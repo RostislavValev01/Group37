@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5dc; /* Add your desired background color */
+}
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #b8cca3; /* Add your desired background color */
+}
+
+.customer-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.customer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.box {
+    width: calc(50% - 20px); /* Adjust the width based on your design */
+    height: 200px; /* Set a fixed height for square shape */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.admin-sidebar {
+    width: 200px;
+    padding: 20px;
+}
+
+.admin-button-container button:hover {
+    background-color: #ddd; /* Add your desired hover background color */
+    color: #333; /* Add your desired hover text color */
+}
