@@ -1,8 +1,8 @@
 CREATE TABLE productreviews (
     ReviewID INT NOT NULL AUTO_INCREMENT,
     CustomerID INT NOT NULL,
-    FirstName VARCHAR(40) NOT NULL,
-    LastName VARCHAR(40) NOT NULL,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
     ProductSKU INT NOT NULL,
     ReviewRating INT NOT NULL,
     Description TEXT NOT NULL,
