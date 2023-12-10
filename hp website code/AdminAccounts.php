@@ -10,13 +10,11 @@ if (isset($_GET['search'])) {
 ?>
 
 <?php
-// Include the database connection file
 require_once "connectdb.php";
 
-// Assume you have a session started
 session_start();
 
-// Check if the user is logged in
+// if the user is logged in
 if (isset($_SESSION['Customer_ID'])) {
     $customerID = $_SESSION['Customer_ID'];
 
