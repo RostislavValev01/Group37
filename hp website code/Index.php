@@ -14,6 +14,79 @@ session_start();
 
 </head>
 <style>
+  .content {
+    text-align: center;
+}
+
+.slideshow-container {
+    max-width: 800px; /* Adjust the maximum width as needed */
+    margin: 0 auto; /* Center the slideshow horizontally */
+}
+
+.slider {
+    max-height: auto;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.slider img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+.content {
+    text-align: center;
+}
+
+.slideshow-container {
+    max-width: 800px; /* Adjust the maximum width as needed */
+    margin: 0 auto; /* Center the slideshow horizontally */
+}
+
+.slider {
+    max-height: auto;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.slider img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+.content {
+    text-align: center;
+}
+
+.slideshow-container {
+    max-width: 800px; /* Adjust the maximum width as needed */
+    margin: 0 auto; /* Center the slideshow horizontally */
+}
+
+.slider {
+    max-height: auto;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.slider img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Center everything under the slideshow */
+.content section {
+    text-align: center;
+    margin: auto; /* Adjust the margin as needed */
+    max-width: 800px; /* Adjust the maximum width as needed */
+}
+
+
+
+    </style>
 </style>
 <body class="">
 <nav class="banner">
@@ -80,20 +153,20 @@ session_start();
 
 <!-- Full-width images with number and caption text -->
 <div class="slider fade">
-  <div class="numbertext">1 / 3</div>
-  <img src="slider.png" style="width:100%">
+
+  <img src="productImages/6.jpg" style="width:30%">
   <div class="text">Caption Text</div>
 </div>
 
 <div class="slider fade">
-  <div class="numbertext">2 / 3</div>
-  <img src="slider.png" style="width:100%">
+ 
+  <img src="productImages/2.jpg" style="width:20%">
   <div class="text">Caption Two</div>
 </div>
 
 <div class="slider fade">
-  <div class="numbertext">3 / 3</div>
-  <img src="slider.png" style="width:100%">
+
+  <img src="productImages/1.jpg" style="width:20%">
   <div class="text">Caption Three</div>
 </div>
 
@@ -105,12 +178,11 @@ session_start();
 </section>
 <section class="home mt-3">
 <div class="row">
-  <div class="col-2" style="width:20%"><img src="hplogo3.png" alt="LA" style="width:100%">
+  <div class="col-2" style="width:20%">
 </div>
 <div class="col-10" style="width:80%">
- <h1>Company Intro</h1>
- <p>This is a paragraph.</p>
- <p>This is another paragraph.</p>
+ <h1>Our Highlighted Products</h1>
+
 </div>
 </div>
 
@@ -125,7 +197,7 @@ session_start();
 <div class="row">
   <div style="width:20%">
     <div class="card" >
-  <img src="na.jpg" class="card-img-top" alt="Product">
+  <img src="productImages/1.jpg" class="card-img-top" alt="Product"style="max-width:300px">
   <div class="card-body">
     <h3 class="card-title">Product title</h5>
     <p class="card-text">Product Description.</p>
@@ -135,7 +207,7 @@ session_start();
 </div>
 <div style="width:20%">
     <div class="card" >
-  <img src="na.jpg" class="card-img-top" alt="Product">
+  <img src="productImages/6.jpg" class="card-img-top" alt="Product"style="max-width:300px">
   <div class="card-body">
   <h3 class="card-title">Product title</h5>
     <p class="card-text">Product Description.</p>
@@ -145,7 +217,7 @@ session_start();
 </div>
 <div style="width:20%">
     <div class="card" >
-  <img src="na.jpg" class="card-img-top" alt="Product">
+  <img src="productImages/11.jpg" class="card-img-top" alt="Product"style="max-width:300px">
   <div class="card-body">
   <h3 class="card-title">Product title</h5>
     <p class="card-text">Product Description.</p>
@@ -155,7 +227,7 @@ session_start();
 </div>
 <div style="width:20%">
     <div class="card" >
-  <img src="na.jpg" class="card-img-top" alt="Product">
+  <img src="productImages/16.jpg" class="card-img-top" alt="Product"style="max-width:300px">
   <div class="card-body">
     <h5 class="card-title">Product title</h5>
     <p class="card-text">Product Description.</p>
@@ -165,7 +237,7 @@ session_start();
 </div>
 <div style="width:20%">
     <div class="card" >
-  <img src="na.jpg" class="card-img-top" alt="Product">
+  <img src="productImages/21.jpg" class="card-img-top" alt="Product"style="max-width:300px">
   <div class="card-body">
   <h3 class="card-title">Product title</h5>
     <p class="card-text">Product Description.</p>
