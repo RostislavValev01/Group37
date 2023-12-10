@@ -4,30 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="HealthPoint.css">
+    <link rel="stylesheet" href="css/AboutUs.css">
     <title>About Us - HealthPoint</title>
     <style>
        
-       
-        /* styles for the content */
-        .content {
-            text-align: center;
-            padding: 50px;
-            font-size: 25px;
-        }
-
-        /*margin and padding for headings and paragraphs */
-        .content h2 {
-            margin-bottom: 20px; 
-        }
-
-        .content h3 {
-            margin-top: 30px; 
-        }
-
-        .content p {
-            margin-bottom: 15px; 
-        }
-   
 
     </style>
 </head>
@@ -142,4 +122,6 @@
 
 </body>
 </html>
+
+
 
