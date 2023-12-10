@@ -24,43 +24,9 @@ if ($stockDetails === null) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="HealthPoint.css">
+    <link rel="stylesheet" href="css/StockManagementPage.css">
     <title>Inventory Management - Stock Overview</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'poppins', sans-serif;
-            box-sizing: border-box;
-        }
-
-        .container {
-            background-color: #b8cca3;
-            min-height: 100vh;
-            width: 100%;
-            color: rgb(0, 0, 0);
-            align-items: center;
-        }
-
-        table {
-            border: 1px solid black;
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #4caf50;
-        }
-
-        h1, h2 {
-            text-align: center;
-        }
     </style>
 </head>
 
