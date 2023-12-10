@@ -7,44 +7,7 @@
 <script defer src="signup.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="HealthPoint.css">
-<style>
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .content table {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .register #submit {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .register input[type="text"],
-        .register input[type="password"] {
-            width: 50%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .register #submit:hover {
-            background-color: #45a049;
-        }
-    </style>
+<link rel="stylesheet" href ="signup.css">
 </head>
 
 
@@ -72,34 +35,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<div class="banner">
-    <a href='#' class="logo"><img src="images/hplogo3.png" class="logo"></a>
-    <nav class="header">
-    <form action="/search" method="get">
-            <input type="text" name="q" placeholder="Search...">
-            <button type="submit">Go</button>
-        </form>
-<a href='#'>Account</a>
-<a href='#'>Basket</a>
-<a href='#'>Contact</a>
-    </nav>
-</div>
-
-<nav class="header-nav">
-    <ul class="navigation-bar">
-        <li><a href="homePage">Home</a></li>
-        <li><a href="aboutUs.php">About Us</a></li>
-        <nav class=Products>
-            <button class="dropbtn">Products</button>
-            <nav class="products-content">
-                <a href="productPage.php">Prescriptions</a>
-                <a href="productPage.php">Skin Care</a>
-                <a href="productPage.php">Hair Care</a>
-                <a href="productPage.php">Medication</a>
-            </nav>
+<nav class="banner">
+    <a href="Index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    <form action="" method="get">
+      <input type="text" name="search" class="search-bar"
+        value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
+        <input type="submit" value="Go" class="search-bar-go"></form>
+    <?php
+    if (isset($_SESSION['loggedin'])) {
+      if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
+        ?>
+        <nav class="header">
+          <button><a href="AdminAccounts.php">Account</a></button>
+          <button><a href="Cart.php">Basket</a></button>
+          <button><a href="Contact.php">Contact Us</a></button>
+          <button><a href="logout.php">Logout</a></button>
         </nav>
+        <?php
+      } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
+        ?>
+          <nav class="header">
+            <button><a href="CustomerAccounts.php">Account</a></button>
+            <button><a href="Cart.php">Basket</a></button>
+            <button><a href="Contact.php">Contact Us</a></button>
+            <button><a href="logout.php">Logout</a></button>
+          </nav>
+        <?php
+      }
+    } else {
+      ?>
+      <nav class="header">
+        <button><a href="signInPageCustomer.php">Sign In</a></button>
+        <button><a href="Cart.php">Basket</a></button>
+        <button><a href="Contact.php">Contact Us</a></button>
+      </nav>
+      <?php
+    }
+    ?>
+  </nav>
+  <nav class="header-nav">
+    <ul class="navigation-bar">
+      <li><a href="Index.php">Home</a></li>
+      <li><a href="AboutUs.php">About Us</a></li>
+      <nav class=Products>
+        <a href="productPage.php"><button class="dropbtn">Products</button></a>
+        <nav class="products-content">
+          <a href="productPage.php?Product_Category=General">General Medication</a>
+          <a href="productPage.php?Product_Category=SkinCare">SkinCare</a>
+          <a href="productPage.php?Product_Category=Haircare">HairCare</a>
+          <a href="productPage.php?Product_Category=DentalCare">DentalCare</a>
+          <a href="productPage.php?Product_Category=Vitamins_Supplements">Vitamins and Supplements</a>
+        </nav>
+      </nav>
     </ul>
-</nav> 
+  </nav>
 <form class="register" id="registerForm"  method="post">
 <div class="content">
 
@@ -138,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <footer class="footer">
     <div class="footer-section">
         <div>
-            <a href="homePage.php"><img src="images/hplogo3.png" class="logo" alt="Company Logo"></a>
+            <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
         </div>
         <div>
             <p>© 2023 HealthPoint. All rights reserved.
