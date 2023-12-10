@@ -163,6 +163,11 @@ else{
             </td>
         </tr>
         <tr>
+    <td colspan="2">
+        <a href="signupadmin.php" class="admin-link">Create an admin account</a>
+    </td>
+</tr>
+        <tr>
             <td colspan="2">
                 <input type="submit" id="submit" name="submit" value="Create new Account">
             </td>
