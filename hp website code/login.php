@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $verifyResult = password_verify($password, $user['Password']);
 
 
-        if ($user && $password == $user['Password']) { // change to == verifyResult
+        if ($user && $password == $verifyResult) { 
             $_SESSION['Customer_ID'] = $user['Customer_ID'];
             $_SESSION['AdminStatus'] = 0;
             $_SESSION['loggedin'] = true;
