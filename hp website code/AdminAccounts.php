@@ -59,10 +59,12 @@ if (isset($_SESSION['Customer_ID'])) {
 <body>
 <nav class="banner">
     <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-    <form action="" method="get">
+    <form action="productPage.php" method="get">
       <input type="text" name="search" class="search-bar"
-        value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
-        <input type="submit" value="Go" class="search-bar-go"></form>
+        value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>"
+        placeholder="Search products...">
+      <input type="submit" value="Go" class="search-bar-go">
+    </form>
     <?php
     if (isset($_SESSION['loggedin'])) {
       if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
