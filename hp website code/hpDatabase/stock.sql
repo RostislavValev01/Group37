@@ -1,5 +1,5 @@
 CREATE TABLE stock( 
-    ProductSKU INT NOT NULL,
+    ProductSKU INT NOT NULL AUTO_INCREMENT,
     Quantity INT NOT NULL,
     ProductName VARCHAR(255) NOT NULL,
     Product_Description VARCHAR (255) NOT NULL,
@@ -11,8 +11,7 @@ CREATE TABLE stock(
     );
 
 
-ALTER TABLE `stock` 
-MODIFY COLUMN SKU_number INT AUTO_INCREMENT;
+
 
 INSERT INTO `stock` (`ProductSKU`, `Quantity`, `ProductName`, `Product_Description`, `Barcode`, `Product_Status`, `Product_Category`, `Price`) VALUES
 (1, 27, 'Selsun 2.5% selenium sulphide shampoo', '2.5% selenium sulphide. Medicated shampoo. Reduces greasiness of scalp. Slows down the growth of skin on scalp that causes flakes', 14956, 'In stock', 'Haircare', 4.09),
