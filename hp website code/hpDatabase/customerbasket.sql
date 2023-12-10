@@ -1,7 +1,7 @@
 CREATE TABLE customerbasket (
     BasketID INT NOT NULL AUTO_INCREMENT,
     CustomerID INT NOT NULL,
-    ProductName VARCHAR(40) NOT NULL,
+    ProductName VARCHAR(255) NOT NULL,
     ProductID INT NOT NULL,
     Price DECIMAL(5,2) NOT NULL,
     Quantity INT NOT NULL,
