@@ -105,7 +105,7 @@ if (isset($_GET['search'])) {
         <div class="product-box">
           <a href="indvProduct.php?id=<?php echo $product['ProductSKU']; ?>">
             <img src="productImages/<?php echo $product['ProductSKU']; ?>.jpg" alt="<?php echo $product['ProductName']; ?>"
-              style="height:200px;">
+              style="height:200px; max-width:300px;">
             <p class = "product-name">
               <?php echo $product['ProductName']; ?>
             </p>
