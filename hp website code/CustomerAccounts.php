@@ -1,3 +1,49 @@
+<?php
+session_start();
+
+require 'connectdb.php';
+include 'search-function.php';
+
+if (isset($_GET['search'])) {
+  $searchQuery = $_GET['search'];
+}
+?>
+
+<?php
+// Include the database connection file
+require_once "connectdb.php";
+
+// Assume you have a session started
+session_start();
+
+// Check if the user is logged in
+if (isset($_SESSION['Customer_ID'])) {
+    $customerID = $_SESSION['Customer_ID'];
+
+    // Fetch Email and Phone Number from the database
+    $sql = "SELECT Email, MobileNumber FROM accountdetails WHERE Customer_ID = ?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $Customer_ID);
+    $stmt->execute();
+    $stmt->bind_result($Email, $MobileNumber);
+    $stmt->fetch();
+    $stmt->close();
+
+    // Fetch CustomerAddress from the database
+    $sql = "SELECT CustomerAddress FROM accountdetails WHERE Customer_ID = ?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $CustomerID);
+    $stmt->execute();
+    $stmt->bind_result($CustomerAddress);
+    $stmt->fetch();
+    $stmt->close();
+} else {
+    // Redirect to the login page if the user is not logged in
+    header("Location: signupcustomer.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
@@ -7,79 +53,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
+    <link rel="stylesheet" type="text/css" href="CustomerAccounts.css">
 
-    <style>
-        /* main part styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .banner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #f5f5dc; /* Add your desired background color */
-        }
-
-        .header-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background-color: #b8cca3; /* Add your desired background color */
-        }
-
-        .customer-section {
-            display: flex;
-            justify-content: flex-end;
-            align-items: flex-start;
-            padding: 20px;
-        }
-
-        .customer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 20px;
-        }
-
-        .box {
-            width: calc(50% - 20px); /* Adjust the width based on your design */
-            height: 200px; /* Set a fixed height for square shape */
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        button {
-            padding: 10px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-
-        .admin-sidebar {
-            width: 200px;
-            padding: 20px;
-        }
-
-        .admin-button-container button:hover {
-            background-color: #ddd; /* Add your desired hover background color */
-            color: #333; /* Add your desired hover text color */
-        }
-    </style>
-
+    
 </head>
 <body>
     <nav class="banner">
         <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-        <form action="/search" method="get">
-            <input type="text" name="q" placeholder="Search...">
-            <button type="submit">Go</button>
-        </form>
+    <form action="" method="get">
+      <input type="text" name="search" class="search-bar"
+        value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
+        <input type="submit" value="Go" class="search-bar-go"></form>
+    
         <nav class="header">
             <button><a href="accountPage.php">Account</a></button>
             <button><a href="basketPage.php">Basket</a></button>
@@ -88,20 +73,21 @@
     </nav>
 
     <nav class="header-nav">
-        <ul class="navigation-bar">
-            <li><a href="homePage">Home</a></li>
-            <li><a href="AboutUs.php">About Us</a></li>
-            <nav class=Products>
-                <button class="dropbtn">Products</button>
-                <nav class="products-content">
-                    <a href="productPage.php">Prescriptions</a>
-                    <a href="productPage.php">Skin Care</a>
-                    <a href="productPage.php">Hair Care</a>
-                    <a href="productPage.php">Medication</a>
-                </nav>
-            </nav>
-        </ul>
-    </nav>
+    <ul class="navigation-bar">
+      <li><a href="Index.php">Home</a></li>
+      <li><a href="AboutUs.php">About Us</a></li>
+      <nav class=Products>
+        <a href="productPage.php"><button class="dropbtn">Products</button></a>
+        <nav class="products-content">
+          <a href="productPage.php?Product_Category=General">General Medication</a>
+          <a href="productPage.php?Product_Category=SkinCare">SkinCare</a>
+          <a href="productPage.php?Product_Category=Haircare">HairCare</a>
+          <a href="productPage.php?Product_Category=DentalCare">DentalCare</a>
+          <a href="productPage.php?Product_Category=Vitamins_Supplements">Vitamins and Supplements</a>
+        </nav>
+      </nav>
+    </ul>
+  </nav>
 
     <div class="customer-section">
         <div class="customer-content">
@@ -115,9 +101,9 @@
             <div class="box">
                 <p>(Visible to the logged in user)</p>
 
-                <p> Email Address: </p>
+                <p>Email Address: <?php echo $Email; ?></p>
 
-                <p> Phone Number: </p>
+                <p>Phone Number: <?php echo $MobileNumber; ?></p>
                 
                 <button onclick="updateCustomerDetails()">Update</button>
             </div>
@@ -125,25 +111,34 @@
             <div class="box">
                 <p>(Visible to the logged in user)</p>
 
-                <p> Shipping Address </p>
+                <p>Shipping Address: <?php echo $CustomerAddress; ?></p>
 
                 <button onclick="updateStockManagement()">Update</button>
             </div>
 
-            <div class="box">
-                <p>(Visible to the logged in user)</p>
-
-                <p> Card Details </p>
-
-                <button onclick="updateOrderProcessing()">Update</button>
-                <button onclick="removeCardDetails()">Remove</button>
-            </div>
         </div>
 
         <div class="admin-sidebar">
-            <button onclick="showPastOrders()">View Past Orders</button>
+                <button onclick="redirectTo('OrderHistory.php')">View Past Orders</button>
         </div>
+
+        <script>
+            function redirectTo(page) {
+        window.location.href = page;
+    }
+
+    // Add the following functions if needed
+        function showPastOrders() {
+            redirectTo('orderhistory.php');
+    }
+        </script>
+
     </div>
+
+    <?php
+    // Close the database connection
+    $con->close();
+    ?>
   
     <footer class="footer">
   <div class="footer-section">
