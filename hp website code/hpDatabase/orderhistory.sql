@@ -18,6 +18,8 @@ CREATE TABLE orderhistory (
 INSERT INTO orderhistory (Customer_ID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
 VALUES ('220021','Selsun 2.5% selenium sulphide shampoo','2.5% selenium sulphide. Medicated shampoo. Reduces greasiness of scalp. Slows down the growth of skin on scalp that causes flakes', '3', '12', '1', '2022-03-13', 'Shipped');
 
+INSERT INTO orderhistory (Customer_ID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
+VALUES ('220022','Difflam Mouth Spray','Suitable for adults, the elderly and children. With benzydamine hydrochloride. Targets mouth and throat pain', '1', '7.99', '2', '2023-12-06', 'Delivered');
 
 
 
