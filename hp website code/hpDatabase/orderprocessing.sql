@@ -40,5 +40,5 @@ CREATE TABLE orderprocessing (
 
 
 
-INSERT INTO orderprocessing(OrderTotal,CustomerID, OrderStatus, Order_Description, Email, FirstName, LastName, Address, City, Country, PostCode PhoneNumber)
+INSERT INTO orderprocessing(OrderTotal,CustomerID, OrderStatus, Order_Description, Email, FirstName, LastName, Address, City, Country, PostCode, PhoneNumber)
 VALUES ('30','220023', 'Processing', '2x Cerave Foam Cleanser', 'emilyM@yahoo.com', 'Emily', 'Mitchells', '98 Spring Road', 'Birmingham', 'England', 'B10 0AA', '07198842650');
