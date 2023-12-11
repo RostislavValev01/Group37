@@ -20,5 +20,5 @@ else
 ?>
 <script type="text/javascript">
 			alert("Removed Item  Successfull.");
-			window.location = "basketpage.php";
+			window.location = "Cart.php";
 		</script>
