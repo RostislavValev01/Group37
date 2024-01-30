@@ -1,6 +1,6 @@
 
 
-CREATE TABLE queries(      --this tale is in the healthpointdb database
+CREATE TABLE queries(      
     Customer_ID INT NULL,
     Query_ref INT NOT NULL AUTO_INCREMENT,
     First_Name VARCHAR(255) NOT NULL,
