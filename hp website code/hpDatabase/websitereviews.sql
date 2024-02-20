@@ -8,3 +8,10 @@ CREATE TABLE websitereviews (
     PRIMARY KEY (ReviewID),
     FOREIGN KEY (CustomerID) REFERENCES accountdetails(Customer_ID)
 );
+
+
+INSERT INTO websitereviews(CustomerID, FirstName, LastName, ReviewRating, Description)
+VALUES ('220021', 'Ellen', 'Smith', '4', 'Easy to navigate');
+
+INSERT INTO websitereviews(CustomerID, FirstName, LastName, ReviewRating, Description)
+VALUES ('220023','Emily', 'Mitchells', '5', 'Variety of products');
