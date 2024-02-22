@@ -159,7 +159,7 @@ session_start();
 </div>
 
 <div class="slider fade">
- 
+
   <img src="productImages/2.jpg" style="width:20%">
   <div class="text">Caption Two</div>
 </div>
@@ -173,7 +173,32 @@ session_start();
 
 </div>
 <br>
-
+    <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="..." alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="..." alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="..." alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 
 </section>
 <section class="home mt-3">
@@ -194,59 +219,32 @@ session_start();
 </div></div>
 
 <br>
-<div class="row">
-  <div style="width:20%">
-    <div class="card" >
-  <img src="productImages/1.jpg" class="card-img-top" alt="Product"style="max-width:300px">
-  <div class="card-body">
-    <h3 class="card-title">Product title</h5>
-    <p class="card-text">Product Description.</p>
-    <a href="#" class="btn btn-dark">Product Url</a>
-  </div>
-</div>
-</div>
-<div style="width:20%">
-    <div class="card" >
-  <img src="productImages/6.jpg" class="card-img-top" alt="Product"style="max-width:300px">
-  <div class="card-body">
-  <h3 class="card-title">Product title</h5>
-    <p class="card-text">Product Description.</p>
-    <a href="#" class="btn btn-dark">Product Url</a>
-  </div>
-</div>
-</div>
-<div style="width:20%">
-    <div class="card" >
-  <img src="productImages/11.jpg" class="card-img-top" alt="Product"style="max-width:300px">
-  <div class="card-body">
-  <h3 class="card-title">Product title</h5>
-    <p class="card-text">Product Description.</p>
-    <a href="#" class="btn btn-dark">Product Url</a>
-  </div>
-</div>
-</div>
-<div style="width:20%">
-    <div class="card" >
-  <img src="productImages/16.jpg" class="card-img-top" alt="Product"style="max-width:300px">
-  <div class="card-body">
-    <h5 class="card-title">Product title</h5>
-    <p class="card-text">Product Description.</p>
-    <a href="#" class="btn btn-dark">Product Url</a>
-  </div>
-</div>
-</div>
-<div style="width:20%">
-    <div class="card" >
-  <img src="productImages/21.jpg" class="card-img-top" alt="Product"style="max-width:300px">
-  <div class="card-body">
-  <h3 class="card-title">Product title</h5>
-    <p class="card-text">Product Description.</p>
-    <a href="#" class="btn btn-dark">Product Url</a>
-  </div>
-</div>
-</div>
+    <?php
 
+    $query = 'SELECT `ProductName`,`Product_Description`,`ProductSKU`,`image` FROM stock  limit 6';
+    $result = mysqli_query($con, $query) or die (mysqli_error($con));
+    $all_product=mysqli_fetch_array($result);
+    ?>
+
+    <?php
+        while ($product=mysqli_fetch_assoc($result)){
+//            die($product["ProductSKU"]);
+            echo '<div style="width:20%">
+    <div class="card" >
+  <img src="'.$product["image"].'" class="card-img-top" alt="Product"style="max-width:300px">
+  <div class="card-body">
+    <h3 class="card-title">'.$product["ProductName"].'</h5>
+    <p class="card-text">'.$product["Product_Description"].'</p>
+    <a href="indvProduct.php?id='.$product["ProductSKU"].'" class="btn btn-dark">View Product</a>
+  </div>
 </div>
+</div>';
+        }
+    ?>
+
+
+
+
 
 </section>
 </div>
