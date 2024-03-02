@@ -129,7 +129,7 @@ if (isset($_GET['search'])) {
 <footer class="footer">
   <div class="footer-section">
     <div>
-      <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+     <img src="hplogo3.png" class="logo" alt="Company Logo"></a>
     </div>
     <div>
 
