@@ -72,11 +72,13 @@
   </nav>
 
     <div class="content">
-        <h2>Welcome to HealthPoint</h2>
-        <p>
-            Welcome to Health Point Pharmacy, your trusted destination for convenient and efficient healthcare solutions. Established in 2023, we take pride in being an emerging quick-to-go pharmacy dedicated to providing exceptional services and products tailored to meet your health and wellness needs. At Health Point Pharmacy, we understand the importance of accessible and timely healthcare, and our team is committed to ensuring that you have a seamless and personalized experience. From a carefully curated selection of pharmaceuticals to a knowledgeable and friendly staff, we strive to be more than just a pharmacy; we aim to be your health partner. Thank you for choosing Health Point Pharmacy, where your well-being is our priority.
-        </p>
-
+    <h2>Welcome to HealthPoint</h2>
+<div class="welcome-container">
+    <p>
+        Welcome to Health Point Pharmacy, your trusted destination for convenient and efficient healthcare solutions. Established in 2023, we take pride in being an emerging quick-to-go pharmacy dedicated to providing exceptional services and products tailored to meet your health and wellness needs. At Health Point Pharmacy, we understand the importance of accessible and timely healthcare, and our team is committed to ensuring that you have a seamless and personalized experience. From a carefully curated selection of pharmaceuticals to a knowledgeable and friendly staff, we strive to be more than just a pharmacy; we aim to be your health partner. Thank you for choosing Health Point Pharmacy, where your well-being is our priority.
+    </p>
+    <img src="productImages/About-Us-Image.jpg" alt="About Us Image" class="about-us-img" style="display: block; margin: auto; max-width: 100%;">
+</div>
         <h3>Our Mission</h3>
         <p>
             At HealthPoint, we strive to empower individuals by delivering high-quality, affordable healthcare solutions. Our mission is to be a catalyst for positive change in the community, promoting wellness and providing comprehensive pharmaceutical services that exceed expectations.
@@ -106,7 +108,7 @@
     <footer class="footer">
         <div class="footer-section">
             <div>
-                <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+              <img src="hplogo3.png" class="logo" alt="Company Logo"></a>
             </div>
             <div>
               <p>© 2023 HealthPoint. All rights reserved.
@@ -122,6 +124,7 @@
 
 </body>
 </html>
+
 
 
 
