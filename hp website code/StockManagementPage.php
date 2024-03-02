@@ -128,7 +128,7 @@ if ($stockDetails === null) {
 <footer class="footer">
     <div class="footer-section">
         <div>
-            <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+           <img src="hplogo3.png" class="logo" alt="Company Logo"></a>
         </div>
         <div>
             <p>© 2023 HealthPoint. All rights reserved.
