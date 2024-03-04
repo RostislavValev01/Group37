@@ -18,12 +18,12 @@ CREATE TABLE accountdetails (
 
 
 
---auto-increment function for customer_ID doesn't work--
+
 INSERT INTO accountdetails (Customer_ID, FirstName, Surname, MobileNumber, Email, CustomerAddress, DateOfBirth, Admin_ID, AdminStatus)
 VALUES ('220021','Ellen', 'Smith', '07456128791', 'ellen12@gmail.com', 
         '44 Springfield Road, Birmingham, B12 3BE', '1982/01/09', '109817', '1');  
 
---auto-increment function for customer_ID works now--
+
 INSERT INTO accountdetails (FirstName, Surname, MobileNumber, Email, CustomerAddress, DateOfBirth, Admin_ID, AdminStatus)                         
 VALUES('Bob', 'Stone', '07129844651', 
        'stone@yahoo.com', 
