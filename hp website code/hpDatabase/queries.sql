@@ -8,7 +8,7 @@ CREATE TABLE queries(
     Email VARCHAR(255) NOT NULL,
     Query_description TEXT NOT NULL,
     PRIMARY KEY (Query_ref),
-    FOREIGN KEY (Customer_ID) REFERENCES accountdetails(Customer_ID);
+    FOREIGN KEY (Customer_ID) REFERENCES accountdetails(Customer_ID),
     );
 
 
