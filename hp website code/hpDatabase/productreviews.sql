@@ -12,4 +12,5 @@ CREATE TABLE productreviews (
 );
 
 INSERT INTO productreviews (CustomerID, FirstName, LastName, ProductSKU, ReviewRating, Description) VALUES ('220021', 'Ellen', 'Smith', '1', '4', 'This product is great! I highly recommend it.');
-INSERT INTO productreviews (CustomerID, FirstName, LastName, SKUNumber, ReviewRating, Description) VALUES ('909987', 'Bob', 'Stone', '1002', '5', 'Awesome product! Just what I needed.');
+
+INSERT INTO productreviews (CustomerID, FirstName, LastName, ProductSKU, ReviewRating, Description) VALUES ('220022', 'Bob', 'Stone', '7', '5', 'Awesome product! Just what I needed.');
