@@ -10,4 +10,4 @@ CREATE TABLE customerbasket (
 );
 
 INSERT INTO customerbasket (CustomerID, ProductName, ProductID, Price, Quantity) VALUES ('220021', 'Product 1', '1001', '9.99', '2');
-INSERT INTO customerbasket (CustomerID, ProductName, ProductID, Price, Quantity) VALUES ('909987', 'Product 2', '1002', '14.99', '1');
+
