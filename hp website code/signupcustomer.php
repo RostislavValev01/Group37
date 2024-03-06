@@ -28,7 +28,7 @@ $dob = $_POST['dob'];
 $verify_query = mysqli_query($con, "SELECT Email FROM accountdetails WHERE Email='$email'");
 if (mysqli_num_rows($verify_query) !=0) {
     echo "<div class='message'>
-            <p>This email is used, Try another One Please!</p>
+            <p>This email is used, Try another One Pdd lease!</p>
             </div> <br>";
             "<a href='javascript:self.history.back()'><button class='btn'>Go Back</button>";
 } 
@@ -173,14 +173,18 @@ else{
             </td>
         </tr>
     </table>
+    <div id="feedback-message" class="message" style="display: none;"></div>
+    
+    </div>
 </div>
 </form>
 <?php } ?>
+
 </body>
 <footer class="footer">
     <div class="footer-section">
         <div>
-           <img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+            <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
         </div>
         <div>
             <p>© 2023 HealthPoint. All rights reserved.
