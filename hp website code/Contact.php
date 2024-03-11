@@ -17,7 +17,7 @@ session_start();
 </style>
 <body class="">
 <nav class="banner">
-<a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+<a href="index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
 <form action="productPage.php" method="get">
   <input type="text" name="search" class="search-bar"
     value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
@@ -80,6 +80,7 @@ session_start();
       <div class="col-12 col-md-8 " style="width:50%">
       <h2 class="text-center" >Contact Us By Email</h2>
 <hr>
+          <h3 style="color: darkred" ><?= isset($_GET["msg"])?$_GET["msg"]:""?></h3>
         <form method="post" class="contact"  action="contactcode.php">
           <div class="form-group">
             <label class="control-label">First name:</label>
@@ -127,7 +128,7 @@ session_start();
 <footer class="footer">
   <div class="footer-section">
     <div>
-      <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+      <a href="index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
     </div>
     <div>
       <p>© 2023 HealthPoint. All rights reserved.

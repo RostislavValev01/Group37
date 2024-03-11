@@ -16,7 +16,9 @@ if (isset($_SESSION["Customer_ID"]) && $_SESSION["loggedin"] === true) {
 
     $desc = $_POST['remarks'];
     $email = $_POST['email'];
-
+    if($name=="" || $lname=="" || $desc == "" || $email == ""){
+        header("Location: Contact.php?msg=All fields are required");
+    }
 
     $query = "INSERT INTO queries
   (Customer_ID,First_Name,Surname,Email,Query_description)
