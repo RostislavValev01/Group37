@@ -29,9 +29,21 @@ $count = 0;
 <title>Shopping Cart - Health Point</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" type="text/css" href="css/contact.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <style>
+    .inc-dec-btn{
+        text-decoration: none;
+        font-size: 20px;
+        border-radius: 10px;
+        margin-right: 5px;
+        margin-left: 5px;
+        color: white;
+        background-color: #198754;
+        padding-left: 8px;
+        padding-right: 8px;
+        cursor: pointer;
+    }
 </style>
 <body class="">
 <nav class="banner">
@@ -109,8 +121,7 @@ $count = 0;
     </tr>
   </thead>
   <tbody>
-  <?php                  
-
+  <?php
 
                                 while ($row = mysqli_fetch_assoc($result)) {
 
@@ -118,7 +129,7 @@ $count = 0;
                                     echo '<td>'. $row['ProductID'].'</td>';
                                     echo '<td>'. $row['ProductName'].'</td>';
                                    // echo '<td><input type="number" value="'. $row['Quantity'].'" min="0" max="10" step="1"/></td>';
-                                   echo '<td>'. $row['Quantity'].'</td>';
+                                   echo '<td><a href="CartFunctions.php?function=decrease_item&product_id='.$row['ProductID'].'" class="inc-dec-btn">-</a>'. $row['Quantity'].'<a href="CartFunctions.php?function=increase_item&product_id='.$row['ProductID'].'" class="inc-dec-btn">+</a></td>';
                                     echo '<td>'. $row['Price'].'</td>';
                                     echo '<td>';
 

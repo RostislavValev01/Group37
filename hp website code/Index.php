@@ -7,206 +7,51 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
-<head>
-<title>Homepage - Health Point</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" type="text/css" href="HealthPoint.css">
+<?php
+include_once "layouts/head.php";
+?>
 
-</head>
-<style>
-  .content {
-    text-align: center;
-}
-
-.slideshow-container {
-    max-width: 800px; /* Adjust the maximum width as needed */
-    margin: 0 auto; /* Center the slideshow horizontally */
-}
-
-.slider {
-    max-height: auto;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-.slider img {
-    width: auto;
-    height: 100%;
-    object-fit: contain;
-}
-
-.content {
-    text-align: center;
-}
-
-.slideshow-container {
-    max-width: 800px; /* Adjust the maximum width as needed */
-    margin: 0 auto; /* Center the slideshow horizontally */
-}
-
-.slider {
-    max-height: auto;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-.slider img {
-    width: auto;
-    height: 100%;
-    object-fit: contain;
-}
-
-.content {
-    text-align: center;
-}
-
-.slideshow-container {
-    max-width: 800px; /* Adjust the maximum width as needed */
-    margin: 0 auto; /* Center the slideshow horizontally */
-}
-
-.slider {
-    max-height: auto;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-.slider img {
-    width: auto;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* Center everything under the slideshow */
-.content section {
-    text-align: center;
-    margin: auto; /* Adjust the margin as needed */
-    max-width: 800px; /* Adjust the maximum width as needed */
-}
-
-
-
-    </style>
-</style>
 <body class="">
-<nav class="banner">
-<a href="index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-<form action="productPage.php" method="get">
-  <input type="text" name="search" class="search-bar"
-    value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
-  <input type="submit" value="Go" class="search-bar-go">
-</form>
-    <?php
-    if (isset($_SESSION['loggedin'])) {
-      if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
-        ?>
-        <nav class="header">
-          <button><a href="AdminAccounts.php">Account</a></button>
-          <button><a href="Cart.php">Basket</a></button>
-          <button><a href="Contact.php">Contact Us</a></button>
-          <button><a href="logout.php">Logout</a></button>
-        </nav>
-        <?php
-      } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
-        ?>
-          <nav class="header">
-            <button><a href="CustomerAccounts.php">Account</a></button>
-            <button><a href="Cart.php">Basket</a></button>
-            <button><a href="Contact.php">Contact Us</a></button>
-            <button><a href="logout.php">Logout</a></button>
-          </nav>
-        <?php
-      }
-    } else {
-      ?>
-      <nav class="header">
-        <button><a href="signInPageCustomer.php">Sign In</a></button>
-        <button><a href="Cart.php">Basket</a></button>
-        <button><a href="Contact.php">Contact Us</a></button>
-      </nav>
-      <?php
-    }
-    ?>
-  </nav>
+<?php
+include_once "layouts/header.php";
+?>
 
-  <nav class="header-nav">
-    <ul class="navigation-bar">
-      <li><a href="Index.php">Home</a></li>
-      <li><a href="AboutUs.php">About Us</a></li>
-      <nav class=Products>
-        <a href="productPage.php"><button class="dropbtn">Products</button></a>
-        <nav class="products-content">
-          <a href="productPage.php?Product_Category=General">General Medication</a>
-          <a href="productPage.php?Product_Category=SkinCare">SkinCare</a>
-          <a href="productPage.php?Product_Category=Haircare">HairCare</a>
-          <a href="productPage.php?Product_Category=DentalCare">DentalCare</a>
-          <a href="productPage.php?Product_Category=Vitamins_Supplements">Vitamins and Supplements</a>
-        </nav>
-      </nav>
-    </ul>
-  </nav>
 
 <div class="content">
-<section>
-  <!-- Slideshow container -->
-<div class="slideshow-container">
-
-<!-- Full-width images with number and caption text -->
-<div class="slider fade">
-
-  <img src="productImages/6.jpg" style="width:30%">
-  <div class="text">Caption Text</div>
-</div>
-
-<div class="slider fade">
-
-  <img src="productImages/2.jpg" style="width:20%">
-  <div class="text">Caption Two</div>
-</div>
-
-<div class="slider fade">
-
-  <img src="productImages/1.jpg" style="width:20%">
-  <div class="text">Caption Three</div>
-</div>
-
-
-</div>
-<br>
-    <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselIndicators" data-slide-to="2"></li>
-        </ol>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="..." alt="First slide">
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="productImages/slider.png" class="d-block w-100" style="max-height: 500px;" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="productImages/slider.png" class="d-block w-100" style="max-height: 500px;" alt="...">
+
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="..." alt="Second slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="..." alt="Third slide">
+                <img src="productImages/slider.png" class="d-block w-100" style="max-height: 500px;" alt="...">
+
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-
-</section>
 <section class="home mt-3">
 <div class="row">
   <div class="col-2" style="width:20%">
 </div>
-<div class="col-10" style="width:80%">
- <h1>Our Highlighted Products</h1>
+<div class="col-12">
+ <h3>Our Highlighted Products</h3>
 
 </div>
 </div>
@@ -221,52 +66,102 @@ session_start();
 <br>
     <?php
 
-    $query = 'SELECT `ProductName`,`Product_Description`,`ProductSKU`,`image` FROM stock  limit 6';
+    $query = 'SELECT `ProductName`,`Product_Description`,`ProductSKU`,`image` FROM stock  limit 10';
     $result = mysqli_query($con, $query) or die (mysqli_error($con));
     $all_product=mysqli_fetch_array($result);
     ?>
 
-    <?php
-        while ($product=mysqli_fetch_assoc($result)){
-//            die($product["ProductSKU"]);
-            echo '<div style="width:20%">
-    <div class="card" >
-  <img src="'.$product["image"].'" class="card-img-top" alt="Product"style="max-width:300px">
-  <div class="card-body">
-    <h3 class="card-title">'.$product["ProductName"].'</h5>
-    <p class="card-text">'.$product["Product_Description"].'</p>
-    <a href="indvProduct.php?id='.$product["ProductSKU"].'" class="btn btn-dark">View Product</a>
-  </div>
-</div>
-</div>';
-        }
-    ?>
 
+<!--    <a href="productPage.php?Product_Category=General">General Medication</a>-->
+<!--    <a href="productPage.php?Product_Category=SkinCare">SkinCare</a>-->
+<!--    <a href="productPage.php?Product_Category=Haircare">HairCare</a>-->
+<!--    <a href="productPage.php?Product_Category=DentalCare">DentalCare</a>-->
+<!--    <a href="productPage.php?Product_Category=Vitamins_Supplements">Vitamins and Supplements</a>-->
+<div class="row">
+
+
+    <div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
+        <div style="display: flex;flex-direction: column;">
+            <a style="text-decoration: none" href="productPage.php?Product_Category=General">
+            <img src="productImages/General_Medication.jpg" class="img-thumbnail img-pop"/>
+            <span style="text-align: center;width: 100%;color: black">
+                General Medication
+            </span></a>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
+        <div style="display: flex;flex-direction: column;">
+            <a style="text-decoration: none" href="productPage.php?Product_Category=SkinCare">
+            <img src="productImages/General_Medication.jpg" class="img-thumbnail img-pop"/>
+            <span style="text-align: center;width: 100%;color: black">
+                SkinCare
+            </span></a>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
+        <div style="display: flex;flex-direction: column;">
+            <a style="text-decoration: none" href="productPage.php?Product_Category=Haircare">
+            <img src="productImages/General_Medication.jpg" class="img-thumbnail img-pop"/>
+            <span style="text-align: center;width: 100%;color: black">
+                HairCare
+            </span></a>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
+        <div style="display: flex;flex-direction: column;">
+            <a style="text-decoration: none" href="productPage.php?Product_Category=DentalCare">
+            <img src="productImages/General_Medication.jpg" class="img-thumbnail img-pop"/>
+            <span style="text-align: center;width: 100%;color: black">
+                DentalCare
+            </span></a>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
+        <div style="display: flex;flex-direction: column;">
+            <a style="text-decoration: none" href="productPage.php?Product_Category=Vitamins_Supplements">
+            <img src="productImages/General_Medication.jpg" class="img-thumbnail img-pop"/>
+            <span style="text-align: center;width: 100%;color: black">
+                Vitamins and Supplements
+            </span></a>
+        </div>
+    </div>
+
+</div>
+<!--    --><?php
+//        while ($product=mysqli_fetch_assoc($result)){
+////            die($product["ProductSKU"]);
+//            $desc=$product["Product_Description"];
+//            if(strlen($product["Product_Description"])>50){
+//                $desc=substr($product["Product_Description"],0,50)."..."."<a href='indvProduct.php?id=".$product["ProductSKU"]."'>Read More</a>";
+//            }
+//            echo '
+//<div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
+//    <div >
+//        <div class="card shadow-lg" style="align-items: center; min-height: 600px;" >
+//      <img src="'.$product["image"].'" class="card-img-top" alt="Product"style="max-width:300px;max-height: 400px;">
+//      <div class="card-body" style="    display: flex;
+//    flex-direction: column;
+//    justify-content: flex-end;">
+//        <h3 class="card-title">'.$product["ProductName"].'</h5>
+//        <p class="card-text">'.$desc.'</p>
+//        <a href="indvProduct.php?id='.$product["ProductSKU"].'" class="btn btn-dark">View Product</a>
+//      </div>
+//    </div>
+//    </div>
+//</div>
+//';
+//        }
+//    ?>
+</div>
 
 
 
 
 </section>
 </div>
-<footer class="footer">
-  <div class="footer-section">
-    <div>
-      <a href="index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-    </div>
-    <div>
-      <p>© 2023 HealthPoint. All rights reserved.
-
-        The content, design, and images on this website are the property of HealthPoint and are protected by
-        international copyright laws. Unauthorized use or reproduction of any materials without the express written
-        consent of HealthPoint is strictly prohibited. HealthPoint and the HealthPoint logo are trademarks of
-        HealthPoint.
-
-        For inquiries regarding the use or reproduction of any content on this website, please contact us at
-        HealthPoint@pharmacy.com</p>
-
-    </div>
-  </div>
-</footer>
+<?php
+include_once "layouts/footer.php";
+?>
 <script defer src="slider.js"></script>
 
 </body>
