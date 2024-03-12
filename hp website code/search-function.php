@@ -29,4 +29,3 @@ if (isset($_GET['search'])) {
 }
 
 $stock = mysqli_fetch_all($result, MYSQLI_ASSOC);
-?>
