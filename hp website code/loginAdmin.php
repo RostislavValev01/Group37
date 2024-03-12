@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['AdminStatus'] = 1;
             $_SESSION['loggedin'] = true;
 
-            header('Location: productPage.php');
-            echo $_SESSION['Customer_ID'];
+            echo '<script>alert("Hi ' . $user['Email'] . ', you are now logged in!");</script>';
+            echo '<script>window.location.href = "Index.php";</script>';
             exit();
         } else {
             $_SESSION['error'] = "Invalid email, password or admin ID.";
@@ -38,4 +38,4 @@ if ($stmt instanceof mysqli_stmt) {
     $stmt->close();
 }
 $con->close();
-?>
+
