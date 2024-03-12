@@ -23,12 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['AdminStatus'] = 0;
             $_SESSION['loggedin'] = true;
 
-            header('Location: productPage.php');
+            echo '<script>alert("Hi ' . $user['Email'] . ', you are now logged in!");</script>';
+            echo '<script>window.location.href = "Index.php";</script>';
+
             exit();
         } else {
             $_SESSION['error'] = "Invalid email or password.";
             echo $_SESSION['error'];
-
             header('Location: signInPageCustomer.php');
             exit();
         }
@@ -39,4 +40,3 @@ if ($stmt instanceof mysqli_stmt) {
     $stmt->close();
 }
 $con->close();
-?>
