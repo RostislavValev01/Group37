@@ -27,6 +27,6 @@ if (isset($_POST['product_id'])) {
     }
 }
 
-header('Location: productPage.php');
+echo '<script>alert("Item added to basket!");</script>';
+echo '<script>window.location.href = "productPage.php";</script>';
 exit;
-?>
