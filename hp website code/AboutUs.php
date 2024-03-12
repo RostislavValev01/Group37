@@ -1,3 +1,9 @@
+<?php
+//include connection config
+include('connectdb.php');
+// session start
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,14 +19,14 @@
 </head>
 <body>
 
+<body>
 <nav class="banner">
-    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-    <form action="productPage.php" method="get">
-      <input type="text" name="search" class="search-bar"
-        value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>"
-        placeholder="Search products...">
-      <input type="submit" value="Go" class="search-bar-go">
-    </form>
+<a href="Index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+<form action="productPage.php" method="get">
+  <input type="text" name="search" class="search-bar"
+    value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
+  <input type="submit" value="Go" class="search-bar-go">
+</form>
     <?php
     if (isset($_SESSION['loggedin'])) {
       if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
@@ -70,7 +76,10 @@
       </nav>
     </ul>
   </nav>
+    <?php
+    require 'connectdb.php';
 
+    ?>
     <div class="content">
     <h2>Welcome to HealthPoint</h2>
 <div class="welcome-container">
@@ -119,6 +128,7 @@
                
             </div>
         </div>
+        
     </footer>
 
 
