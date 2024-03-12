@@ -31,6 +31,30 @@ th {
     background-color: #4caf50;
 }
 
+tr {
+    background-color: white;
+}
+tr:hover {
+    background-color: lightgray;
+}
+
+
 h1, h2 {
     text-align: center;
 }
+
+.search-bar,
+select {
+  width: 200px;
+}
+
+select {
+  width: 150px;
+}
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    width: 70px;
+    height: 40px;
+  }
