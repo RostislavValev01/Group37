@@ -102,7 +102,7 @@ if(isset($_SESSION['Customer_ID'])){
 <footer class="footer">
     <div class="footer-section">
         <div>
-            <img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+            <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
         </div>
         <div>
             <p>© 2023 HealthPoint. All rights reserved.
