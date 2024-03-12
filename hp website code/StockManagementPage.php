@@ -2,18 +2,10 @@
 session_start();
 
 require 'connectdb.php';
+include 'search-function.php';
 
-$sql = "SELECT * FROM stock";
-$result = mysqli_query($con, $sql);
-
-if (!$result) {
-    die('Error executing query: ' . mysqli_error($con));
-}
-
-$stockDetails = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-if ($stockDetails === null) {
-    die('Error fetching data from the database');
+if (isset($_GET['search'])) {
+  $searchQuery = $_GET['search'];
 }
 ?>
 
@@ -33,7 +25,7 @@ if ($stockDetails === null) {
 <body>
 
 <<nav class="banner">
-    <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+    <a href="Index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
     <form action="" method="get">
       <input type="text" name="search" class="search-bar"
         value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search products...">
@@ -88,18 +80,35 @@ if ($stockDetails === null) {
         </ul>
     </div>
 
-    <?php
-    require 'connectdb.php';
-    ?>
-
 <div class="container">
-    <h2>Stock Management</h2>
+    <h2><br>Stock Management</h2>
+    <form action="StockManagementPage.php" method="get">
+      <input type="text" name="search" class="search-bar"
+        value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>" placeholder="Search...">
+      <select name="sort">
+        <option value="ProductSKU">Product Number</option>
+        <option value="ProductName">Product Name</option>
+        <option value="Quantity">Product Quantity</option>
+        <option value="Price">Price</option>
+        <option value="Product_Status">Availability</option>
+        <option value="Product_Category">Product Category</option>
+        <option value="Product_Description">Description</option>
+      </select>
+
+      <select name="order">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+      <input type="submit" value="Search">
+    </form>
+
     <table>
         <thead>
             <tr>
+                <th>Product Image</th>
                 <th>Product Number</th>
-                <th>Quantity</th>
                 <th>Product Name</th>
+                <th>Quantity</th>
                 <th>Product Description</th>
                 <th>Barcode</th>
                 <th>Product Status</th>
@@ -108,16 +117,17 @@ if ($stockDetails === null) {
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($stockDetails as $product): ?>
+        <?php foreach ($stock as $product): ?>
                 <tr>
+                    <td><img src="productImages/<?php echo $product['ProductSKU']; ?>.jpg" alt="Product Image" style="width:100px;height:100px;"></td>
                     <td><?= htmlspecialchars($product['ProductSKU']) ?></td>
-                    <td><?= htmlspecialchars($product['Quantity']) ?></td>
                     <td><?= htmlspecialchars($product['ProductName']) ?></td>
+                    <td><?= htmlspecialchars($product['Quantity']) ?></td>
                     <td><?= htmlspecialchars($product['Product_Description']) ?></td>
                     <td><?= htmlspecialchars($product['Barcode']) ?></td>
                     <td><?= htmlspecialchars($product['Product_Status']) ?></td>
                     <td><?= htmlspecialchars($product['Product_Category']) ?></td>
-                    <td><?= htmlspecialchars($product['Price']) ?></td>
+                    <td>£<?= htmlspecialchars($product['Price']) ?>.00</td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
