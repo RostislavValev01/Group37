@@ -113,13 +113,14 @@ if (isset($_GET['search'])) {
           <p class = "product-price">
             <?php echo '£' . $product['Price'] . '.00'; ?>
           </p>
-          <form method="post" action="addtobasket.php"><br>
-            <input type="hidden" name="product_id" value="<?= $product['ProductSKU']; ?>">
-            <button type="submit" >Add to Basket</button>
-          </form>
-          <p>
+          <p class = "product-status">
             <?php echo $product['Product_Status']; ?>
           </p>
+          <form method="post" action="addtobasket.php"><br>
+            <input type="hidden" name="product_id" value="<?= $product['ProductSKU']; ?>">
+            <input type="submit" value="Add to Basket">
+          </form>
+
         </div>
       <?php endforeach; ?>
     </div>
@@ -129,7 +130,7 @@ if (isset($_GET['search'])) {
 <footer class="footer">
   <div class="footer-section">
     <div>
-     <img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+      <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
     </div>
     <div>
 
