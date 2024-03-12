@@ -7,7 +7,7 @@ form {
 select,
 input[type="submit"] {
   padding: 10px;
-  margin: 5px;
+  margin-top: 5px;
 }
 
 .search-bar,
@@ -33,6 +33,7 @@ h1#products-header {
 
 table.products-table {
   width: 95%;
+  height: 300px;
   border-collapse: collapse;
   margin-top: 20px;
   margin-left: 20px;
@@ -89,15 +90,16 @@ body {
   text-align: center;
   background-color: #fff;
   box-sizing: border-box;
-  height: 350px;
+  height: 390px;
   width: 350px;
 }
 
 .product-box .product-name {
  margin-bottom: 10px;
-
 }
-
+.product-price {
+  margin-bottom: 10px;
+}
 .product-box a {
   text-decoration: none;
   color: #333;
