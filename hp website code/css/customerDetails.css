@@ -119,3 +119,18 @@ body {
         opacity: 1;
     }
 }
+.edit-btn {
+    padding: 10px;
+    margin: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+
+.add-customer-button {
+    padding: 10px;
+    margin: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
