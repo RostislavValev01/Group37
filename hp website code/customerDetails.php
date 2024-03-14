@@ -248,7 +248,7 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
                         <label for="newLastName">Last Name:</label>
                         <input type="text" id="newLastName" name="newLastName"><br><br>
                         <label for="newPassword">Password:</label>
-                        <input type="text" id="newPassword" name="newPassword"><br><br>
+                        <input type="password" id="newPassword" name="newPassword"><br><br>
                         <label for="newMobile">Mobile Number:</label>
                         <input type="text" id="newMobile" name="newMobile"><br><br>
                         <label for="newEmail">Email Address:</label>
