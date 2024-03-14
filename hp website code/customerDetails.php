@@ -165,23 +165,23 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
                 <span class="close" onclick="closeModal()">&times;</span>
                 <h2>Edit Customer</h2>
                 <form method="post" action="updateCustomer.php">
-                    <input type="hidden" id="customerId" name="customerId" value="">
+                    <input type="hidden" id="customerId" name="customerId" value=""><br>
                     <label for="editFirstName">First Name:</label>
-                    <input type="text" id="editFirstName" name="editFirstName"><br>
+                    <input type="text" id="editFirstName" name="editFirstName"><br> <br>
                     <label for="editLastName">Last Name:</label>
-                    <input type="text" id="editLastName" name="editLastName"><br>
+                    <input type="text" id="editLastName" name="editLastName"><br> <br>
                     <label for="editMobile">Mobile Number:</label>
-                    <input type="text" id="editMobile" name="editMobile"><br>
+                    <input type="text" id="editMobile" name="editMobile"><br> <br>
                     <label for="editEmail">Email Address:</label>
-                    <input type="text" id="editEmail" name="editEmail"><br>
+                    <input type="text" id="editEmail" name="editEmail"><br> <br>
                     <label for="editAddress">Home Address:</label>
-                    <input type="text" id="editAddress" name="editAddress"><br>
+                    <input type="text" id="editAddress" name="editAddress"><br><br>
                     <label for="editDoB">Date of Birth:</label>
-                    <input type="text" id="editDoB" name="editDoB"><br>
+                    <input type="text" id="editDoB" name="editDoB"><br><br>
                     <label for="editStatus">Admin Status:</label>
-                    <input type="text" id="editStatus" name="editStatus"><br>
+                    <input type="text" id="editStatus" name="editStatus"><br><br>
                     <label for="editAdmin">Admin ID:</label>
-                    <input type="text" id="editAdmin" name="editAdmin"><br>
+                    <input type="text" id="editAdmin" name="editAdmin"><br><br>
 
                     <input type="submit" name="saveChanges" value="Save Changes">
                 </form>
@@ -242,25 +242,25 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
                 <div class="modal-content">
                     <span class="close" onclick="closeAddModal()">&times;</span>
                     <h2>Add New Customer</h2>
-                    <form method="post" action="addCustomer.php">
+                    <form method="post" action="addCustomer.php"><br>
                         <label for="newFirstName">First Name:</label>
-                        <input type="text" id="newFirstName" name="newFirstName"><br>
+                        <input type="text" id="newFirstName" name="newFirstName"><br><br>
                         <label for="newLastName">Last Name:</label>
-                        <input type="text" id="newLastName" name="newLastName"><br>
+                        <input type="text" id="newLastName" name="newLastName"><br><br>
                         <label for="newPassword">Password:</label>
-                        <input type="text" id="newPassword" name="newPassword"><br>
+                        <input type="text" id="newPassword" name="newPassword"><br><br>
                         <label for="newMobile">Mobile Number:</label>
-                        <input type="text" id="newMobile" name="newMobile"><br>
+                        <input type="text" id="newMobile" name="newMobile"><br><br>
                         <label for="newEmail">Email Address:</label>
-                        <input type="text" id="newEmail" name="newEmail"><br>
+                        <input type="text" id="newEmail" name="newEmail"><br><br>
                         <label for="newAddress">Home Address:</label>
-                        <input type="text" id="newAddress" name="newAddress"><br>
+                        <input type="text" id="newAddress" name="newAddress"><br><br>
                         <label for="editDoB">Date of Birth:</label>
-                        <input type="text" id="newDoB" name="newDoB"><br>
+                        <input type="text" id="newDoB" name="newDoB"><br><br>
                         <label for="newStatus">Admin Status:</label>
-                        <input type="text" id="newStatus" name="newStatus"><br>
+                        <input type="text" id="newStatus" name="newStatus"><br><br>
                         <label for="newAdminId">Admin ID:</label>
-                        <input type="text" id="newAdminId" name="newAdminId"><br>
+                        <input type="text" id="newAdminId" name="newAdminId"><br><br>
 
                         <input type="submit" name="addCustomer" value="Add Customer">
                     </form>
@@ -338,12 +338,12 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
                         <div class="modal-content">
                             <span class="close"
                                 onclick="closeDeleteModal('<?= htmlspecialchars($customer['Customer_ID']) ?>')">&times;</span>
-                            <h2>Delete Customer</h2>
+                            <h2>Delete Customer</h2><br>
                             <p>Are you sure you want to delete this customer?</p>
                             <form action="deleteCustomer.php" method="post">
                                 <input type="hidden" name="customerId"
                                     value="<?= htmlspecialchars($customer['Customer_ID']) ?>">
-                                <label for="adminPassword">Admin Password:</label>
+                                <label for="adminPassword">Enter password:</label>
                                 <input type="password" id="adminPassword" name="adminPassword" required><br>
                                 <input type="submit" name="deleteCustomer" value="Delete">
                             </form>
@@ -393,3 +393,4 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
 
     </html>
 <?php } ?>
+
