@@ -108,7 +108,7 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
 
         <nav class="header-nav">
             <ul class="navigation-bar">
-                <li><a href="homePage.php">Home</a></li>
+                <li><a href="Index.php">Home</a></li>
                 <li><a href="aboutUs.php">About Us</a></li>
                 <nav class=Products>
                     <a href="productPage.php"><button class="dropbtn">Products</button></a>
