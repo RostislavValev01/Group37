@@ -4,7 +4,8 @@ session_start();
 require 'connectdb.php';
 
 if (!isset($_SESSION['Customer_ID'])) {
-    header('Location: signInPageCustomer.php');
+    echo '<script>alert("Please log in to add items to your basket");</script>';
+    echo '<script>window.location.href = "signInPageCustomer.php";</script>';
     exit;
 }
 
