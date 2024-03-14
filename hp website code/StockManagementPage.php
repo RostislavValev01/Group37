@@ -7,6 +7,45 @@ include 'search-function.php';
 if (isset($_GET['search'])) {
   $searchQuery = $_GET['search'];
 }
+// Function to generate and output the receipt
+function generateReceipt($stockData) {
+  // Start output buffering
+  ob_start();
+
+  // Output the receipt in HTML format
+  echo '<h2>Stock Receipt</h2>';
+  echo '<table border="1">';
+  echo '<tr><th>Product Number</th><th>Product Name</th><th>Quantity</th></tr>';
+
+  foreach ($stockData as $product) {
+      echo '<tr>';
+      echo '<td>' . $product['ProductSKU'] . '</td>';
+      echo '<td>' . $product['ProductName'] . '</td>';
+      echo '<td>' . $product['Quantity'] . '</td>';
+      echo '</tr>';
+  }
+
+  echo '</table>';
+
+  // Get the buffered output
+  $html = ob_get_clean();
+
+  // Set the content type to HTML
+  header('Content-Type: text/html');
+
+  // Output the HTML content
+  echo $html;
+}
+
+// Check if the receipt button is clicked
+if (isset($_POST['generate_receipt'])) {
+  // Assuming $stock is an array containing current stock data
+  // You can adjust this to fetch the data from your database
+  $stockData = $stock; // Replace with your actual stock data array
+  generateReceipt($stockData);
+  exit; // Prevent further output
+}
+?>
 ?>
 
 <!DOCTYPE html>
@@ -101,6 +140,7 @@ if (isset($_GET['search'])) {
       </select>
       <input type="submit" value="Search">
     </form>
+  
 
     <table>
         <thead>
@@ -132,6 +172,9 @@ if (isset($_GET['search'])) {
             <?php endforeach; ?>
         </tbody>
     </table>
+    <form action="" method="post">
+    <input type="submit" name="generate_receipt" value="Receipt" class="generate-receipt-btn"style="display:; margin: 10px; max-width: auto;">
+</form>
 </div>
 </body>
 
