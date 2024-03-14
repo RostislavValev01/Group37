@@ -20,18 +20,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['addCustomer'])) {
 
     if (mysqli_stmt_num_rows($verify_query) > 0) {
         echo "<div class='message'><p>This email is used, Try another One Please!</p></div> <br>";
-        echo "<a href='javascript:self.history.back()'><button class='btn'>Go Back</button></a>";
+        echo '<script>window.location.href = "customerDetails.php";</script>';
     } else {
         $insert_query = mysqli_prepare($con, "INSERT INTO accountdetails(FirstName, Surname, MobileNumber, Email, Password, CustomerAddress, DateOfBirth, AdminStatus, Admin_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
         mysqli_stmt_bind_param($insert_query, "sssssssii", $fname, $surname, $mnumber, $email, $password, $address, $dob, $adStatus, $adId);
         
         if (mysqli_stmt_execute($insert_query)) {
             echo '<script>alert("New customer added successfully!");</script>';
-            header('Location: customerDetails.php');
+            echo '<script>window.location.href = "customerDetails.php";</script>';
             exit();
         } else {
             echo '<script>alert("Failed to add new customer: ' . mysqli_error($con) . '");</script>';
-            header('Location: customerDetails.php');
+            echo '<script>window.location.href = "customerDetails.php";</script>';
             exit();
         }
     }
