@@ -48,6 +48,9 @@ body {
     height: 30px;
     border-radius: 5px;
     margin-bottom: 10px;
+    background-color: #4caf50;
+  color: white;
+  cursor: pointer;
 }
 #login-form #admin-login {
     width: 100%;
@@ -55,4 +58,8 @@ body {
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
 }
+
