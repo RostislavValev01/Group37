@@ -46,6 +46,11 @@ function validatePhone(phone) {
     var phoneRegex = /^\d+$/;
     return phoneRegex.test(phone);
 }
+function validateAddress(address) {
+    var addressRegex = /^[a-zA-Z0-9\s\-,.#]+$/;
+    return addressRegex.test(address);
+}
+
 
 // Add your card form open and close functions here
         const cardForm = document.getElementById('cardForm');
