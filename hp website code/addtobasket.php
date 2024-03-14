@@ -2,7 +2,6 @@
 session_start();
 
 require 'connectdb.php';
-require 'CartFunctions.php';
 
 if (!isset($_SESSION['Customer_ID'])) {
     header('Location: signInPageCustomer.php');
@@ -21,14 +20,23 @@ if (isset($_POST['product_id'])) {
     $product = mysqli_fetch_assoc($productResult);
 
     if ($product) {
-        if(isItemExist($product_id,$user_id,$con)){
-            $itemQuantity=getItem($product_id,$user_id,$con)["Quantity"]+1;
-            updateItemQuantity($product_id,$user_id,$itemQuantity,$con);
-        }else {
-            $query = "INSERT INTO customerbasket (CustomerID, ProductName, ProductID, Price, Quantity) VALUES (?, ?, ?, ?, 1) ON DUPLICATE KEY UPDATE Quantity = Quantity + 1";
-            $stmt = mysqli_prepare($con, $query);
-            mysqli_stmt_bind_param($stmt, "isid", $user_id, $product['ProductName'], $product_id, $product['Price']);
-            mysqli_stmt_execute($stmt);
+        $checkQuery = "SELECT * FROM customerbasket WHERE CustomerID = ? AND ProductID = ?";
+        $checkStmt = mysqli_prepare($con, $checkQuery);
+        mysqli_stmt_bind_param($checkStmt, "ii", $user_id, $product_id);
+        mysqli_stmt_execute($checkStmt);
+        $checkResult = mysqli_stmt_get_result($checkStmt);
+        
+        if (mysqli_num_rows($checkResult) > 0) {
+            $updateQuery = "UPDATE customerbasket SET Quantity = Quantity + 1 WHERE CustomerID = ? AND ProductID = ?";
+            $updateStmt = mysqli_prepare($con, $updateQuery);
+            mysqli_stmt_bind_param($updateStmt, "ii", $user_id, $product_id);
+            mysqli_stmt_execute($updateStmt);
+        } else {
+            $quantity = 1;
+            $insertQuery = "INSERT INTO customerbasket (CustomerID, ProductName, ProductID, Price, Quantity) VALUES (?, ?, ?, ?, ?)";
+            $insertStmt = mysqli_prepare($con, $insertQuery);
+            mysqli_stmt_bind_param($insertStmt, "isidi", $user_id, $product['ProductName'], $product_id, $product['Price'], $quantity);
+            mysqli_stmt_execute($insertStmt);
         }
     }
 }
