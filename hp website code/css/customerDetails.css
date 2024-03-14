@@ -129,6 +129,14 @@ body {
 
 .add-customer-button {
     padding: 10px;
+    margin-left: 20px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+
+.delete-btn {
+    padding: 10px;
     margin: 5px;
     background-color: #4caf50;
     color: white;
