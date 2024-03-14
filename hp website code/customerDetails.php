@@ -9,7 +9,7 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
     $search = '';
     $sort = 'Customer_ID';
     $order = 'asc';
-    
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $search = isset($_POST['search']) ? $_POST['search'] : '';
         $sort = isset($_POST['sort']) ? $_POST['sort'] : 'Customer_ID';
@@ -18,7 +18,7 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
         $query = "SELECT * FROM accountdetails WHERE Customer_ID = ? OR FirstName LIKE ? OR Surname LIKE ? OR MobileNumber LIKE ? OR Email LIKE ? OR CustomerAddress LIKE ? OR DateOfBirth = ? OR AdminStatus = ? OR Admin_ID LIKE ? ORDER BY $sort $order";
         $stmt = mysqli_prepare($con, $query);
 
-    if ($stmt) {
+        if ($stmt) {
             mysqli_stmt_bind_param(
                 $stmt,
                 "issssssis",
@@ -48,7 +48,7 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
 
         $clientDetails = mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
-?>
+    ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -60,7 +60,7 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="HealthPoint.css">
         <link rel="stylesheet" type="text/css" href="css/customerDetails.css">
-        <script defer src="loginAdmin.js"></script>
+        <script defer src="adminAddCustomer.js"></script>
     </head>
 
     <body>
@@ -125,7 +125,6 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
 
         <?php
 
-
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $search = isset($_POST['search']) ? $_POST['search'] : '';
             $searchWithWildcards = '%' . $search . '%';
@@ -159,7 +158,8 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
         }
 
         $clientDetails = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        ?>
+        ?>  
+
         <div id="editModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
@@ -235,6 +235,47 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
             </form>
 
             <h1 id="customer-header">Customer Database</h1>
+            <div id="addModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Add New Customer</h2>
+                <form method="post" action="addCustomer.php">
+                    <label for="newFirstName">First Name:</label>
+                    <input type="text" id="newFirstName" name="newFirstName"><br>
+                    <label for="newLastName">Last Name:</label>
+                    <input type="text" id="newLastName" name="newLastName"><br>
+                    <label for="newPassword">Password:</label>
+                    <input type="text" id="newPassword" name="newPassword"><br>
+                    <label for="newMobile">Mobile Number:</label>
+                    <input type="text" id="newMobile" name="newMobile"><br>
+                    <label for="newEmail">Email Address:</label>
+                    <input type="text" id="newEmail" name="newEmail"><br>
+                    <label for="newAddress">Home Address:</label>
+                    <input type="text" id="newAddress" name="newAddress"><br>
+                    <label for="editDoB">Date of Birth:</label>
+                    <input type="text" id="newDoB" name="newDoB"><br>
+                    <label for="newStatus">Admin Status:</label>
+                    <input type="text" id="newStatus" name="newStatus"><br>
+                    <label for="newAdminId">Admin ID:</label>
+                    <input type="text" id="newAdminId" name="newAdminId"><br>
+                    
+                    <input type="submit" name="addCustomer" value="Add Customer">
+                </form>
+            </div>
+        </div>
+
+        <button class ="add-customer-button" onclick="openAddModal()">Add New Customer</button>
+
+        <script>
+            function openAddModal() {
+                document.getElementById("addModal").style.display = "block";
+            }
+
+            function closeModal() {
+                var modal = document.getElementById("addModal").style.display = "none";
+            }
+        </script>
+
             <table class="customer-table">
                 <thead>
                     <tr>
@@ -280,7 +321,8 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
                             <?= htmlspecialchars($customer['Admin_ID']) ?>
                         </td>
                         <td>
-                            <button class="edit-btn" onclick="populateEditModal('<?= htmlspecialchars($customer['Customer_ID']) ?>','<?= htmlspecialchars($customer['FirstName']) ?>',
+                            <button class="edit-btn"
+                                onclick="populateEditModal('<?= htmlspecialchars($customer['Customer_ID']) ?>','<?= htmlspecialchars($customer['FirstName']) ?>',
                             '<?= htmlspecialchars($customer['Surname']) ?>', '<?= htmlspecialchars($customer['MobileNumber']) ?>','<?= htmlspecialchars($customer['Email']) ?>',
                             '<?= htmlspecialchars($customer['CustomerAddress']) ?>', '<?= htmlspecialchars($customer['DateOfBirth']) ?>', 
                             '<?= htmlspecialchars($customer['AdminStatus']) ?>', '<?= htmlspecialchars($customer['Admin_ID']) ?>')">Edit</button>
