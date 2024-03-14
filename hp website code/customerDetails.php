@@ -158,7 +158,7 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
         }
 
         $clientDetails = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        ?>  
+        ?>
 
         <div id="editModal" class="modal">
             <div class="modal-content">
@@ -211,6 +211,9 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
                 openEditModal();
             }
         </script>
+
+
+
         <div class="content">
             <form action="" method="post">
                 <input type="text" name="search" class="search-bar" placeholder="Search..."
@@ -236,45 +239,45 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
 
             <h1 id="customer-header">Customer Database</h1>
             <div id="addModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2>Add New Customer</h2>
-                <form method="post" action="addCustomer.php">
-                    <label for="newFirstName">First Name:</label>
-                    <input type="text" id="newFirstName" name="newFirstName"><br>
-                    <label for="newLastName">Last Name:</label>
-                    <input type="text" id="newLastName" name="newLastName"><br>
-                    <label for="newPassword">Password:</label>
-                    <input type="text" id="newPassword" name="newPassword"><br>
-                    <label for="newMobile">Mobile Number:</label>
-                    <input type="text" id="newMobile" name="newMobile"><br>
-                    <label for="newEmail">Email Address:</label>
-                    <input type="text" id="newEmail" name="newEmail"><br>
-                    <label for="newAddress">Home Address:</label>
-                    <input type="text" id="newAddress" name="newAddress"><br>
-                    <label for="editDoB">Date of Birth:</label>
-                    <input type="text" id="newDoB" name="newDoB"><br>
-                    <label for="newStatus">Admin Status:</label>
-                    <input type="text" id="newStatus" name="newStatus"><br>
-                    <label for="newAdminId">Admin ID:</label>
-                    <input type="text" id="newAdminId" name="newAdminId"><br>
-                    
-                    <input type="submit" name="addCustomer" value="Add Customer">
-                </form>
+                <div class="modal-content">
+                    <span class="close" onclick="closeAddModal()">&times;</span>
+                    <h2>Add New Customer</h2>
+                    <form method="post" action="addCustomer.php">
+                        <label for="newFirstName">First Name:</label>
+                        <input type="text" id="newFirstName" name="newFirstName"><br>
+                        <label for="newLastName">Last Name:</label>
+                        <input type="text" id="newLastName" name="newLastName"><br>
+                        <label for="newPassword">Password:</label>
+                        <input type="text" id="newPassword" name="newPassword"><br>
+                        <label for="newMobile">Mobile Number:</label>
+                        <input type="text" id="newMobile" name="newMobile"><br>
+                        <label for="newEmail">Email Address:</label>
+                        <input type="text" id="newEmail" name="newEmail"><br>
+                        <label for="newAddress">Home Address:</label>
+                        <input type="text" id="newAddress" name="newAddress"><br>
+                        <label for="editDoB">Date of Birth:</label>
+                        <input type="text" id="newDoB" name="newDoB"><br>
+                        <label for="newStatus">Admin Status:</label>
+                        <input type="text" id="newStatus" name="newStatus"><br>
+                        <label for="newAdminId">Admin ID:</label>
+                        <input type="text" id="newAdminId" name="newAdminId"><br>
+
+                        <input type="submit" name="addCustomer" value="Add Customer">
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <button class ="add-customer-button" onclick="openAddModal()">Add New Customer</button>
+            <button class="add-customer-button" onclick="openAddModal()">Add New Customer</button>
 
-        <script>
-            function openAddModal() {
-                document.getElementById("addModal").style.display = "block";
-            }
+            <script>
+                function openAddModal() {
+                    document.getElementById("addModal").style.display = "block";
+                }
 
-            function closeModal() {
-                var modal = document.getElementById("addModal").style.display = "none";
-            }
-        </script>
+                function closeAddModal() {
+                    var modal = document.getElementById("addModal").style.display = "none";
+                }
+            </script>
 
             <table class="customer-table">
                 <thead>
@@ -326,8 +329,27 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
                             '<?= htmlspecialchars($customer['Surname']) ?>', '<?= htmlspecialchars($customer['MobileNumber']) ?>','<?= htmlspecialchars($customer['Email']) ?>',
                             '<?= htmlspecialchars($customer['CustomerAddress']) ?>', '<?= htmlspecialchars($customer['DateOfBirth']) ?>', 
                             '<?= htmlspecialchars($customer['AdminStatus']) ?>', '<?= htmlspecialchars($customer['Admin_ID']) ?>')">Edit</button>
+
+                            <button class="delete-btn"
+                                onclick="openDeleteModal('<?= htmlspecialchars($customer['Customer_ID']) ?>')">Delete</button>
                         </td>
                     </tr>
+                    <div id="deleteModal<?= $customer['Customer_ID'] ?>" class="modal">
+                        <div class="modal-content">
+                            <span class="close"
+                                onclick="closeDeleteModal('<?= htmlspecialchars($customer['Customer_ID']) ?>')">&times;</span>
+                            <h2>Delete Customer</h2>
+                            <p>Are you sure you want to delete this customer?</p>
+                            <form action="deleteCustomer.php" method="post">
+                                <input type="hidden" name="customerId"
+                                    value="<?= htmlspecialchars($customer['Customer_ID']) ?>">
+                                <label for="adminPassword">Admin Password:</label>
+                                <input type="password" id="adminPassword" name="adminPassword" required><br>
+                                <input type="submit" name="deleteCustomer" value="Delete">
+                            </form>
+                        </div>
+                    </div>
+                    </td>
                 <?php endforeach; ?>
             </table>
             <nav class="table-np">
@@ -337,6 +359,16 @@ if (!isset($_SESSION['Customer_ID']) || $_SESSION['AdminStatus'] != 1) {
                 </ul>
             </nav>
         </div>
+
+        <script>
+            function openDeleteModal(customerId) {
+                document.getElementById("deleteModal" + customerId).style.display = "block";
+            }
+
+            function closeDeleteModal(customerId) {
+                document.getElementById("deleteModal" + customerId).style.display = "none";
+            }
+        </script>
     </body>
     <footer class="footer">
         <div class="footer-section">
