@@ -14,21 +14,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
 
-        $verifyResult = password_verify($password, $user['Password']);
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            $verifyResult = password_verify($password, $user['Password']);
 
-        if ($user && ($adminID == $user['Admin_ID']) && ($password == $verifyResult)) { 
-            $_SESSION['Customer_ID'] = $user['Customer_ID'];
-            $_SESSION['AdminStatus'] = 1;
-            $_SESSION['loggedin'] = true;
+            if ($user && $user['Admin_ID'] == $adminID && $verifyResult) { 
+                $_SESSION['Customer_ID'] = $user['Customer_ID'];
+                $_SESSION['AdminStatus'] = 1;
+                $_SESSION['loggedin'] = true;
 
-            echo '<script>alert("Hi ' . $user['Email'] . ', you are now logged in!");</script>';
-            echo '<script>window.location.href = "Index.php";</script>';
-            exit();
+                echo '<script>alert("Hi ' . $user['Email'] . ', you are now logged in!");</script>';
+                echo '<script>window.location.href = "Index.php";</script>';
+                exit();
+            } else {
+                echo '<script>alert("Invalid email, password, or admin ID.");</script>';
+                echo '<script>window.location.href = "signInPageAdmin.php";</script>';
+                exit();
+            }
         } else {
-            $_SESSION['error'] = "Invalid email, password or admin ID.";
-            header('Location: signInPageAdmin.php');
+            echo '<script>alert("Invalid email, password, or admin ID.");</script>';
+            echo '<script>window.location.href = "signInPageAdmin.php";</script>';
             exit();
         }
     }
