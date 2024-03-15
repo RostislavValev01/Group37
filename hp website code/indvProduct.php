@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'connectdb.php';
 ?>
 
 <!DOCTYPE html>
@@ -88,8 +89,6 @@ session_start();
       <?php
       $id = $_GET['id'];
 
-      require 'connectdb.php';
-
       $query = "SELECT ProductSKU, ProductName, Price, Product_Status, Product_Category, Product_Description FROM stock WHERE ProductSKU = ?";
       $stmt = $con->prepare($query);
       $stmt->bind_param("s", $id);
@@ -98,7 +97,18 @@ session_start();
       $result = $stmt->get_result();
       $product = $result->fetch_assoc();
 
-      ?>
+
+      $customerID = $_SESSION['Customer_ID'];
+        $query1 = "SELECT FirstName, Surname FROM accountdetails WHERE Customer_ID = ?";
+        $stmt1 = $con->prepare($query1);
+        $stmt1->bind_param("s", $customerID);
+        $stmt1->execute();
+        $stmt1->bind_result($firstName, $lastName);
+        $stmt1->fetch();
+
+        $stmt1->close();
+        ?>
+
       <title>
         <?php echo $product['ProductName']; ?>
       </title>
@@ -129,15 +139,74 @@ session_start();
           <p class="pDescription">
             <?php echo $product['Product_Description']; ?>
           </p>
+        </div>
+      </div>
+      <div class="review-section">
+        <h2>Product Reviews</h2><br>
+        <?php
+        $query = "SELECT FirstName, LastName, ReviewRating, Description FROM productreviews WHERE ProductSKU = ?";
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
+        if ($result->num_rows > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo '<div class="review-box">';
+            echo '<div class="review">';
+            echo '<p><strong>User:</strong> ' . $row['FirstName'] . ' ' . $row['LastName'] . '</p>';
+            echo '<p><strong>Rating:</strong> ' . $row['ReviewRating'] . '</p>';
+            echo '<p><strong>Review:</strong> ' . $row['Description'] . '</p>';
+            echo '</div>';
+            echo '</div>';
+          }
+        }
+        ?>
+        <button id="reviewButton" class="btn btn-primary">Write a Review</button>
+        <div id="reviewModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Write a Review</h2>
+            <form id="reviewForm" method="post" action="submit_review.php?id=<?php echo $id; ?>">
+              <input type="hidden" id="firstName" name="firstName" value="<?php echo $firstName; ?>">
+              <input type="hidden" id="lastName" name="lastName" value="<?php echo $lastName; ?>"><br>
+              <label for="rating">Rating:</label>
+              <input type="number" id="rating" name="rating" min="1" max="5" required><br><br>
+              <label for="description">Description:</label>
+              <textarea id="description" name="description" rows="4" required></textarea><br><br><br>
+              <input type="submit" value="Submit Review">
+            </form>
+          </div>
         </div>
       </div>
     </div>
+
+    <script>
+      var modal = document.getElementById("reviewModal");
+      var btn = document.getElementById("reviewButton");
+      var span = document.getElementsByClassName("close")[0];
+
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
+
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+
   </body>
+
   <footer class="footer">
     <div class="footer-section">
       <div>
-        <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+        <img src="hplogo3.png" class="logo" alt="Company Logo"></a>
       </div>
       <div>
         <p>© 2023 HealthPoint. All rights reserved.
