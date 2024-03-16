@@ -9,22 +9,34 @@
 
 .registration-table {
     background-color: #f9f9f9;
-    padding: 20px;
+    padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-collapse: collapse; 
-    width: 300px; 
+    width: 600px; 
 }
 
 .registration-table th,
 .registration-table td {
-    padding: 8px;
+    padding: 3px; 
     border-bottom: 1px solid #ccc;
-    text-align: left;
+    text-align: center;
 }
 
 .registration-table th {
     text-align: center;
+}
+
+
+.registration-table input[type="text"],
+.registration-table input[type="password"],
+.registration-table input[type="email"],
+.registration-table input[type="number"],
+.registration-table input[type="date"] {
+    width: calc(100% - 16px); 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
 }
 
 #submit {
@@ -40,3 +52,15 @@
 #submit:hover {
     background-color: #45a049;
 }
+.admin-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px; 
+    color: #000000; 
+    text-decoration: none;
+}
+
+.admin-link:hover {
+    text-decoration: underline;
+}
+

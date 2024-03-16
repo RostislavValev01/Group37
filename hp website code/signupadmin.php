@@ -118,7 +118,7 @@ if (isset($_POST["submit"])) {
     </ul>
   </nav>
 <form class="register" id="registerForm"  method="post">
-<div class="content">
+
 
 <form class="register" id="registerForm" action="" method="post">
     <div class="content">
@@ -206,9 +206,12 @@ if (isset($_POST["submit"])) {
 <footer class="footer">
     <div class="footer-section">
         <div>
-            <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+            <img src="hplogo3.png" class="logo" alt="Company Logo">
         </div>
-        <div>
+        
+        
+    </div>
+    <div>
             <p>© 2023 HealthPoint. All rights reserved.
 
                 The content, design, and images on this website are the property of HealthPoint and are protected by
@@ -222,6 +225,7 @@ if (isset($_POST["submit"])) {
 
         </div>
         <?php  ?>
-    </div>
 </footer>
+
+
 </html>

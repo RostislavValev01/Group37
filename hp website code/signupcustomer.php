@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="HealthPoint.css">
 <link rel="stylesheet" href ="signup.css">
+
 </head>
 
 
@@ -167,6 +168,7 @@ else{
         <a href="signupadmin.php" class="admin-link">Create an admin account</a>
     </td>
 </tr>
+
         <tr>
             <td colspan="2">
                 <input type="submit" id="submit" name="submit" value="Create new Account">
@@ -184,7 +186,7 @@ else{
 <footer class="footer">
     <div class="footer-section">
         <div>
-            <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+            <img src="hplogo3.png" class="logo" alt="Company Logo">
         </div>
         <div>
             <p>© 2023 HealthPoint. All rights reserved.
