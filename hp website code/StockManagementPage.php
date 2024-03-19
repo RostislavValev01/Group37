@@ -7,43 +7,42 @@ include 'search-function.php';
 if (isset($_GET['search'])) {
   $searchQuery = $_GET['search'];
 }
-// Function to generate and output the receipt
-function generateReceipt($stockData) {
-  // Start output buffering
+function generateReceipt($stockData)
+{
+
   ob_start();
 
-  // Output the receipt in HTML format
+
   echo '<h2>Stock Receipt</h2>';
   echo '<table border="1">';
   echo '<tr><th>Product Number</th><th>Product Name</th><th>Quantity</th></tr>';
 
   foreach ($stockData as $product) {
-      echo '<tr>';
-      echo '<td>' . $product['ProductSKU'] . '</td>';
-      echo '<td>' . $product['ProductName'] . '</td>';
-      echo '<td>' . $product['Quantity'] . '</td>';
-      echo '</tr>';
+    echo '<tr>';
+    echo '<td>' . $product['ProductSKU'] . '</td>';
+    echo '<td>' . $product['ProductName'] . '</td>';
+    echo '<td>' . $product['Quantity'] . '</td>';
+    echo '</tr>';
   }
 
   echo '</table>';
 
-  // Get the buffered output
+
   $html = ob_get_clean();
 
-  // Set the content type to HTML
+
   header('Content-Type: text/html');
 
-  // Output the HTML content
+
   echo $html;
 }
 
-// Check if the receipt button is clicked
-if (isset($_POST['generate_receipt'])) {
-  // Assuming $stock is an array containing current stock data
-  // You can adjust this to fetch the data from your database
-  $stockData = $stock; // Replace with your actual stock data array
+
+if (isset ($_POST['generate_receipt'])) {
+
+  $stockData = $stock;
   generateReceipt($stockData);
-  exit; // Prevent further output
+  exit;
 }
 ?>
 ?>
