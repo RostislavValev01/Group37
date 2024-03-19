@@ -98,7 +98,8 @@ require 'connectdb.php';
       $product = $result->fetch_assoc();
 
 
-      $customerID = $_SESSION['Customer_ID'];
+      if (isset($_SESSION['loggedin'])) {
+        $customerID = $_SESSION['Customer_ID'];
         $query1 = "SELECT FirstName, Surname FROM accountdetails WHERE Customer_ID = ?";
         $stmt1 = $con->prepare($query1);
         $stmt1->bind_param("s", $customerID);
@@ -107,6 +108,7 @@ require 'connectdb.php';
         $stmt1->fetch();
 
         $stmt1->close();
+      }
         ?>
 
       <title>
@@ -226,3 +228,4 @@ require 'connectdb.php';
   </footer>
 
 </html>
+
