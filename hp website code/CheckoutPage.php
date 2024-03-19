@@ -4,12 +4,12 @@ session_start();
 require 'connectdb.php';
 include 'checkout.php';
 
-if (isset($_GET['search'])) {
+if (isset ($_GET['search'])) {
   $searchQuery = $_GET['search'];
 }
 
 
-if (!isset($_SESSION['Customer_ID'])) {
+if (!isset ($_SESSION['Customer_ID'])) {
   header('Location:productPage.php');
 } else {
 
@@ -30,15 +30,15 @@ if (!isset($_SESSION['Customer_ID'])) {
   <body>
     <nav class="banner">
       <a href="Index.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
-      <form action="" method="get">
+      <form action="productPage.php" method="get">
         <input type="text" name="search" class="search-bar"
-          value="<?= isset($search) && $search !== '' ? htmlspecialchars($search) : '' ?>"
+          value="<?= isset ($search) && $search !== '' ? htmlspecialchars($search) : '' ?>"
           placeholder="Search products...">
         <input type="submit" value="Go" class="search-bar-go">
       </form>
       <?php
-      if (isset($_SESSION['loggedin'])) {
-        if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
+      if (isset ($_SESSION['loggedin'])) {
+        if (isset ($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 1) {
           ?>
           <nav class="header">
             <button><a href="AdminAccounts.php">Account</a></button>
@@ -47,7 +47,7 @@ if (!isset($_SESSION['Customer_ID'])) {
             <button><a href="logout.php">Logout</a></button>
           </nav>
           <?php
-        } else if (isset($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
+        } else if (isset ($_SESSION['AdminStatus']) && $_SESSION['AdminStatus'] == 0) {
           ?>
             <nav class="header">
               <button><a href="CustomerAccounts.php">Account</a></button>
@@ -89,7 +89,7 @@ if (!isset($_SESSION['Customer_ID'])) {
 
 
 
-    
+
     <div class="content">
       <div class="position"></div>
       <div class="address-container">
@@ -152,7 +152,7 @@ if (!isset($_SESSION['Customer_ID'])) {
             <?php
             require 'connectdb.php';
 
-            if (isset($_SESSION['Customer_ID'])) {
+            if (isset ($_SESSION['Customer_ID'])) {
               $user_id = $_SESSION['Customer_ID'];
 
               $query = "SELECT ProductName, Quantity, Price FROM customerbasket WHERE CustomerID = ?";
@@ -181,7 +181,7 @@ if (!isset($_SESSION['Customer_ID'])) {
             ?>
           </table>
 
-          <?php if (isset($_SESSION['Customer_ID'])): ?>
+          <?php if (isset ($_SESSION['Customer_ID'])): ?>
             <p>Total Amount: £
               <?php echo number_format($orderTotal, 2); ?>
             </p>
