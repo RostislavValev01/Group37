@@ -1,11 +1,11 @@
 <?php
 session_start();
-include('connectdb.php');
+include ('connectdb.php');
 
-if (isset($_SESSION["Customer_ID"]) && $_SESSION["loggedin"] === true) {
+if (isset ($_SESSION["Customer_ID"]) && $_SESSION["loggedin"] === true) {
     $cID = $_SESSION["Customer_ID"];
 
-    if (isset($_POST['submitOrder'])) {
+    if (isset ($_POST['submitOrder'])) {
         $email = $_POST['email'];
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
@@ -16,7 +16,7 @@ if (isset($_SESSION["Customer_ID"]) && $_SESSION["loggedin"] === true) {
         $phone = $_POST['phone'];
 
         $query = 'SELECT * FROM customerbasket WHERE CustomerID="' . $cID . '"';
-        $result = mysqli_query($con, $query) or die(mysqli_error($con));
+        $result = mysqli_query($con, $query) or die (mysqli_error($con));
 
         $orderDescription = "";
         $orderTotal = 0;
@@ -27,7 +27,7 @@ if (isset($_SESSION["Customer_ID"]) && $_SESSION["loggedin"] === true) {
             $quantity = $row['Quantity'];
 
             $productQuery = 'SELECT ProductName, Price FROM stock WHERE ProductSKU ="' . $productID . '"';
-            $productResult = mysqli_query($con, $productQuery) or die(mysqli_error($con));
+            $productResult = mysqli_query($con, $productQuery) or die (mysqli_error($con));
             $productRow = mysqli_fetch_assoc($productResult);
             $productName = $productRow['ProductName'];
             $productPrice = $productRow['Price'];
@@ -39,22 +39,22 @@ if (isset($_SESSION["Customer_ID"]) && $_SESSION["loggedin"] === true) {
 
         $orderDescription = rtrim($orderDescription, "; ");
 
-        // Insert order details into orderprocessing table for admin
-        
+
+
 
         $userInsertQuery = 'INSERT INTO orderhistory (Customer_ID, ProductName, ProductDescription, Quantity, Price, ProductSKU, OrderDate, OrderStatus)
                     VALUES ("' . $cID . '", "' . $productName . '", "' . $orderDescription . '", "' . $quantity . '", "' . $productPrice . '", "' . $productID . '", NOW(), "Pending")';
-        mysqli_query($con, $userInsertQuery) or die(mysqli_error($con));
+        mysqli_query($con, $userInsertQuery) or die (mysqli_error($con));
 
         $userInsertQuery = 'INSERT INTO orderprocessing (OrderTotal, CustomerID, OrderStatus, Order_Description, Email, FirstName, LastName, Address, City, Country, PostCode, PhoneNumber) 
         VALUES ("' . $orderTotal . '", "' . $cID . '", "Pending", "' . $orderDescription . '", "' . $email . '", "' . $fname . '", "' . $lname . '", "' . $address . '", "' . $city . '", "' . $country . '", "' . $postCode . '", "' . $phone . '")';
-        mysqli_query($con, $userInsertQuery) or die(mysqli_error($con));
+        mysqli_query($con, $userInsertQuery) or die (mysqli_error($con));
 
 
 
 
         $clearBasket = 'DELETE FROM customerbasket WHERE CustomerID="' . $cID . '"';
-        mysqli_query($con, $clearBasket) or die(mysqli_error($con));
+        mysqli_query($con, $clearBasket) or die (mysqli_error($con));
 
         $_SESSION['orderSuccessful'] = true;
     }
@@ -64,7 +64,7 @@ if (isset($_SESSION["Customer_ID"]) && $_SESSION["loggedin"] === true) {
 
 ?>
 
-<?php if (isset($_SESSION['orderSuccessful'])): ?>
+<?php if (isset ($_SESSION['orderSuccessful'])): ?>
     <script type="text/javascript">
         alert("Order Successful!");
         window.location = "Cart.php";
