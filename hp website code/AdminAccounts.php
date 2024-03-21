@@ -1,55 +1,25 @@
 <?php
 session_start();
 
-require 'connectdb.php';
-include 'search-function.php';
-
-if (isset($_GET['search'])) {
-  $searchQuery = $_GET['search'];
-}
-?>
-
-<?php
 require_once "connectdb.php";
 
-session_start();
-
-// if the user is logged in
-if (isset($_SESSION['Customer_ID'])) {
-    $customerID = $_SESSION['Customer_ID'];
-
-
-    $sql = "SELECT FirstName, Password FROM accountdetails WHERE Customer_ID = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("i", $CustomerID);
-    $stmt->execute();
-    $stmt->bind_result($FirstName, $Password);
-    $stmt->fetch();
-    $stmt->close();
-
-    // Fetch Email and Phone Number from the database
-    $sql = "SELECT Email, MobileNumber FROM accountdetails WHERE Customer_ID = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("i", $Customer_ID);
-    $stmt->execute();
-    $stmt->bind_result($Email, $MobileNumber);
-    $stmt->fetch();
-    $stmt->close();
-
-    // Fetch CustomerAddress from the database
-    $sql = "SELECT CustomerAddress FROM accountdetails WHERE Customer_ID = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("i", $CustomerID);
-    $stmt->execute();
-    $stmt->bind_result($CustomerAddress);
-    $stmt->fetch();
-    $stmt->close();
-   
-} else {
+// Check if the user is logged in
+if (!isset($_SESSION['Customer_ID'])) {
     // Redirect to the login page if the user is not logged in
     header("Location: signInPageAdmin.php");
     exit();
 }
+
+$customerID = $_SESSION['Customer_ID'];
+
+// Fetch user details from the database
+$sql = "SELECT FirstName, Email, CustomerAddress, Admin_ID FROM accountdetails WHERE Customer_ID = ?";
+$stmt = $con->prepare($sql);
+$stmt->bind_param("i", $customerID);
+$stmt->execute();
+$stmt->bind_result($FirstName, $Email, $CustomerAddress, $Admin_ID);
+$stmt->fetch();
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -123,46 +93,37 @@ if (isset($_SESSION['Customer_ID'])) {
     </ul>
   </nav>
 
-
-    <div class="admin-section">
-        <div class="admin-content">
-            <div class="box">
-                <p>(Visible to logged in user)</p>
-                <p>Name: <?php echo $FirstName; ?></p>
-                <p>Password: <?php echo $Password; ?></p>
-                <button onclick="updatePastOrders()">Update</button>
-            </div>
-
-            <div class="box">
-                <p>(Visible to the logged-in user)</p>
-
-                <p>Email Address: <?php echo $Email; ?></p>
-
-                <p>Phone Number: <?php echo $MobileNumber; ?></p>
-
-                <button onclick="updateCustomerDetails()">Update</button>
-            </div>
-
-            <div class="box">
-                <p>(Visible to the logged in user)</p>
-
-                <p>Shipping Address: <?php echo $CustomerAddress; ?></p>
-
-                <button onclick="updateStockManagement()">Update</button>
-            </div>
-
+  <div class="admin-container">
+    <div class="admin-details-container">
+        <h2>Admin Details</h2>
+        <div class="admin-details-item">
+            <span class="admin-details-label">Name:</span>
+            <span class="admin-details-value"><?php echo $FirstName; ?></span>
         </div>
-
-        <div class="admin-sidebar">
-            <button onclick="redirectTo('OrderHistory.php')">View Past Orders</button>
-            <button onclick="redirectTo('customerDetails.php')">Customer Details Database</button>
-            <button onclick="redirectTo('StockManagementPage.php')">Stock Management Database</button>
-            <button onclick="redirectTo('Orderprocessing.php')">Order Processing</button>
+        <div class="admin-details-item">
+            <span class="admin-details-label">Email:</span>
+            <span class="admin-details-value"><?php echo $Email; ?></span>
         </div>
-
-        <script defer src="AdminAccounts.js"></script>
-
+        <div class="admin-details-item">
+            <span class="admin-details-label">Address:</span>
+            <span class="admin-details-value"><?php echo $CustomerAddress; ?></span>
+        </div>
+        <div class="admin-details-item">
+            <span class="admin-details-label">Admin ID:</span>
+            <span class="admin-details-value"><?php echo $Admin_ID; ?></span>
+        </div>
     </div>
+
+    <div class="admin-dashboard-container">
+        <h2>Admin Dashboard</h2>
+        <div class="admin-dashboard">
+        <a href="customerDetails.php"><button>Customer Database</button></a>
+        <a href="OrderHistory.php"><button>View Order History</button></a>
+        <a href="StockManagementPage.php"><button>Stock Management</button></a>
+        <a href="OrderProcessing.php"><button>Processing Orders</button></a>
+    </div>
+    </div>
+</div>
 
     <?php
     // Close the database connection
@@ -172,7 +133,7 @@ if (isset($_SESSION['Customer_ID'])) {
     <footer class="footer">
         <div class="footer-section">
             <div>
-               <img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+                <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
             </div>
             <div>
                 <p>© 2023 HealthPoint. All rights reserved.
