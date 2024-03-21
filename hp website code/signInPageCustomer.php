@@ -92,6 +92,7 @@ if(isset($_SESSION['Customer_ID'])){
                 ?>
                 <input type="email" id="email" name="email" placeholder="Email" /><br><br>
                 <input type="password" id="password" name="password" placeholder="Password" required><br><br>
+                <a href="forgottenpassword.php">Forgotten Password?</a><br><br>
                 <input type="submit" id="login" name="login" value="Login">
                 <input type="button" value="Register" id="register" class="button"
                     onclick="location.href='signupcustomer.php';">
