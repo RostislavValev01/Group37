@@ -1,26 +1,52 @@
-
 <?php
-require_once "connectdb.php";
-
 session_start();
-
+require_once "connectdb.php";
 
 // Check if the user is logged in
 if (!isset($_SESSION['loggedin'])) {
-  // Redirect to login page if not logged in
-  header("Location: signInPageCustomer.php");
-  exit;
+    // Redirect to login page if not logged in
+    header("Location: signInPageCustomer.php");
+    exit;
 }
 
-// Fetch user's information from the database
+// Fetch user details from the database
 $user_id = $_SESSION['Customer_ID'];
-$query = "SELECT * FROM accountdetails WHERE Customer_ID = ?";
+$query = "SELECT FirstName, Email, CustomerAddress FROM accountdetails WHERE Customer_ID = ?";
 $stmt = $con->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
-$user = $result->fetch_assoc();
-$stmt->close();
+$row = $result->fetch_assoc();
+
+// Handle form submission to update profile
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['address'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $address = $_POST['address'];
+
+        // Update user details in the database
+        $update_query = "UPDATE accountdetails SET FirstName = ?, Email = ?, CustomerAddress = ? WHERE Customer_ID = ?";
+        $update_stmt = $con->prepare($update_query);
+        $update_stmt->bind_param("sssi", $name, $email, $address, $user_id);
+        if ($update_stmt->execute()) {
+            // Update session variables
+            $_SESSION['FirstName'] = $name;
+            $_SESSION['Email'] = $email;
+            $_SESSION['CustomerAddress'] = $address;
+
+            // Redirect to customer account page with success message
+            header("Location: CustomerAccounts.php?success=1");
+            exit;
+        } else {
+            // Display error message if update fails
+            echo '<script>alert("Failed to update profile. Please try again.");</script>';
+            // Debug: Check for database errors
+            echo 'MySQL Error: ' . $con->error;
+        }
+        $update_stmt->close();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -94,23 +120,22 @@ $stmt->close();
     </ul>
   </nav>
 
-  <div class="account-container">
-    <h2 class="account-title">Your Account Information</h2>
-    <div class="account-info">
-        <p><strong>Name:</strong> <?php echo $user['FirstName']; ?></p>
-        <p><strong>Email:</strong> <?php echo $user['Email']; ?></p>
-        <p><strong>Address:</strong> <?php echo $user['CustomerAddress']; ?></p>
+  <div class="edit-profile-container">
+    <h2>Edit Your Profile</h2>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="<?php echo $row['FirstName']; ?>" required><br><br>
         
-    </div>
-    <div class="account-actions">
-        <button><a href="viewOrdersCustomer.php"> View Orders</a></button>
-        <button><a href="editProfile.php"> Edit Profile</a></button>
-        <button><a href="changePassword.php">Change Password</a></button>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="<?php echo $row['Email']; ?>" required><br><br>
         
-    </div>
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address" value="<?php echo $row['CustomerAddress']; ?>" required><br><br>
+        
+        <button type="submit">Save Changes</button>
+        <button onclick="window.location.href = 'CustomerAccounts.php';">Back</button>
+    </form>
 </div>
-
-    
 
     <?php
     // Close the database connection
@@ -136,5 +161,12 @@ $stmt->close();
     </div>
   </div>
 </footer>
+
+<script>
+    <?php if (isset($_GET['success'])) { ?>
+        // Show success message if changes were made successfully
+        alert("Changes made successfully!");
+    <?php } ?>
+</script>
 </body>
 </html>

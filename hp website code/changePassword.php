@@ -1,40 +1,62 @@
-
 <?php
-require_once "connectdb.php";
-
 session_start();
-
+require_once "connectdb.php";
 
 // Check if the user is logged in
 if (!isset($_SESSION['loggedin'])) {
-  // Redirect to login page if not logged in
-  header("Location: signInPageCustomer.php");
-  exit;
+    // Redirect to login page if not logged in
+    header("Location: signInPageCustomer.php");
+    exit;
 }
 
-// Fetch user's information from the database
-$user_id = $_SESSION['Customer_ID'];
-$query = "SELECT * FROM accountdetails WHERE Customer_ID = ?";
-$stmt = $con->prepare($query);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
-$stmt->close();
+// Handle form submission to change password
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['old_password']) && isset($_POST['new_password'])) {
+        $user_id = $_SESSION['Customer_ID'];
+        $old_password = $_POST['old_password'];
+        $new_password = $_POST['new_password'];
+
+        // Retrieve current password from database
+        $query = "SELECT Password FROM accountdetails WHERE Customer_ID = ?";
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $current_password = $row['Password'];
+
+        // Verify old password
+        if (password_verify($old_password, $current_password)) {
+            // Hash and update new password in database
+            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+            $update_query = "UPDATE accountdetails SET Password = ? WHERE Customer_ID = ?";
+            $update_stmt = $con->prepare($update_query);
+            $update_stmt->bind_param("si", $hashed_password, $user_id);
+            $update_stmt->execute();
+            $update_stmt->close();
+
+            // Display success message
+            echo '<script>alert("Password changed successfully!");</script>';
+        } else {
+            // Display error message if old password is incorrect
+            echo '<script>alert("Incorrect old password. Please try again.");</script>';
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-
 <head>
-    <title>Customer Accounts</title>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
     <link rel="stylesheet" type="text/css" href="AdminAccounts.css">
     <link rel="stylesheet" type="text/css" href="custom-style.css">
-</head>
+    </head>
 <body>
 <nav class="banner">
     <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
@@ -94,23 +116,25 @@ $stmt->close();
     </ul>
   </nav>
 
-  <div class="account-container">
-    <h2 class="account-title">Your Account Information</h2>
-    <div class="account-info">
-        <p><strong>Name:</strong> <?php echo $user['FirstName']; ?></p>
-        <p><strong>Email:</strong> <?php echo $user['Email']; ?></p>
-        <p><strong>Address:</strong> <?php echo $user['CustomerAddress']; ?></p>
-        
+  <div class="change-password-container">
+    <div class="change-password-form">
+        <h2 class="change-password-title">Change Your Password</h2>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <input type="password" name="old_password" id="old_password" placeholder="Old Password" required><br>
+            <input type="password" name="new_password" id="new_password" placeholder="New Password" required>
+            <button type="submit">Change Password</button>
+        </form>
     </div>
-    <div class="account-actions">
-        <button><a href="viewOrdersCustomer.php"> View Orders</a></button>
-        <button><a href="editProfile.php"> Edit Profile</a></button>
-        <button><a href="changePassword.php">Change Password</a></button>
-        
+    <div class="show-password">
+        <input type="checkbox" id="show_password"> <label for="show_password">Show Password</label><br>
+    </div>
+    <div class="back-to-account">
+        <button onclick="window.location.href='CustomerAccounts.php'">Back</button>
     </div>
 </div>
 
-    
+
+
 
     <?php
     // Close the database connection
@@ -136,5 +160,23 @@ $stmt->close();
     </div>
   </div>
 </footer>
+
+<script>
+    document.getElementById('show_password').addEventListener('change', function() {
+        var oldPasswordField = document.getElementById('old_password');
+        var newPasswordField = document.getElementById('new_password');
+        if (this.checked) {
+            oldPasswordField.type = 'text';
+            newPasswordField.type = 'text';
+        } else {
+            oldPasswordField.type = 'password';
+            newPasswordField.type = 'password';
+        }
+    });
+</script>
+
+
 </body>
 </html>
+
+

@@ -1,26 +1,21 @@
-
 <?php
-require_once "connectdb.php";
-
 session_start();
-
+require_once "connectdb.php";
 
 // Check if the user is logged in
 if (!isset($_SESSION['loggedin'])) {
-  // Redirect to login page if not logged in
-  header("Location: signInPageCustomer.php");
-  exit;
+    // Redirect to login page if not logged in
+    header("Location: signInPageCustomer.php");
+    exit;
 }
 
-// Fetch user's information from the database
+// Fetch user's orders from the database
 $user_id = $_SESSION['Customer_ID'];
-$query = "SELECT * FROM accountdetails WHERE Customer_ID = ?";
+$query = "SELECT * FROM orderhistory WHERE Customer_ID = ?";
 $stmt = $con->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
-$user = $result->fetch_assoc();
-$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -94,23 +89,36 @@ $stmt->close();
     </ul>
   </nav>
 
-  <div class="account-container">
-    <h2 class="account-title">Your Account Information</h2>
-    <div class="account-info">
-        <p><strong>Name:</strong> <?php echo $user['FirstName']; ?></p>
-        <p><strong>Email:</strong> <?php echo $user['Email']; ?></p>
-        <p><strong>Address:</strong> <?php echo $user['CustomerAddress']; ?></p>
-        
+  <div class="view-orders-container">
+        <h2>Order History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row['OrderID'] . "</td>";
+                    echo "<td>" . $row['OrderDate'] . "</td>";
+                    echo "<td>" . $row['ProductName'] . "</td>";
+                    echo "<td>" . $row['Quantity'] . "</td>";
+                    echo "<td>" . $row['Price'] . "</td>";
+                    echo "<td>" . $row['OrderStatus'] . "</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+        <button onclick="window.location.href = 'CustomerAccounts.php';">Back</button>
     </div>
-    <div class="account-actions">
-        <button><a href="viewOrdersCustomer.php"> View Orders</a></button>
-        <button><a href="editProfile.php"> Edit Profile</a></button>
-        <button><a href="changePassword.php">Change Password</a></button>
-        
-    </div>
-</div>
-
-    
 
     <?php
     // Close the database connection

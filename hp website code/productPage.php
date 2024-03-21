@@ -137,7 +137,8 @@ if (isset($_GET['search'])) {
       <p>
         Images and products on this page were sourced from the following websites:<br>
         https://www.boots.com/<br>
-        https://lloydspharmacy.com/<br><br>
+        https://lloydspharmacy.com/<br>
+        https://www.chemistdirect.co.uk/<br><br>
         © 2023 HealthPoint. All rights reserved.
 
         The content, design, and images on this website are the property of HealthPoint and are protected by
