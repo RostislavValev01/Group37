@@ -9,7 +9,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #f5f5dc; /* Add your desired background color */
+    background-color: #f5f5dc;
 }
 
 .header-nav {
@@ -17,44 +17,82 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #b8cca3; /* Add your desired background color */
+    background-color: #b8cca3;
 }
 
-.admin-section {
+.admin-container {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 20px;
-}
-
-.admin-sidebar {
-    width: 200px;
-    padding: 20px;
-}
-
-.admin-content {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    flex: 1;
-    padding: 20px;
+    margin-top: 50px;
 }
 
-.box {
-    width: calc(50% - 20px); /* Adjust the width based on your design */
-    background-color: #fff;
-    border: 1px solid #ddd;
+.admin-details-container {
+    width: 25%; 
     padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 90px; /* Add margin to the left side */
+}
+
+.admin-dashboard-container {
+    width: 50%; 
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 60px;
+}
+
+.admin-details-container h2,
+.admin-dashboard-container h2 {
+    font-size: 24px;
     margin-bottom: 20px;
+    color: #333;
+    text-align: center; 
 }
 
-button {
-    padding: 10px;
-    margin-top: 10px;
+.admin-details-item {
+    margin-bottom: 10px;
+}
+
+.admin-details-label {
+    font-weight: bold;
+}
+
+.admin-details-value {
+    margin-left: 10px;
+}
+
+.admin-details button,
+.admin-dashboard button {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.admin-button-container button:hover {
-background-color: #ddd; /* Add your desired hover background color */
-color: #333; /* Add your desired hover text color */
+.admin-details button:hover,
+.admin-dashboard button:hover {
+    background-color: #45a049;
+}
+
+/* New styles for the admin dashboard */
+.admin-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-dashboard button {
+    margin-bottom: 15px; 
+    padding: 15px 30px; 
+    font-size: 18px; 
 }
