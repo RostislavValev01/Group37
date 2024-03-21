@@ -1,45 +1,26 @@
-<?php
-session_start();
-
-require 'connectdb.php';
-include 'search-function.php';
-
-if (isset($_GET['search'])) {
-  $searchQuery = $_GET['search'];
-}
-?>
 
 <?php
 require_once "connectdb.php";
 
 session_start();
 
-//  if the user is logged in
-if (isset($_SESSION['Customer_ID'])) {
-    $customerID = $_SESSION['Customer_ID'];
 
-    // Fetch Email and Phone Number from the database
-    $sql = "SELECT Email, MobileNumber FROM accountdetails WHERE Customer_ID = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("i", $Customer_ID);
-    $stmt->execute();
-    $stmt->bind_result($Email, $MobileNumber);
-    $stmt->fetch();
-    $stmt->close();
-
-    // Fetch CustomerAddress from the database
-    $sql = "SELECT CustomerAddress FROM accountdetails WHERE Customer_ID = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("i", $CustomerID);
-    $stmt->execute();
-    $stmt->bind_result($CustomerAddress);
-    $stmt->fetch();
-    $stmt->close();
-} else {
-    // Redirect to the login page if the user is not logged in
-    header("Location: signupcustomer.php");
-    exit();
+// Check if the user is logged in
+if (!isset($_SESSION['loggedin'])) {
+  // Redirect to login page if not logged in
+  header("Location: signInPageCustomer.php");
+  exit;
 }
+
+// Fetch user's information from the database
+$user_id = $_SESSION['Customer_ID'];
+$query = "SELECT * FROM accountdetails WHERE Customer_ID = ?";
+$stmt = $con->prepare($query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -51,12 +32,11 @@ if (isset($_SESSION['Customer_ID'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="HealthPoint.css">
-    <link rel="stylesheet" type="text/css" href="CustomerAccounts.css">
-
-    
+    <link rel="stylesheet" type="text/css" href="AdminAccounts.css">
+    <link rel="stylesheet" type="text/css" href="custom-style.css">
 </head>
 <body>
-   <nav class="banner">
+<nav class="banner">
     <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
     <form action="productPage.php" method="get">
       <input type="text" name="search" class="search-bar"
@@ -114,51 +94,23 @@ if (isset($_SESSION['Customer_ID'])) {
     </ul>
   </nav>
 
-    <div class="customer-section">
-        <div class="customer-content">
-            <div class="box">
-                <p>(Visible to logged in user)</p>
-                <p>Username:</p>
-                <p>Password:</p>
-                <button onclick="updatePastOrders()">Update</button>
-            </div>
-
-            <div class="box">
-                <p>(Visible to the logged in user)</p>
-
-                <p>Email Address: <?php echo $Email; ?></p>
-
-                <p>Phone Number: <?php echo $MobileNumber; ?></p>
-                
-                <button onclick="updateCustomerDetails()">Update</button>
-            </div>
-
-            <div class="box">
-                <p>(Visible to the logged in user)</p>
-
-                <p>Shipping Address: <?php echo $CustomerAddress; ?></p>
-
-                <button onclick="updateStockManagement()">Update</button>
-            </div>
-
-        </div>
-
-        <div class="admin-sidebar">
-                <button onclick="redirectTo('OrderHistory.php')">View Past Orders</button>
-        </div>
-
-        <script>
-            function redirectTo(page) {
-        window.location.href = page;
-    }
-
-    // Add the following functions if needed
-        function showPastOrders() {
-            redirectTo('orderhistory.php');
-    }
-        </script>
-
+  <div class="account-container">
+    <h2 class="account-title">Your Account Information</h2>
+    <div class="account-info">
+        <p><strong>Name:</strong> <?php echo $user['FirstName']; ?></p>
+        <p><strong>Email:</strong> <?php echo $user['Email']; ?></p>
+        <p><strong>Address:</strong> <?php echo $user['CustomerAddress']; ?></p>
+        
     </div>
+    <div class="account-actions">
+        <button><a href="viewOrdersCustomer.php"> View Orders</a></button>
+        <button><a href="editProfile.php"> Edit Profile</a></button>
+        <button><a href="changePassword.php">Change Password</a></button>
+        
+    </div>
+</div>
+
+    
 
     <?php
     // Close the database connection
@@ -168,7 +120,7 @@ if (isset($_SESSION['Customer_ID'])) {
     <footer class="footer">
   <div class="footer-section">
     <div>
-     <img src="hplogo3.png" class="logo" alt="Company Logo"></a>
+      <a href="homePage.php"><img src="hplogo3.png" class="logo" alt="Company Logo"></a>
     </div>
     <div>
       <p>© 2023 HealthPoint. All rights reserved.
