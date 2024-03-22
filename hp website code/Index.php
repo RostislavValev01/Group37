@@ -18,19 +18,44 @@ include_once "layouts/header.php";
 
 
 <div class="content">
-<!--    data-bs-ride="carousel" data-bs-interval="5000"-->
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" >
+    <div id="carouselExampleDark" class="carousel carousel-dark slide"  data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="5000">
                 <div style="background-color: #ffffff; width: 100%;min-height: 400px;display: flex;">
                     <div class="slider-content-transform" >
                         <h2>General Medication</h2>
-                        <h3>Selsun</h3>
+                        <h3>Piriton allergy tablets</h3>
+                        <a class="btn btn-primary" href="indvProduct.php?id=3">View treatments</a>
+                    </div>
+                    <div style="width: 50%;display: flex;justify-content: center">
+                        <img src="productImages/3.jpg" class="d-block" style="max-width: 500px;height: 400px;" alt="...">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <div style="background-color: #ffffff; width: 100%;min-height: 400px;display: flex;">
+                    <div class="slider-content-transform" >
+                        <h2>SkinCare</h2>
+                        <h3>Simple Moisturising Face Wash</h3>
+                        <a class="btn btn-primary" href="indvProduct.php?id=9">View treatments</a>
+                    </div>
+                    <div style="width: 50%;display: flex;justify-content: center">
+                        <img src="productImages/9.jpg" class="d-block" style="max-width: 500px;height: 400px;" alt="...">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="5000">
+                <div style="background-color: #ffffff; width: 100%;min-height: 400px;display: flex;">
+                    <div class="slider-content-transform" >
+                        <h2>Haircare</h2>
+                        <h3>Selsun 2.5% selenium sulphide</h3>
                         <a class="btn btn-primary" href="indvProduct.php?id=1">View treatments</a>
                     </div>
                     <div style="width: 50%;display: flex;justify-content: center">
@@ -41,24 +66,24 @@ include_once "layouts/header.php";
             <div class="carousel-item" data-bs-interval="5000">
                 <div style="background-color: #ffffff; width: 100%;min-height: 400px;display: flex;">
                     <div class="slider-content-transform" >
-                        <h2>SkinCare</h2>
-                        <h3>Gaviscon</h3>
-                        <a class="btn btn-primary" href="indvProduct.php?id=7">View treatments</a>
+                        <h2>DentalCare</h2>
+                        <h3>Difflam Mouth Spray</h3>
+                        <a class="btn btn-primary" href="indvProduct.php?id=5">View treatments</a>
                     </div>
                     <div style="width: 50%;display: flex;justify-content: center">
-                        <img src="productImages/7.jpg" class="d-block" style="max-width: 500px;height: 400px;" alt="...">
+                        <img src="productImages/5.jpg" class="d-block" style="max-width: 500px;height: 400px;" alt="...">
                     </div>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="5000">
                 <div style="background-color: #ffffff; width: 100%;min-height: 400px;display: flex;">
                     <div class="slider-content-transform" >
-                        <h2>Haircare</h2>
-                        <h3>Simple</h3>
-                        <a class="btn btn-primary" href="indvProduct.php?id=10">View treatments</a>
+                        <h2>Vitamins Supplements</h2>
+                        <h3>Seven Seas Omega-3 Fish Oil</h3>
+                        <a class="btn btn-primary" href="indvProduct.php?id=8">View treatments</a>
                     </div>
                     <div style="width: 50%;display: flex;justify-content: center">
-                        <img src="productImages/12.jpg" class="d-block" style="max-width: 500px;height: 400px;" alt="...">
+                        <img src="productImages/8.jpg" class="d-block" style="max-width: 500px;height: 400px;" alt="...">
                     </div>
                 </div>
             </div>
@@ -95,7 +120,7 @@ include_once "layouts/header.php";
     <div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
         <a style="text-decoration: none" href="productPage.php?Product_Category=General">
             <div class="img-pop" style="display: flex;align-items: center;padding:20px;flex-direction: column;min-width: 100%;background-color: #ffffff;border-radius: 10px;">
-                <img src="productImages/2.jpg"  style="max-width: 300px;height: 200px;" />
+                <img src="productImages/4.jpg"  style="max-width: 300px;height: 200px;" />
             </div>
             <p style="text-align: center;width: 100%;color: black">
                 General Medication
@@ -105,7 +130,7 @@ include_once "layouts/header.php";
     <div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
         <a style="text-decoration: none" href="productPage.php?Product_Category=SkinCare">
             <div class="img-pop" style="display: flex;align-items: center;padding:20px;flex-direction: column;min-width: 100%;background-color: #ffffff;border-radius: 10px;">
-                <img src="productImages/6.jpg"  style="max-width: 300px;height: 200px;" />
+                <img src="productImages/10.jpg"  style="max-width: 300px;height: 200px;" />
             </div>
             <p style="text-align: center;width: 100%;color: black">
                 SkinCare
@@ -115,7 +140,7 @@ include_once "layouts/header.php";
     <div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
         <a style="text-decoration: none" href="productPage.php?Product_Category=Haircare">
             <div class="img-pop" style="display: flex;align-items: center;padding:20px;flex-direction: column;min-width: 100%;background-color: #ffffff;border-radius: 10px;">
-                <img src="productImages/11.jpg"  style="max-width: 300px;height: 200px;" />
+                <img src="productImages/2.jpg"  style="max-width: 300px;height: 200px;" />
             </div>
             <p style="text-align: center;width: 100%;color: black">
                 Haircare
@@ -125,7 +150,7 @@ include_once "layouts/header.php";
     <div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
         <a style="text-decoration: none" href="productPage.php?Product_Category=DentalCare">
             <div class="img-pop" style="display: flex;align-items: center;padding:20px;flex-direction: column;min-width: 100%;background-color: #ffffff;border-radius: 10px;">
-                <img src="productImages/16.jpg"  style="max-width: 300px;height: 200px;" />
+                <img src="productImages/6.jpg"  style="max-width: 300px;height: 200px;" />
             </div>
             <p style="text-align: center;width: 100%;color: black">
                 DentalCare
@@ -136,7 +161,7 @@ include_once "layouts/header.php";
     <div class="col-lg-4 col-md-6 col-sm-12  mt-2 mb-1">
         <a style="text-decoration: none" href="productPage.php?Product_Category=Vitamins_Supplements">
         <div class="img-pop" style="display: flex;align-items: center;padding:20px;flex-direction: column;min-width: 100%;background-color: #ffffff;border-radius: 10px;">
-            <img src="productImages/21.jpg"  style="max-width: 300px;height: 200px;" />
+            <img src="productImages/7.jpg"  style="max-width: 300px;height: 200px;" />
         </div>
         <p style="text-align: center;width: 100%;color: black">
             Vitamins and Supplements
