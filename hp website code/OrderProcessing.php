@@ -219,9 +219,5 @@ if (!$result) {
 
 
 </script>
-
-    
-</script>
-
 </body>
 </html>
