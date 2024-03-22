@@ -18,7 +18,7 @@ function generateReceipt($stockData)
   echo '<tr><th>Product Number</th><th>Product Name</th><th>Quantity</th></tr>';
 
   foreach ($stockData as $product) {
-    echo '<tr>';
+   
     echo '<td>' . $product['ProductSKU'] . '</td>';
     echo '<td>' . $product['ProductName'] . '</td>';
     echo '<td>' . $product['Quantity'] . '</td>';
