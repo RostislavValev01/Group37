@@ -12,7 +12,7 @@ function generateReceipt($stockData)
 
   ob_start();
 
-
+  echo '<tr>';
   echo '<h2>Stock Receipt</h2>';
   echo '<table border="1">';
   echo '<tr><th>Product Number</th><th>Product Name</th><th>Quantity</th></tr>';
