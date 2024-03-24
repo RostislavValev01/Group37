@@ -66,6 +66,24 @@ body {
     margin-left: 10px;
 }
 
+.admin-details-item button.edit-profile,
+.admin-details-item button.change-password {
+    display: inline-block; 
+    padding: 8px 16px; 
+    font-size: 14px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-details-item button.edit-profile:hover,
+.admin-details-item button.change-password:hover {
+    background-color: #45a049;
+}
+
 .admin-details button,
 .admin-dashboard button {
     display: block;
