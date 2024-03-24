@@ -112,6 +112,11 @@ $stmt->close();
             <span class="admin-details-label">Admin ID:</span>
             <span class="admin-details-value"><?php echo $Admin_ID; ?></span>
         </div>
+        </div>
+        <div class="admin-details-item">
+        <button class="edit-profile" onclick="window.location.href = 'editProfileadmin.php';">Edit Profile</button>
+        <button class="change-password" onclick="window.location.href = 'changePasswordadmin.php';">Change Password</button>
+      </div>
     </div>
 
     <div class="admin-dashboard-container">
