@@ -7,7 +7,7 @@ CREATE TABLE stock(
     Product_Status ENUM('In stock', 'Not in Stock') NOT NULL,
     Product_Category ENUM('General', 'SkinCare', 'Vitamins_Supplements', 'DentalCare', 'HairCare'),
     Price DECIMAL NOT NULL,
-    image VARCHAR(255) NOT NUL
+    image VARCHAR(255) NOT NULL,
     PRIMARY KEY(ProductSKU)
     );
 
