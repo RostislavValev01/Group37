@@ -1,40 +1,78 @@
-/* Styles for the first search bar */
-.top-search-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #b8cca3; /* Add your desired background color */
-}
 
-.top-search-bar input[type="text"] {
-    padding: 5px;
-    width: 70%;
-}
-
-.top-search-bar button {
-    padding: 5px;
-    background-color: #f5f5dc; 
-    border: none;
-    cursor: pointer;
-}
-
-/* Styles for the second search bar */
 .bottom-search-bar {
-    background-color: #b8cca3;
-    padding: 20px;
-    margin-left: 20px; 
+    background-color: #ffffff;
+    padding: 10px;
+    margin-top: 20px;
+    display: flex; 
+    justify-content: flex-start; 
 }
 
 .bottom-search-bar input[type="text"] {
-    padding: 40px; 
-    width: 80%; 
+    padding: 5px; 
+    width: 200px; 
 }
 
-.bottom-search-bar button {
-    padding: 10px; 
-    background-color: #f5f5dc; 
+.bottom-search-bar select {
+    padding: 5px; 
+    margin-left: 10px; 
+}
+
+.bottom-search-bar input[type="submit"] {
+    padding: 5px 10px; 
+    background-color: #8ff195; 
     border: none;
     cursor: pointer;
+    margin-left: 10px; 
 }
 
+.order-table-container {
+    margin-top: 20px;
+    overflow-x: auto; 
+    display: flex; 
+    justify-content: center; 
+}
+
+.order-table {
+    width: 80%; /* Adjust the width as needed */
+    border-collapse: collapse;
+}
+
+.order-table th,
+.order-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #000000; /* Add bottom border to table cells */
+    border-right: 1px solid #000000;
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+}
+
+.order-table th {
+    background-color: #c8f1c8; /* Light gray background for table header */
+}
+
+.order-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row background color */
+}
+
+.order-table tbody tr:hover {
+    background-color: #ddd; /* Hover background color for rows */
+}
+
+.order-table tbody tr td:last-child {
+    white-space: nowrap; /* Prevent wrapping for action buttons */
+}
+
+.order-table tbody tr td button {
+    padding: 5px 10px; /* Adjust the padding as needed */
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.order-table tbody tr td button:hover {
+    background-color: #45a049;
+}
